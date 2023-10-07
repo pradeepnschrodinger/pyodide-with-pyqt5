@@ -1,0 +1,22 @@
+diff --git a/cpython/Makefile b/cpython/Makefile
+index 8fa194f7..bd68ae80 100644
+--- a/cpython/Makefile
++++ b/cpython/Makefile
+@@ -20,7 +20,7 @@ LIB=libpython$(PYMINOR).a
+ ZLIBVERSION = 1.2.11
+ ZLIBTARBALL=$(ROOT)/downloads/zlib-$(ZLIBVERSION).tar.gz
+ ZLIBBUILD=$(ROOT)/build/zlib-$(ZLIBVERSION)
+-ZLIBURL=https://zlib.net/zlib-1.2.11.tar.gz
++ZLIBURL=https://www.zlib.net/fossils/zlib-1.2.11.tar.gz
+ 
+ SQLITETARBALL=$(ROOT)/downloads/sqlite-autoconf-3270200.tar.gz
+ SQLITEBUILD=$(ROOT)/build/sqlite-autoconf-3270200
+@@ -28,7 +28,7 @@ SQLITEURL=https://www.sqlite.org/2019/sqlite-autoconf-3270200.tar.gz
+ 
+ BZIP2TARBALL=$(ROOT)/downloads/bzip2-1.0.2.tar.gz
+ BZIP2BUILD=$(ROOT)/build/bzip2-1.0.2
+-BZIP2URL=ftp://sources.redhat.com/pub/bzip2/v102/bzip2-1.0.2.tar.gz
++BZIP2URL=https://ftp.gwdg.de/pub/linux/sources.redhat.com/bzip2/v102/bzip2-1.0.2.tar.gz
+ 
+ 
+ all: $(INSTALL)/lib/$(LIB)

@@ -5,6 +5,12 @@ set -e # Exit on first error
 git clone https://github.com/iodide-project/pyodide.git
 pushd pyodide/
 git checkout 8c22c98a43e228c213f3f1dd7eae79ac88da4e90
+# apply patch to set correct URLs for dependencies for pyodide
+git apply ../patches/pyodide-systemdependencies.patch
+# apply patch to checkout older version of the emsdk submodule
+git apply ../patches/pyodide-emsdk-old-checkout.patch
+# apply patch to set correct URLs for dependencies for CPython submodule
+git apply ../patches/pyodide-cpython-systemdependencies.patch
 PYODIDE_PACKAGES="toolz,attrs" make
 pushd emsdk/emsdk/
 source ./emsdk_env.sh

@@ -1,0 +1,13 @@
+diff --git a/packages/zlib/Makefile b/packages/zlib/Makefile
+index b1fe0591..a00c588c 100644
+--- a/packages/zlib/Makefile
++++ b/packages/zlib/Makefile
+@@ -7,7 +7,7 @@ ROOT=$(abspath .)
+ 
+ SRC=$(ROOT)/zlib-$(ZLIBVERSION)
+ TARBALL=$(ROOT)/downloads/zlib-$(ZLIBVERSION).tar.gz
+-URL=https://zlib.net/zlib-$(ZLIBVERSION).tar.gz
++URL=https://www.zlib.net/fossils/zlib-$(ZLIBVERSION).tar.gz
+ 
+ 
+ all: $(SRC)/zlib.a

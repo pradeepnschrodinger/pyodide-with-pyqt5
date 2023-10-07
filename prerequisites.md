@@ -5,9 +5,17 @@
 # required to create virtual environment for python
 sudo apt-get install -y python3.10-venv
 
-python3 -m venv env
+# The build process for pyodide requires 3.8 version of python.
+# It did not work for python 3.10 for whatever reason.
+#
+# If your system doesn't have 3.8, then clone CPython and checkout v3.8.2
+# Build and install cpython after configuring with the --prefix flag.
+# Once this is done, activate a virtualenv for python 3.8 via:
+```
+python3.8 -m venv env
 source env/bin/activate
 pip install pyyaml
+```
 
 sudo apt-get install -y libffi-dev gfortran uglifyjs make pkg-config npm cmake
 
