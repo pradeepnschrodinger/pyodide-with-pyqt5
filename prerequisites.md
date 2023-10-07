@@ -18,8 +18,6 @@ pip install pyyaml
 ```
 
 sudo apt-get install -y libffi-dev gfortran uglifyjs make pkg-config npm cmake
-
-# do we need zlib?
 sudo apt install -y zlib1g 
 sudo apt install -y zlib1g-dev
 
@@ -28,9 +26,6 @@ sudo npm install -g less
 # After cloning pyodide, checkout particular tag for emsdk by modifying "pyodide/emsdk/Makefile"
 	git clone https://github.com/juj/emsdk.git
 	(cd emsdk && git checkout 3.1.29)
-
-# source in emsdk before building pyodide
-    source ./emsdk/emsdk/emsdk_env.sh
 
 # change URLs for tarballs before building pyodide
 ```

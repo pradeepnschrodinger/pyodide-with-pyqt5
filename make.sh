@@ -22,6 +22,10 @@ git clone https://code.qt.io/qt/qt5.git
 pushd qt5/
 git checkout 5.14
 perl init-repository
+# apply patch to fix numeric_limits bug on Qt5
+pushd qtbase/
+git apply ../../patches/qt5-qtbase-numeric-limits.patch
+popd
 ./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase -feature-thread -opensource -confirm-license
 make module-qtbase module-qtdeclarative qtsvg
 popd
