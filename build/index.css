@@ -1,0 +1,17 @@
+/* Resize parent containers to fill the browser viewport */
+html, body {
+    height: 100vh;
+    width: 100vw;
+    background: gray;
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: content-box;
+}
+
+#qtcanvas {
+    height: 100%;
+    width: 100%;
+}
