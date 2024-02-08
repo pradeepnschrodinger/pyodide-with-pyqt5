@@ -156,6 +156,7 @@ pushd build
     cp ../pyodide/build/pyodide.asm.wasm .
     cp ../pyodide/build/pyodide_dev.js .
     cp ../pyodide/build/renderedhtml.css .
+    cp ../http_server.py .
     log "Build files for browser completed." .
 popd
 
