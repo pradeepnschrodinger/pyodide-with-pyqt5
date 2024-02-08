@@ -3,14 +3,17 @@ This is mostly based off the wonderful work done in https://github.com/viur-fram
 
 How to build:
 .............
-  - Follow prerequisites.md and make sure everything is installed
-  - Ensure there's atleast 10GB of free space
+  - Follow prerequisites.md and make sure all prerequisites are installed (mostly dev dependencies).
+  - Ensure there's atleast 10GB of free space.
   - Exec ./build.sh and wait a couple of hours.
+  - You can get a high level overview of the build process along with timings by looking at the log file (mentioned at the start of the execution).
 
-This will download Pyodide, Qt5, Sip and PyQt5, apply some patches and produce a working build as pyodide/build/console.html.
+This will download Pyodide, Qt5, Sip and PyQt5, apply some patches and produce a working build at build/index.html
+
 Currently, QtCore, QtGui, QtWidgets and QtSvg will be built - but this should be easy to extend to other modules (as long they’re supported by Qt on the wasm platform; see https://wiki.qt.io/Qt_for_WebAssembly for more details).
 
-This will be a static build (i.e. all Qt-dependend parts will be built directly into pyodide - not as a standard pyodide package that only gets loaded when imported). Shared builds are not possible at the moment as Qt itself only supports static builds for the web.
+This will be a static build (i.e. all Qt-dependend parts will be built directly into pyodide - not as a standard pyodide package that only gets loaded when imported). 
+Shared builds are not possible at the moment as Qt itself only supports static builds for the web.
 
 How to use:
 ...........
