@@ -1,0 +1,57 @@
+Checking and making pyoyide with emsdk
+make on pyodide with emsdk completed
+Time taken so far = 2390
+Total time taken so far = 2390
+------
+cloning qt5
+qt5 clone completed
+Time taken so far = 30
+Total time taken so far = 2420
+------
+initiating repo for qt5
+initiation done for qt5
+Time taken so far = 12484
+Total time taken so far = 14904
+------
+make on qt5 completed
+Time taken so far = 13313
+Total time taken so far = 28217
+------
+Installing SIP against host python
+SIP installed against host python
+Time taken so far = 9
+Total time taken so far = 28226
+------
+Compiling PyQt5 SIP to WASM
+Compiled PyQt5 SIP to WASM
+Time taken so far = 2
+Total time taken so far = 28228
+------
+Building PyQt5
+Compiling QtCore
+Compiled QtCore
+Time taken so far = 1109
+Total time taken so far = 29337
+------
+Compiling QtGui
+Compiled QtGui
+Time taken so far = 200
+Total time taken so far = 29537
+------
+Compiling QtWidgets
+Compiled QtWidgets
+Time taken so far = 233
+Total time taken so far = 29770
+------
+Compiling QtSvg
+Compiled QtSvg
+Time taken so far = 5
+Total time taken so far = 29775
+------
+PyQt5 build completed
+Compiling pyodide
+Pyodide built!
+Time taken so far = 183
+Total time taken so far = 29958
+------
+All done :)
