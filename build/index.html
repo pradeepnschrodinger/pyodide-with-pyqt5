@@ -13,6 +13,24 @@
     <script>
       languagePluginLoader.then(() => {
         Module = pyodide["_module"];  // Provide global Module variable
+
+
+        fetch("./app.py")
+          .then((response) => {
+            if (!response.ok) {
+              throw "app.py could not be fetched!" + response.statusText
+            }
+            return response.text()
+          })
+          .then((appText) => {
+            pyodide.runPython(appText);
+          })
+          .then(() => {
+            console.log("Succesfully loaded app.py!")
+          })
+          .catch((error) => {
+            console.error("Trying to process app.py threw the following exception: ", error)
+          })
       });
     </script>
   </body>
