@@ -7,7 +7,7 @@ TOTAL_SECONDS=0
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 TIMESTAMP=$(date +%s)
 TIMESTAMP_H=$(date -d @$TIMESTAMP)
-LOG_FILE="$SCRIPT_DIR/time-$TIMESTAMP_H.log"
+LOG_FILE="$SCRIPT_DIR/logs/time-$TIMESTAMP_H.log"
 echo "Writing logs to $LOG_FILE"
 
 log() {

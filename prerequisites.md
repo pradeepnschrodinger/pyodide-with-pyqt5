@@ -25,17 +25,20 @@ source env/bin/activate
 pip install pyyaml
 ```
 
+Install build dependencies:
+```
 sudo apt-get install -y libffi-dev gfortran uglifyjs make pkg-config npm cmake
 sudo apt install -y zlib1g 
 sudo apt install -y zlib1g-dev
 
 sudo npm install -g less
+```
 
-# [completed by patch] After cloning pyodide, checkout particular tag for emsdk by modifying "pyodide/emsdk/Makefile"
+# [auto-fixed by patch] After cloning pyodide, checkout particular tag for emsdk by modifying "pyodide/emsdk/Makefile"
 	git clone https://github.com/juj/emsdk.git
 	(cd emsdk && git checkout 3.1.29)
 
-# [completed by patch] change URLs for tarballs before building pyodide
+# [auto-fixed by patch] change URLs for tarballs before building pyodide
 ```
 ZLIBVERSION = 1.2.11
 ZLIBTARBALL=$(ROOT)/downloads/zlib-$(ZLIBVERSION).tar.gz
@@ -55,7 +58,7 @@ BZIP2URL=https://ftp.gwdg.de/pub/linux/sources.redhat.com/bzip2/v102/bzip2-1.0.2
 # QT5
 #
 
-# [completed by patch] QT5 compilation errors
+# [auto-fixed by patch] QT5 compilation errors
 There'll be errors during compilation related to numerical_limits. Eg:
 ```
 Creating qmake...
