@@ -1,22 +1,25 @@
 ###### PREREQUISITES
 
 ### Dev dependencies
-sudo apt-get install autoconf
-sudo apt-get install libtool
-sudo apt-get install libgl1-mesa-dev
-sudo apt-get install libglu1-mesa-dev
+sudo apt-get install -y autoconf
+sudo apt-get install -y libtool
+sudo apt-get install -y libgl1-mesa-dev
+sudo apt-get install -y libglu1-mesa-dev
 
 ### NINJA (alternate to cmake that Qt uses)
 put ninja to bin
 
 ### NVM
-https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+# https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# reload bashrc
 nvm install v18.5.0
 nvm use v18.5.0
 
 ### CPYTHON
 cd <cpython-root>
-git checkout v3.11.8
+#git checkout v3.11.8
+git checkout v3.11.3
 ./configure --prefix ./configure --prefix /home/pradeep/projects/cpython/pradeep/3.11.8
 make
 make install
@@ -31,8 +34,10 @@ pip install pyyaml
 
 ### PYODIDE
 git clone https://github.com/iodide-project/pyodide.git
-git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb
+cd pyodide
+git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
 pip install -r requirements.txt
+# TODO (pradeep): `setuptools`` isn't installed here. Maybe try with PYODIDE_PACKAGES='*' ?
 PYODIDE_PACKAGES="toolz,attrs" make
 
 source ./emsdk/emsdk/emsdk_env.sh
@@ -44,16 +49,13 @@ git switch 6.6
 # needs to be timed
 perl init-repository
 
-./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase -feature-thread -opensource -confirm-license
+# compile qt6 for native platform
+mkdir qt6-build
+cd qt6-build
+# ./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase -feature-thread -opensource -confirm-license
+../qt6/configure -prefix ../qt6-host -nomake examples -confirm-license -feature-thread
 
-## TEMP 1
-../qt6/configure -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6-host
-
-
-## TEMP 2
-# from qt-build
-../qt6/configure
-
+# Should give the follow output:
 # Qt is now configured for building. Just run 'cmake --build . --parallel'
 
 # Once everything is built, you must run 'cmake --install .'
@@ -64,6 +66,19 @@ perl init-repository
 
 # If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 # Alternatively, you can add the --fresh flag to your CMake flags.
+
+cmake --build .
+cmake --install .
+
+### Configure Qt6 for WASM platform
+## Approach 1
+../qt6/configure -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6-host
+
+
+## Approach #
+# from qt-build
+../qt6/configure
+
 
 
 # cmake --build . --parallel
@@ -88,15 +103,50 @@ cmake --build .
 cmake --install .
 
 
-# TEMP 3 https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
+# Approach 3: https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
+./configure -qt-host-path ../qt6-host -platform wasm-emscripten -prefix $PWD/qtbase
+# Should give the following output:
+# Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
+# Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
 
+# WARNING: You should use the recommended Emscripten version 3.1.37 with this Qt. You have 3.1.45.
+# WARNING: QDoc will not be compiled, probably because clang's C and C++ libraries could not be located. This means that you cannot build the Qt documentation.
+# You may need to set CMAKE_PREFIX_PATH or LLVM_INSTALL_DIR to the location of your llvm installation.
+# Other than clang's libraries, you may need to install another package, such as clang itself, to provide the ClangConfig.cmake file needed to detect your libraries. Once this
+# file is in place, the configure script may be able to detect your system-installed libraries without further environment variables.
+# On macOS, you can use Homebrew's llvm package.
+# You will also need to set the FEATURE_clang CMake variable to ON to re-evaluate this check.
+# WARNING: QDoc cannot be compiled without Qt's commandline parser or thread features.
+# WARNING: Clang-based lupdate parser will not be available. LLVM and Clang C++ libraries have not been found.
+# You will need to set the FEATURE_clangcpp CMake variable to ON to re-evaluate this check.
+# WARNING: QtWebEngine won't be built. Build can be done only on Linux, Windows or macOS.
+# WARNING: QtPdf won't be built. Build can be done only on Linux, Windows, macO, iOS and Android(on non-Windows hosts only).
+
+# -- 
+
+# Qt is now configured for building. Just run 'cmake --build . --parallel'
+
+# Once everything is built, Qt is installed. You should NOT run 'cmake --install .'
+# Note that this build cannot be deployed to other machines or devices.
+
+# To configure and build other Qt modules, you can use the following convenience script:
+#         /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/bin/qt-configure-module
+
+
+
+## Build SIP
 # (didn't work with pyodide's cpython) extract sip from https://pypi.org/project/sip/#files
+tar -xf sources/sip-6.8.3.tar.gz
 cd sip-6.8.3
 python3 setup.py install
 
 # extract pyqt6sip from https://pypi.org/project/PyQt6-sip/#files
+tar -xf sources/PyQt6_sip-13.6.0.tar.gz
 cd PyQt6_sip-13.6.0
+mkdir -p build
 emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
+
+emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build/sip_bool.o
 
 emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build/sip_core.o
 

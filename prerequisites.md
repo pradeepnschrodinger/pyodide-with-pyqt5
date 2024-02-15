@@ -1,3 +1,5 @@
+sudo apt install -y curl
+
 #
 # PYODIDE + EMSDK
 #
