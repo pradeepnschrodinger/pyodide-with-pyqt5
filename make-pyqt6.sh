@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 # PYODIDE_PACKAGES='*,!nlopt,!cryptography,!sourmash,!pyxel,!cramjam,!cbor-diag,!bcrypt,!rust-panic-test,!orjson' make
 
-# working build! takes around 12mins
+# working build! takes around 12-24mins. Decrease the job counts to make this less flaky.
 PYODIDE_JOBS=16 PYODIDE_PACKAGES='*,!nlopt,!cryptography,!sourmash,!pyxel,!cramjam,!cbor-diag,!bcrypt,!rust-panic-test,!orjson,!geos,!libgmp,!scipy,!swiglpk' make
 
 # PYODIDE_PACKAGES="toolz,attrs" make
@@ -151,11 +151,19 @@ cmake --install .
 
 
 ## Build SIP
-# (didn't work with pyodide's cpython) extract sip from https://pypi.org/project/sip/#files
+# extract sip from https://pypi.org/project/sip/#files
 tar -xf sources/sip-6.8.3.tar.gz
 cd sip-6.8.3
-python3 setup.py install
 
+# (didn't work with pyodide's cpython) 
+# python3 setup.py install
+
+# use pyodide itself to build and package SIP - https://pyodide.org/en/0.24.1/development/building-and-testing-packages.html#build-the-wasm-emscripten-wheel
+PYODIDE_ROOT=../pyodide pyodide build
+# should putput Successfully built /home/pradeep/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl
+pip install dist/sip-6.8.3-py3-none-any.whl # looks like this is already installed
+
+## PyQt6-SIP
 # extract pyqt6sip from https://pypi.org/project/PyQt6-sip/#files
 tar -xf sources/PyQt6_sip-13.6.0.tar.gz
 cd PyQt6_sip-13.6.0
@@ -180,6 +188,20 @@ emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -
 
 emar cqs libsip.a build/*.o
 
+
+## pyodide package builder (https://pyodide.org/en/0.24.1/development/building-and-testing-packages.html#build-the-wasm-emscripten-wheel)
+cd pyodide
+pip install -e ./pyodide-build
+
+# these doesn't seem to do anything cause we already built pyodide completely above
+make -C emsdk
+make -C cpython
+pyodide venv ../.venv-pyoide
+# run this in a new bash
+source ../.venv-pyoide/bin/activate
+
+
+## PyQt6
 # extract pyqt6 from https://pypi.org/project/PyQt6/#files
 tar -xf sources/PyQt6-6.6.1.tar.gz
 cd PyQt6-6.6.1
@@ -203,9 +225,17 @@ pip install PyQt-builder
         #         QtMultimediaWidgets, QtRemoteObjects, QtSensors,
         #         QtWebChannel, QtWebSockets, QtBluetooth, QtNfc]
 #sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose
+
+# this doesn't work with pyodide-venv
 sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir ../pyqt6-build --target-dir ../pyqt6-target --verbose &> pyqt6-build.log
+
 # sip-install --qmake ../qt6-host/qtbase/bin/qmake --confirm-license --build-dir ../pyqt6-build-native --target-dir ../pyqt6-target-native --verbose &> pyqt6-build-native.log
 # TODO (pradeep): Do we need the patches for QtCore, QtGui, etc?
+
+# pyodide package
+cd pyodide
+pyodide skeleton pypi <package-name>
+
 
 # pyodide
 cd pyodide
