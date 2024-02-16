@@ -6,6 +6,13 @@ sudo apt-get install -y libtool
 sudo apt-get install -y libgl1-mesa-dev
 sudo apt-get install -y libglu1-mesa-dev
 
+# pyodide
+# rustup has a prompt - specify 1 (for default installation)
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# sudo apt-get install -y swig3.0
+sudo apt install -y sqlite3
+sudo apt install -y f2c
+
 ### NINJA (alternate to cmake that Qt uses)
 put ninja to bin
 
@@ -37,8 +44,17 @@ git clone https://github.com/iodide-project/pyodide.git
 cd pyodide
 git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
 pip install -r requirements.txt
-# TODO (pradeep): `setuptools`` isn't installed here. Maybe try with PYODIDE_PACKAGES='*' ?
-PYODIDE_PACKAGES="toolz,attrs" make
+
+# TODO (pradeep): `setuptools`` isn't installed here. Maybe try with PYODIDE_PACKAGES='*' make
+
+# TODO (pradeep): Can't build all packages because executables rustup and swif. I'm gonna disable the failing ones:
+
+# PYODIDE_PACKAGES='*,!nlopt,!cryptography,!sourmash,!pyxel,!cramjam,!cbor-diag,!bcrypt,!rust-panic-test,!orjson' make
+
+# working build! takes around 12mins
+PYODIDE_JOBS=16 PYODIDE_PACKAGES='*,!nlopt,!cryptography,!sourmash,!pyxel,!cramjam,!cbor-diag,!bcrypt,!rust-panic-test,!orjson,!geos,!libgmp,!scipy,!swiglpk' make
+
+# PYODIDE_PACKAGES="toolz,attrs" make
 
 source ./emsdk/emsdk/emsdk_env.sh
 
@@ -165,22 +181,46 @@ emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -
 emar cqs libsip.a build/*.o
 
 # extract pyqt6 from https://pypi.org/project/PyQt6/#files
+tar -xf sources/PyQt6-6.6.1.tar.gz
 cd PyQt6-6.6.1
+# TODO (pradeep): Should this also be compiled to WASM?
 pip install PyQt-builder
 # sip-install --qmake ../qt6-build-wasm/qtbase/bin/qt-cmake --confirm-license --verbose
-sip-install --qmake /usr/local/Qt-6.6.3/bin/qmake --confirm-license --verbose
+# sip-install --qmake /usr/local/Qt-6.6.3/bin/qmake --confirm-license --verbose
+
+# patches for project.py
+# set 'WebAssembly' as the platform for 'QtCore'
+# removed 'QAxContainer' entry from self.bindings in project.py
+# removed 'QtTextToSpeech' entry from self.bindings in project.py
+# removed 'QtSpatialAudio' entry from self.bindings in project.py
+# removed QtPdf, QtPdfWidgets
+# removed QtPositioning, QtSerialPort, QtDBus
+# the final list would be 
+        # self.bindings_factories = [QtCore, QtNetwork, QtGui, QtQml, QtWidgets,
+        #         QtDesigner, QtHelp, QtOpenGL, QtOpenGLWidgets,
+        #         QtPrintSupport, QtQuick, QtQuick3D, QtQuickWidgets, QtSql,
+        #         QtSvg, QtSvgWidgets, QtTest, QtXml, QtMultimedia,
+        #         QtMultimediaWidgets, QtRemoteObjects, QtSensors,
+        #         QtWebChannel, QtWebSockets, QtBluetooth, QtNfc]
+#sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose
+sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir ../pyqt6-build --target-dir ../pyqt6-target --verbose &> pyqt6-build.log
+# sip-install --qmake ../qt6-host/qtbase/bin/qmake --confirm-license --build-dir ../pyqt6-build-native --target-dir ../pyqt6-target-native --verbose &> pyqt6-build-native.log
+# TODO (pradeep): Do we need the patches for QtCore, QtGui, etc?
 
 # pyodide
 cd pyodide
 
-    git apply ../../patches/pyodide-main.patch
+    git apply ../patches/pyodide-main-qt6.patch
 
     emcc -o src/core/main.bc -c src/core/main.c -O3 -g -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -Wno-warn-absolute-paths -Isrc/type_conversion/
 
 # em++ -s EXPORT_NAME="'pyodide'" -o build/pyodide.asm.html src/main.bc src/type_conversion/jsimport.bc src/type_conversion/jsproxy.bc src/type_conversion/js2python.bc src/type_conversion/pyimport.bc src/type_conversion/pyproxy.bc src/type_conversion/python2js.bc src/type_conversion/python2js_buffer.bc src/type_conversion/runpython.bc src/type_conversion/hiwire.bc -O3 -s MODULARIZE=1 cpython/installs/python-3.8.2/lib/libpython3.8.a packages/lz4/lz4-1.8.3/lib/liblz4.a -s "BINARYEN_METHOD='native-wasm'" -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s MAIN_MODULE=1 -s EMULATE_FUNCTION_POINTER_CASTS=1 -s LINKABLE=1 -s EXPORTED_FUNCTIONS='["___cxa_guard_acquire", "__ZNSt3__28ios_base4initEPv", "LZ4", "loadPackage", "LZ4.loadPackage", "pyodide", "runPython", "pyodide.runPython", "_main", "_LZ4_decompress_safe", "__runPython", "_runPython", "__js2python_jsproxy", "__pyimport", "__pyproxy_get", "__js2python_allocate_string", "__js2python_get_ptr", "__pyproxy_apply", "__findImports", "__js2python_none", "__js2python_pyproxy", "__js2python_number", "UTF16ToString","stringToUTF16"]'  -s WASM=1 -s USE_FREETYPE=1 -s USE_LIBPNG=1 -std=c++14 -Lcpython/build/sqlite-autoconf-3270200/.libs -lsqlite3 cpython/build/bzip2-1.0.2/libbz2.a -lstdc++ --memory-init-file 0 -s TEXTDECODER=0 -s LZ4=1 -s FORCE_FILESYSTEM=1 -l QtCore -L ../PyQt5-5.15.2.dev2011131516/QtCore -l Qt5Core -L ../qt5/qtbase/lib -l sip -L ../PyQt5_sip-12.8.1  -L ../PyQt5-5.15.2.dev2011131516/QtGui -l QtGui -L ../PyQt5-5.15.2.dev2011131516/QtWidgets -l QtWidgets -l Qt5Core -l Qt5Gui -l Qt5Widgets -l libqwasm -L ../qt5/qtbase/plugins/platforms -l Qt5FontDatabaseSupport -l libqminimal -l libQt5EventDispatcherSupport -l libqoffscreen --bind -s EXTRA_EXPORTED_RUNTIME_METHODS=["UTF16ToString","stringToUTF16"]  -s FULL_ES2=1 -s USE_WEBGL2=1 -l qtharfbuzz -l QtSvg -L ../PyQt5-5.15.2.dev2011131516/QtSvg -l qsvgicon -L ../qt5/qtbase/plugins/iconengines -L ../qt5/qtbase/plugins/imageformats -l libqjpeg -l libqsvg -l Qt5Svg
 
 mkdir -p build
-em++ -s EXPORT_NAME="'pyodide'" -o build/pyodide.asm.html src/core/main.o src/core/js2python.o src/core/docstring.o src/core/hiwire.o src/core/error_handling.o src/core/_pyodide_core.o src/core/python2js.o src/core/pyproxy.o src/core/python2js_buffer.o src/core/main.o src/core/jsproxy.o src/core/pyversion.o src/core/pyodide_pre.o -O3 -s MODULARIZE=1 cpython/installs/python-3.11.3/lib/libpython3.11.a -s "BINARYEN_METHOD='native-wasm'" -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s MAIN_MODULE=1 -s EMULATE_FUNCTION_POINTER_CASTS=1 -s LINKABLE=1 -s EXPORTED_FUNCTIONS='["___cxa_guard_acquire", "__ZNSt3__28ios_base4initEPv", "LZ4", "loadPackage", "LZ4.loadPackage", "pyodide", "runPython", "pyodide.runPython", "_main", "_LZ4_decompress_safe", "__runPython", "_runPython", "__js2python_jsproxy", "__pyimport", "__pyproxy_get", "__js2python_allocate_string", "__js2python_get_ptr", "__pyproxy_apply", "__findImports", "__js2python_none", "__js2python_pyproxy", "__js2python_number", "UTF16ToString","stringToUTF16"]'  -s WASM=1 -s USE_FREETYPE=1 -s USE_LIBPNG=1 -std=c++14 -Lcpython/build/sqlite-autoconf-3270200/.libs -lsqlite3 -lstdc++ --memory-init-file 0 -s TEXTDECODER=0 -s LZ4=1 -s FORCE_FILESYSTEM=1 -l QtCore -L ../PyQt5-5.15.2.dev2011131516/QtCore -l Qt5Core -L ../qt5/qtbase/lib -l sip -L ../PyQt5_sip-12.8.1  -L ../PyQt5-5.15.2.dev2011131516/QtGui -l QtGui -L ../PyQt5-5.15.2.dev2011131516/QtWidgets -l QtWidgets -l Qt5Core -l Qt5Gui -l Qt5Widgets -l libqwasm -L ../qt5/qtbase/plugins/platforms -l Qt5FontDatabaseSupport -l libqminimal -l libQt5EventDispatcherSupport -l libqoffscreen --bind -s EXTRA_EXPORTED_RUNTIME_METHODS=["UTF16ToString","stringToUTF16"]  -s FULL_ES2=1 -s USE_WEBGL2=1 -l qtharfbuzz -l QtSvg -L ../PyQt5-5.15.2.dev2011131516/QtSvg -l qsvgicon -L ../qt5/qtbase/plugins/iconengines -L ../qt5/qtbase/plugins/imageformats -l libqjpeg -l libqsvg -l Qt5Svg
+# em++ -s EXPORT_NAME="'pyodide'" -o build/pyodide.asm.html src/core/main.o src/core/js2python.o src/core/docstring.o src/core/hiwire.o src/core/error_handling.o src/core/_pyodide_core.o src/core/python2js.o src/core/pyproxy.o src/core/python2js_buffer.o src/core/main.o src/core/jsproxy.o src/core/pyversion.o src/core/pyodide_pre.o -O3 -s MODULARIZE=1 cpython/installs/python-3.11.3/lib/libpython3.11.a -s "BINARYEN_METHOD='native-wasm'" -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s MAIN_MODULE=1 -s EMULATE_FUNCTION_POINTER_CASTS=1 -s LINKABLE=1 -s EXPORTED_FUNCTIONS='["___cxa_guard_acquire", "__ZNSt3__28ios_base4initEPv", "LZ4", "loadPackage", "LZ4.loadPackage", "pyodide", "runPython", "pyodide.runPython", "_main", "_LZ4_decompress_safe", "__runPython", "_runPython", "__js2python_jsproxy", "__pyimport", "__pyproxy_get", "__js2python_allocate_string", "__js2python_get_ptr", "__pyproxy_apply", "__findImports", "__js2python_none", "__js2python_pyproxy", "__js2python_number", "UTF16ToString","stringToUTF16"]'  -s WASM=1 -s USE_FREETYPE=1 -s USE_LIBPNG=1 -std=c++14 -Lcpython/build/sqlite-autoconf-3270200/.libs -lsqlite3 -lstdc++ --memory-init-file 0 -s TEXTDECODER=0 -s LZ4=1 -s FORCE_FILESYSTEM=1 -l QtCore -L ../PyQt5-5.15.2.dev2011131516/QtCore -l Qt5Core -L ../qt5/qtbase/lib -l sip -L ../PyQt5_sip-12.8.1  -L ../PyQt5-5.15.2.dev2011131516/QtGui -l QtGui -L ../PyQt5-5.15.2.dev2011131516/QtWidgets -l QtWidgets -l Qt5Core -l Qt5Gui -l Qt5Widgets -l libqwasm -L ../qt5/qtbase/plugins/platforms -l Qt5FontDatabaseSupport -l libqminimal -l libQt5EventDispatcherSupport -l libqoffscreen --bind -s EXTRA_EXPORTED_RUNTIME_METHODS=["UTF16ToString","stringToUTF16"]  -s FULL_ES2=1 -s USE_WEBGL2=1 -l qtharfbuzz -l QtSvg -L ../PyQt5-5.15.2.dev2011131516/QtSvg -l qsvgicon -L ../qt5/qtbase/plugins/iconengines -L ../qt5/qtbase/plugins/imageformats -l libqjpeg -l libqsvg -l Qt5Svg
+em++ -s EXPORT_NAME="'pyodide'" -o build/pyodide.asm.html src/core/main.o src/core/js2python.o src/core/docstring.o src/core/hiwire.o src/core/error_handling.o src/core/_pyodide_core.o src/core/python2js.o src/core/pyproxy.o src/core/python2js_buffer.o src/core/main.o src/core/jsproxy.o src/core/pyversion.o src/core/pyodide_pre.o -O3 -s MODULARIZE=1 cpython/installs/python-3.11.3/lib/libpython3.11.a -s "BINARYEN_METHOD='native-wasm'" -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s MAIN_MODULE=1 -s EMULATE_FUNCTION_POINTER_CASTS=1 -s LINKABLE=1 -s EXPORTED_FUNCTIONS='["___cxa_guard_acquire", "__ZNSt3__28ios_base4initEPv", "LZ4", "loadPackage", "LZ4.loadPackage", "pyodide", "runPython", "pyodide.runPython", "_main", "_LZ4_decompress_safe", "__runPython", "_runPython", "__js2python_jsproxy", "__pyimport", "__pyproxy_get", "__js2python_allocate_string", "__js2python_get_ptr", "__pyproxy_apply", "__findImports", "__js2python_none", "__js2python_pyproxy", "__js2python_number", "UTF16ToString","stringToUTF16"]'  -s WASM=1 -s USE_FREETYPE=1 -s USE_LIBPNG=1 -std=c++14 -Lcpython/build/sqlite-autoconf-3270200/.libs -lsqlite3 -lstdc++ --memory-init-file 0 -s TEXTDECODER=0 -s LZ4=1 -s FORCE_FILESYSTEM=1 ../pyqt6-build/cfgtest_QtCore/QtCore.wasm -L ../qt5/qtbase/lib -l sip -L ../PyQt6_sip-13.6.0  ../pyqt6-build/cfgtest_QtGui/QtGui.wasm ../pyqt6-build/cfgtest_QtWidgets/QtWidgets.wasm -l libqwasm -L ../qt5/qtbase/plugins/platforms -l Qt5FontDatabaseSupport -l libqminimal -l libQt5EventDispatcherSupport -l libqoffscreen --bind -s EXTRA_EXPORTED_RUNTIME_METHODS=["UTF16ToString","stringToUTF16"]  -s FULL_ES2=1 -s USE_WEBGL2=1 -l qtharfbuzz -l QtSvg -L ../PyQt5-5.15.2.dev2011131516/QtSvg -l qsvgicon -L ../qt5/qtbase/plugins/iconengines -L ../qt5/qtbase/plugins/imageformats -l libqjpeg -l libqsvg -l Qt5Svg &> pyodide-build.log
+# check pyodide/Makefile.envs to see original make command
+em++ -o dist/pyodide.asm.js dist/libpyodide.a src/core/main.o -O2 -g0  -L/home/pradeep/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/ -s WASM_BIGINT  -s MAIN_MODULE=1 -s MODULARIZE=1 -s LZ4=1 -s EXPORT_NAME="'_createPyodideModule'" -s EXPORT_EXCEPTION_HANDLING_HELPERS -s EXCEPTION_CATCHING_ALLOWED=['we only want to allow exception handling in side modules'] -sEXPORTED_RUNTIME_METHODS='stackAlloc,stackRestore,stackSave' -s DEMANGLE_SUPPORT=1 -s USE_ZLIB -s USE_BZIP2 -s FORCE_FILESYSTEM=1 -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s EXPORT_ALL=1 -s POLYFILL -s MIN_SAFARI_VERSION=140000 -s STACK_SIZE=5MB -s AUTO_JS_LIBRARIES=0 -s AUTO_NATIVE_LIBRARIES=0 -s NODEJS_CATCH_EXIT=0 -s NODEJS_CATCH_REJECTION=0 -lpython3.11 -lffi -lstdc++ -lidbfs.js -lnodefs.js -lproxyfs.js -lworkerfs.js -lwebsocket.js -leventloop.js -lGL -legl.js -lwebgl.js -lhtml5_webgl.js -sGL_WORKAROUND_SAFARI_GETCONTEXT_BUG=0
 
 # above command gives following errors
 wasm-ld: error: unable to find library -lQtCore
