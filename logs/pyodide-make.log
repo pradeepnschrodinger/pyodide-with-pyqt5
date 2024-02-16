@@ -1,0 +1,136 @@
+./tools/dependency-check.sh
+python3 tools/check_ccache.py
+# TODO(ryanking13): Link this to a side module not to the main module.
+# For unknown reason, a side module cannot see symbols when libGL is linked to it.
+embuilder build libgl
+embuilder:INFO: building libGL
+embuilder:INFO: ...success. Took (0.00s)
+date +"[%F %T] Building pyodide.asm.js..."
+[2024-02-16 09:24:51] Building pyodide.asm.js...
+[ -d dist ] || mkdir dist
+em++ -o dist/pyodide.asm.js dist/libpyodide.a src/core/main.o -O2 -g0  -L/home/pradeep/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/ -s WASM_BIGINT  -s MAIN_MODULE=1 -s MODULARIZE=1 -s LZ4=1 -s EXPORT_NAME="'_createPyodideModule'" -s EXPORT_EXCEPTION_HANDLING_HELPERS -s EXCEPTION_CATCHING_ALLOWED=['we only want to allow exception handling in side modules'] -sEXPORTED_RUNTIME_METHODS='stackAlloc,stackRestore,stackSave' -s DEMANGLE_SUPPORT=1 -s USE_ZLIB -s USE_BZIP2 -s FORCE_FILESYSTEM=1 -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s EXPORT_ALL=1 -s POLYFILL -s MIN_SAFARI_VERSION=140000 -s STACK_SIZE=5MB -s AUTO_JS_LIBRARIES=0 -s AUTO_NATIVE_LIBRARIES=0 -s NODEJS_CATCH_EXIT=0 -s NODEJS_CATCH_REJECTION=0 -lpython3.11 -lffi -lstdc++ -lidbfs.js -lnodefs.js -lproxyfs.js -lworkerfs.js -lwebsocket.js -leventloop.js -lGL -legl.js -lwebgl.js -lhtml5_webgl.js -sGL_WORKAROUND_SAFARI_GETCONTEXT_BUG=0
+em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with WASM_BIGINT (150000 or above required) [-Wcompatibility]
+if [[ -n ${PYODIDE_SOURCEMAP+x} ]] || [[ -n ${PYODIDE_SYMBOLS+x} ]] || [[ -n ${PYODIDE_DEBUG_JS+x} ]]; then \
+	cd dist && npx prettier -w pyodide.asm.js ; \
+fi
+sed -i -E 's/var __Z[^;]*;//g' dist/pyodide.asm.js
+sed -i '1i "use strict";' dist/pyodide.asm.js
+# Remove last 4 lines of pyodide.asm.js, see issue #2282
+# Hopefully we will remove this after emscripten fixes it, upstream issue
+# emscripten-core/emscripten#16518
+# Sed nonsense from https://stackoverflow.com/a/13383331
+sed -i -n -e :a -e '1,4!{P;N;D;};N;ba' dist/pyodide.asm.js
+echo "globalThis._createPyodideModule = _createPyodideModule;" >> dist/pyodide.asm.js
+date +"[%F %T] done building pyodide.asm.js."
+[2024-02-16 09:25:01] done building pyodide.asm.js.
+cp src/templates/console.html dist/console.html
+sed -i -e 's#{{ PYODIDE_BASE_URL }}#./#g' dist/console.html
+/home/pradeep/projects/pyodide-with-pyqt5/env/bin/python3.11 -m pip install -e ./pyodide-build
+Obtaining file:///home/pradeep/projects/pyodide-with-pyqt5/pyodide/pyodide-build
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: pyyaml in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (6.0.1)
+Requirement already satisfied: cython<3.0 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.29.37)
+Requirement already satisfied: ruamel.yaml in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.18.6)
+Requirement already satisfied: packaging in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (23.2)
+Requirement already satisfied: wheel in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.42.0)
+Requirement already satisfied: tomli in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (2.0.1)
+Requirement already satisfied: build==0.7.0 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.7.0)
+Requirement already satisfied: virtualenv in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (20.25.0)
+Requirement already satisfied: pydantic<2,>=1.10.2 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (1.10.14)
+Requirement already satisfied: pyodide-cli~=0.2.1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.2.3)
+Requirement already satisfied: cmake>=3.24 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (3.28.3)
+Requirement already satisfied: unearth~=0.6 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.14.0)
+Requirement already satisfied: requests in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (2.31.0)
+Requirement already satisfied: types-requests in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (2.31.0.20240125)
+Requirement already satisfied: typer in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.9.0)
+Requirement already satisfied: auditwheel-emscripten~=0.0.9 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.0.14)
+Requirement already satisfied: pyodide-lock==0.1.0a1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (0.1.0a1)
+Requirement already satisfied: resolvelib in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (1.0.1)
+Requirement already satisfied: rich in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (13.7.0)
+Requirement already satisfied: loky in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pyodide-build==0.24.1) (3.4.1)
+Requirement already satisfied: pep517>=0.9.1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from build==0.7.0->pyodide-build==0.24.1) (0.13.1)
+Requirement already satisfied: leb128 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from auditwheel-emscripten~=0.0.9->pyodide-build==0.24.1) (1.0.5)
+Requirement already satisfied: typing-extensions>=4.2.0 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from pydantic<2,>=1.10.2->pyodide-build==0.24.1) (4.9.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from requests->pyodide-build==0.24.1) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from requests->pyodide-build==0.24.1) (3.6)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from requests->pyodide-build==0.24.1) (2.2.0)
+Requirement already satisfied: certifi>=2017.4.17 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from requests->pyodide-build==0.24.1) (2024.2.2)
+Requirement already satisfied: cloudpickle in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from loky->pyodide-build==0.24.1) (3.0.0)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from rich->pyodide-build==0.24.1) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from rich->pyodide-build==0.24.1) (2.17.2)
+Requirement already satisfied: ruamel.yaml.clib>=0.2.7 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from ruamel.yaml->pyodide-build==0.24.1) (0.2.8)
+Requirement already satisfied: click<9.0.0,>=7.1.1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from typer->pyodide-build==0.24.1) (8.1.7)
+Requirement already satisfied: distlib<1,>=0.3.7 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from virtualenv->pyodide-build==0.24.1) (0.3.8)
+Requirement already satisfied: filelock<4,>=3.12.2 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from virtualenv->pyodide-build==0.24.1) (3.13.1)
+Requirement already satisfied: platformdirs<5,>=3.9.1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from virtualenv->pyodide-build==0.24.1) (4.2.0)
+Requirement already satisfied: mdurl~=0.1 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich->pyodide-build==0.24.1) (0.1.2)
+Requirement already satisfied: colorama<0.5.0,>=0.4.3 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from typer->pyodide-build==0.24.1) (0.4.6)
+Requirement already satisfied: shellingham<2.0.0,>=1.3.0 in /home/pradeep/projects/pyodide-with-pyqt5/env/lib/python3.11/site-packages (from typer->pyodide-build==0.24.1) (1.5.4)
+Building wheels for collected packages: pyodide-build
+  Building editable for pyodide-build (pyproject.toml): started
+  Building editable for pyodide-build (pyproject.toml): finished with status 'done'
+  Created wheel for pyodide-build: filename=pyodide_build-0.24.1-0.editable-py3-none-any.whl size=7764 sha256=d2a62894c85765af9e0588d4940d8eaa8dfcc69b2dbfb3f9c826a08bba407b91
+  Stored in directory: /tmp/pip-ephem-wheel-cache-4f2d2ypm/wheels/a4/b2/b1/06a54e554c2689ab7f6e00543c6fef48ca664987d377733980
+Successfully built pyodide-build
+Installing collected packages: pyodide-build
+  Attempting uninstall: pyodide-build
+    Found existing installation: pyodide-build 0.24.1
+    Uninstalling pyodide-build-0.24.1:
+      Successfully uninstalled pyodide-build-0.24.1
+Successfully installed pyodide-build-0.24.1
+
+[notice] A new release of pip available: 22.3.1 -> 24.0
+[notice] To update, run: pip install --upgrade pip
+which pyodide-build >/dev/null
+which pyodide >/dev/null
+date +"[%F %T] Building packages..."
+[2024-02-16 09:25:07] Building packages...
+make -C packages
+make[1]: Entering directory '/home/pradeep/projects/pyodide-with-pyqt5/pyodide/packages'
+mkdir -p /home/pradeep/projects/pyodide-with-pyqt5/pyodide/packages/.artifacts /home/pradeep/projects/pyodide-with-pyqt5/pyodide/packages/.libs
+PYODIDE_ROOT=/home/pradeep/projects/pyodide-with-pyqt5/pyodide pyodide build-recipes \
+"*,!nlopt,!cryptography,!sourmash,!pyxel,!cramjam,!cbor-diag,!bcrypt,!rust-panic-test,!orjson,!geos,!libgmp,!scipy,!swiglpk" \
+--recipe-dir=./ \
+--install \
+--install-dir=../dist \
+--metadata-files \
+--n-jobs ${PYODIDE_JOBS:-4} \
+--log-dir=./build-logs \
+--compression-level "6"
+The following packages are disabled: Cartopy, gmpy2, statsmodels, gdal, scikit-learn, optlang, pywavelets, sourmash, scikit-image, orjson, cramjam, cbor-diag, xgboost, libgmp,   
+geos, scipy, shapely, libmpfr, cryptography, gensim, mne, rust-panic-test, pyxel, swiglpk, nlopt, sparseqr, fiona, fastparquet, bcrypt, galpy, lightgbm, geopandas, libmpc        
+The following packages are already built: Jinja2, MarkupSafe, Pillow, Pygments, RobotRaconteur, asciitree, astropy, atomicwrites, attrs, autograd, awkward-cpp, beautifulsoup4,   
+biopython, bitarray, bitstring, bleach, bokeh, boost-cpp, boost-histogram, brotli, cachetools, certifi, cffi, cffi_example, cftime, click, cligj, cloudpickle, cmyt,              
+colorspacious, contourpy, coolprop, coverage, cpp-exceptions-test, cssselect, cycler, cytoolz, decorator, demes, deprecation, distlib, distutils, docutils, exceptiongroup,       
+ffmpeg, fonttools, fpcast-test, freesasa, fsspec, future, glpk, gsw, h5py, hashlib, html5lib, idna, igraph, imageio, iniconfig, jedi, joblib, jsonschema, kiwisolver,             
+lazy-object-proxy, lazy_loader, libde265, libf2c, libgsl, libhdf5, libheif, libiconv, liblzma, libmagic, libnetcdf, libproj, libtiff, libwebp, libxml, libxslt, libyaml, logbook, 
+lxml, lzma, matplotlib, matplotlib-pyodide, micropip, more-itertools, mpmath, msgpack, msprime, multidict, munch, mypy, netcdf4, networkx, newick, nltk, nose, numcodecs, numpy,  
+openblas, opencv-python, openssl, packaging, pandas, parso, patsy, peewee, pillow_heif, pkgconfig, pluggy, protobuf, py, pyb2d, pyclipper, pycparser, pycryptodome, pydantic,     
+pydecimal, pydoc_data, pyerfa, pyheif, pyinstrument, pynacl, pyodide-http, pyodide-tblib, pyparsing, pyproj, pyrsistent, pyshp, pytest, pytest-benchmark, python-dateutil,        
+python-magic, python-sat, python_solvespace, pytz, pyyaml, rebound, reboundx, regex, retrying, ruamel.yaml, screed, setuptools, sharedlib-test, sharedlib-test-py, simplejson,    
+six, smart_open, soupsieve, sqlalchemy, sqlite3, ssl, suitesparse, svgwrite, sympy, termcolor, test, texttable, threadpoolctl, tomli, tomli-w, toolz, tqdm, traits, tskit,        
+typing-extensions, uncertainties, unyt, webencodings, wordcloud, wrapt, xarray, xlrd, xyzservices, yarl, yt, zarr, and zlib                                                       
+All packages already built. Quitting.                                                                                                                                             
+Copying build logs to /home/pradeep/projects/pyodide-with-pyqt5/pyodide/packages/build-logs                                                                                       
+Copying built packages to /home/pradeep/projects/pyodide-with-pyqt5/pyodide/dist                                                                                                  
+Writing pyodide-lock.json to /home/pradeep/projects/pyodide-with-pyqt5/pyodide/dist/pyodide-lock.json                                                                             
+make[1]: Leaving directory '/home/pradeep/projects/pyodide-with-pyqt5/pyodide/packages'
+date +"[%F %T] done building packages..."
+[2024-02-16 09:25:25] done building packages...
+pyodide create-zipfile /home/pradeep/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/python3.11 src/py --compression-level "6" --output dist/python_stdlib.zip
+Zip file created at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/dist/python_stdlib.zip
+cp src/templates/webworker.js dist/webworker.js
+cp src/templates/webworker.js dist/webworker_dev.js
+cp src/templates/module_webworker.js dist/module_webworker_dev.js
+echo -e "\nSUCCESS!"
+
+SUCCESS!
