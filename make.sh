@@ -63,6 +63,9 @@ pushd qt5/
     popd
     
     ./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase -feature-thread -opensource -confirm-license
+
+    # create static libs
+    # eg: qt5/qtbase/lib/libQt5Core.a
     make module-qtbase module-qtdeclarative qtsvg
 popd
 logTimeTaken "make on qt5 completed"
@@ -73,6 +76,12 @@ logTimeTaken "make on qt5 completed"
 log "Installing SIP against host python"
 tar -xf sources/sip-5.5.0.dev2010281546.tar.gz
 pushd sip-5.5.0.dev2010281546
+# installs following packages
+# pyodide/cpython/build/3.8.2/host/lib/python3.8/site-packages/packaging-23.2-py3.8.egg
+# pyodide/cpython/build/3.8.2/host/lib/python3.8/site-packages/toml-0.10.2-py3.8.egg
+# pyodide/cpython/build/3.8.2/host/lib/python3.8/site-packages/sip-5.5.0.dev2010281546-py3.8-linux-x86_64.egg
+# installs following scripts to pyodide/cpython/build/3.8.2/host/bin
+# sip-build, sip-distinfo, sip-install, sip-module, sip-sdist, sip-wheel, sip5
 ../pyodide/cpython/build/3.8.2/host/bin/python3 setup.py install
 popd
 logTimeTaken "SIP installed against host python"
@@ -93,14 +102,23 @@ log "Building PyQt5"
 tar -xf sources/PyQt5-5.15.2.dev2011131516.tar.gz
 pushd PyQt5-5.15.2.dev2011131516/
     patch < ../patches/pyqt5-configure.patch  # Patch configure.py to scope with non-executable test programms
-    ../pyodide/cpython/build/3.8.2/host/bin/python3 ./configure.py --qmake ../qt5/qtbase/bin/qmake --static --confirm-license --sip ../pyodide/cpython/build/3.8.2/host/bin/sip5 --sip-incdir=../PyQt5_sip-12.8.1/
-    patch -p0 < ../patches/pyqt5-qpy-dir.patch  # Remove unsupported GL_DOUBLE
 
+    # creates cfgtest (.o, .html, .js, .wasm, .js.mem, .asm.js) files at PyQt5-5.15.2.dev2011131516 for QtCore, QtGui, QtHelp, QtWidgets, QAxContainer, QtPrintSupport, QtBluetooth etc
+    # makes 'Makefile' in PyQt5-5.15.2.dev2011131516/QtCore with emcc and host python configured
+    ../pyodide/cpython/build/3.8.2/host/bin/python3 ./configure.py --qmake ../qt5/qtbase/bin/qmake --static --confirm-license --sip ../pyodide/cpython/build/3.8.2/host/bin/sip5 --sip-incdir=../PyQt5_sip-12.8.1/
+
+    patch -p0 < ../patches/pyqt5-qpy-dir.patch  # Remove unsupported GL_DOUBLE
+ 
     pushd QtCore
         log "Compiling QtCore"
+        # Patch Make to include the correct python interpreter
         sed -i "s+-I../../pyodide/cpython/build/3.8.2/host/include/python3.8+-I../../pyodide/cpython/build/3.8.2/Python-3.8.2/Include -I../../pyodide/cpython/build/3.8.2/Python-3.8.2+g" Makefile
-        patch < ../../patches/pyqt5-qtcore.patch  # Patch Make to include the correct python interpreter
+        
+        patch < ../../patches/pyqt5-qtcore.patch
+
+        # creates PyQt5-5.15.2.dev2011131516/QtCore/libQtCore.a
         make
+
         logTimeTaken "Compiled QtCore"
     popd
 
@@ -108,6 +126,8 @@ pushd PyQt5-5.15.2.dev2011131516/
         log "Compiling QtGui"
         sed -i "s+-I../../pyodide/cpython/build/3.8.2/host/include/python3.8+-I../../pyodide/cpython/build/3.8.2/Python-3.8.2/Include -I../../pyodide/cpython/build/3.8.2/Python-3.8.2+g" Makefile
         patch <../../patches/pyqt5-qtgui.patch
+
+        # creates PyQt5-5.15.2.dev2011131516/QtGui/libQtGui.a
         make
         logTimeTaken "Compiled QtGui"
     popd
@@ -115,7 +135,11 @@ pushd PyQt5-5.15.2.dev2011131516/
     pushd QtWidgets
         log "Compiling QtWidgets"
         sed -i "s+-I../../pyodide/cpython/build/3.8.2/host/include/python3.8+-I../../pyodide/cpython/build/3.8.2/Python-3.8.2/Include -I../../pyodide/cpython/build/3.8.2/Python-3.8.2+g" Makefile
+
+        # NOTE (pradeep): possible fix for https://forum.qt.io/topic/104419/emscripten-fails-with-undefined-synbols-in-qplatformintegration/3
         patch < ../../patches/pyqt5-qtwidgets.patch
+
+        # creates PyQt5-5.15.2.dev2011131516/QtWidgets/libQtWidgets.a
         make
         logTimeTaken "Compiled QtWidgets"
     popd
@@ -132,7 +156,9 @@ log "PyQt5 build completed"
 pushd pyodide
     log "Compiling pyodide"
     pushd src
-    patch -p0 < ../../patches/pyodide-main.patch  # Provide PyQt5 to Python
+    # Provide PyQt5 to Python as a system builtin module
+    # and create a qApplication
+    patch -p0 < ../../patches/pyodide-main.patch
     popd
 
     # Rebuild main.c after patching
