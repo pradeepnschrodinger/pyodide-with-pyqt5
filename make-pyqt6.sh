@@ -40,8 +40,8 @@ make install
 
 ### PYTHON VENV
 # /home/pradeep/projects/cpython/pradeep/3.11.8/bin
-python3.11 -m venv env
-source env/bin/activate
+python3.11 -m venv .venv
+source .venv/bin/activate
 pip install pyyaml
 
 
@@ -80,6 +80,7 @@ perl init-repository
 mkdir qt6-native-build
 cd qt6-native-build
 # ./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase -feature-thread -opensource -confirm-license
+# TODO (pradeep): Disable feature thread for Qt cause it's to be used in pyodide?
 ../qt6/configure -prefix ../qt6-native-host -nomake examples -confirm-license -feature-thread
 
 # Should give the follow output:
@@ -184,6 +185,7 @@ cd pyodide
 make -C emsdk
 make -C cpython
 pyodide venv ../.venv-pyodide
+
 # run this in a new bash
 source .venv-pyodide/bin/activate
 
@@ -196,6 +198,10 @@ pip install -e ./pyodide-build
 # extract pyqt6sip from https://pypi.org/project/PyQt6-sip/#files
 tar -xf sources/PyQt6_sip-13.6.0.tar.gz
 cd PyQt6_sip-13.6.0
+
+# (native build)
+python setup.py install
+
 mkdir -p build
 emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
 
@@ -227,6 +233,9 @@ pip install PyQt-builder
 # sip-install --qmake ../qt6-build-wasm/qtbase/bin/qt-cmake --confirm-license --verbose
 # sip-install --qmake /usr/local/Qt-6.6.3/bin/qmake --confirm-license --verbose
 
+# (test) native PyQt6
+# sip-install --qmake ../qt6-native-host/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-native-build) --target-dir $(realpath ../pyqt6-native-target) --verbose &> pyqt6-native-install.log
+
 # patches for project.py
 # approach #1
 # set 'WebAssembly' as the platform for 'QtCore'
@@ -250,6 +259,7 @@ pip install PyQt-builder
 #sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose
 
 # this doesn't work with pyodide-venv
+# (test) DO NOT USE relative paths
 sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir ../pyqt6-build --target-dir ../pyqt6-target --verbose &> pyqt6-build.log
 # this also doesn't work with pyodide-venv
 # sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose &> pyqt6-build.log
@@ -259,7 +269,7 @@ sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir ../pyq
 
 # TODO (pradeep): Verify that sip-install is the one that generated qt6/qtbase/lib/libQt6Core.a, libQt6Gui.a, etc
 
-## pyodide package
+### TODO (pradeep): Package as a pyodide package?
 cd pyodide
 pyodide skeleton pypi <package-name>
 
