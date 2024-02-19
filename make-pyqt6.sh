@@ -130,7 +130,7 @@ cmake --install .
 
 
 # Approach 3: https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
-./configure -qt-host-path ../qt6-native-host -platform wasm-emscripten -prefix $PWD/qtbase
+./configure -qt-host-path ../qt6-host -platform wasm-emscripten -prefix $PWD/qtbase
 # Should give the following output:
 # Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
 # Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
@@ -191,8 +191,10 @@ source .venv-pyodide/bin/activate
 
 # build and install sip into pyodide's host python
 cd sip-6.8.3
-pip install -e ./pyodide-build
-# should output Successfully built /home/pradeep/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl
+# pip install -e ./pyodide-build
+python setup.py install
+
+# ^ should output Successfully built /home/pradeep/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl
 
 ## PyQt6-SIP
 # extract pyqt6sip from https://pypi.org/project/PyQt6-sip/#files
@@ -202,10 +204,19 @@ cd PyQt6_sip-13.6.0
 # (native build)
 python setup.py install
 
+# (wasm build with setup.py)
+# below command fails with error "emscripten does not support processes"
+# python setup.py install
+
+# (wasm build with pyodide)
+PYODIDE_ROOT=../pyodide pyodide build
+
+# (wasm build with emcc outputing .lib)
 mkdir -p build
 emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build/sip_bool.o
+# looks like sip_bool.cpp is only required on windows
+# emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build/sip_bool.o
 
 emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build/sip_core.o
 
@@ -229,7 +240,7 @@ emar cqs libsip.a build/*.o
 tar -xf sources/PyQt6-6.6.1.tar.gz
 cd PyQt6-6.6.1
 # TODO (pradeep): Should this also be compiled to WASM?
-pip install PyQt-builder
+pip install --no-cache-dir PyQt-builder
 # sip-install --qmake ../qt6-build-wasm/qtbase/bin/qt-cmake --confirm-license --verbose
 # sip-install --qmake /usr/local/Qt-6.6.3/bin/qmake --confirm-license --verbose
 
@@ -259,8 +270,9 @@ pip install PyQt-builder
 #sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose
 
 # this doesn't work with pyodide-venv
-# (test) DO NOT USE relative paths
-sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir ../pyqt6-build --target-dir ../pyqt6-target --verbose &> pyqt6-build.log
+chmod +x /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
+chmod +666 /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
+sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-build) --target-dir $(realpath ../pyqt6-target) --verbose &> ../logs/pyqt6-build.log
 # this also doesn't work with pyodide-venv
 # sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose &> pyqt6-build.log
 

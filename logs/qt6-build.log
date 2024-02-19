@@ -1,0 +1,41 @@
++ mkdir -p qtbase
++ cd qtbase
++ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -qt-host-path ../qt6-native-host -platform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase
+'/usr/bin/cmake' '-DQT_HOST_PATH=../qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DCMAKE_INSTALL_PREFIX=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
+-- Extracting Emscripten SDK info from EMSDK env var: /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk
+-- Emscripten 3.1.45 toolchain file detected at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+CMake Error at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake:104 (message):
+  Failed to fetch Emscripten version information with command
+  "'/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/emcc'
+  -v"!
+
+  Process returned with error code 1.
+
+  Output:
+
+  
+  /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/tools/filelock.py:458:
+  UserWarning: only soft file lock is available
+
+    warnings.warn("only soft file lock is available")
+
+  emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld)
+  3.1.45 (ef3e4e3b044de98e1811546e0bc605c65d3412f4)
+
+  emcc: error:
+  '/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/bin/clang
+  -v -target wasm32-unknown-emscripten' failed: [Errno 138] emscripten does
+  not support processes.
+
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/CMakeDetermineSystem.cmake:124 (include)
+  CMakeLists.txt:15 (project)
+
+
+CMake Error: CMake was unable to find a build program corresponding to "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+CMake Error: CMAKE_ASM_COMPILER not set, after EnableLanguage
+-- Configuring incomplete, errors occurred!
+CMake Error at qtbase/cmake/QtProcessConfigureArgs.cmake:1040 (message):
+  CMake exited with code 1.
+
+
