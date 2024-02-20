@@ -98,39 +98,9 @@ cd qt6-native-build
 cmake --build .
 cmake --install .
 
-### Configure Qt6 for WASM platform
-## Approach 1
-../qt6/configure -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6-host
-
-
-## Approach 2#
-# from qt-build
-../qt6/configure
-
-# cmake --build . --parallel
-cmake --build .
-sudo cmake --install .
-
-# from qt6-build-wasm
-#QT_HOST_PATH=~/projects/pyodide-with-pyqt5/qt6-build/qtbase  ../qt6/configure -xplatform wasm-emscripten -prefix .
-QT_HOST_PATH=~/projects/pyodide-with-pyqt5/qt6-build/qtbase  ../qt6/configure -xplatform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6-host
-# this command doesn't work with the following error:
-# CMake Error at qtbase/cmake/QtPublicDependencyHelpers.cmake:216 (find_package):
-#   Could not find a package configuration file provided by "Qt6HostInfo" with
-#   any of the following names:
-
-#     Qt6HostInfoConfig.cmake
-#     qt6hostinfo-config.cmake
-
-# the file is at ../qt6-build/qtbase/lib/cmake/Qt6HostInfo/Qt6HostInfoConfig.cmake
-# QT_HOST_PATH=~/projects/pyodide-with-pyqt5/qt6/qtbase ../qt6/configure -xplatform wasm-emscripten
-
-cmake --build .
-cmake --install .
-
-
-# Approach 3: https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
-./configure -qt-host-path ../qt6-host -platform wasm-emscripten -prefix $PWD/qtbase
+# build qt6 for wasm
+# https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
+./configure -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-configure.log
 # Should give the following output:
 # Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
 # Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
@@ -160,8 +130,7 @@ cmake --install .
 
 # create qt6 static libs
 # qt6/qtbase/lib/libQt6Core.a
-cmake --build .
-
+cmake --build . &> ../logs/qt6-build.log
 
 ## Build SIP
 # extract sip from https://pypi.org/project/sip/#files
