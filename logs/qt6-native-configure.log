@@ -1,0 +1,692 @@
++ mkdir -p qtbase
++ cd qtbase
++ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -prefix ../qt6-native-host -nomake examples -confirm-license -feature-thread
+'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-DINPUT_thread=yes' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
+-- The CXX compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /usr/bin/cc
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Checking dependencies of submodule 'qtbase'
+-- Checking dependencies of submodule 'qtimageformats'
+-- Checking dependencies of submodule 'qtlanguageserver'
+-- Checking dependencies of submodule 'qtshadertools'
+-- Checking dependencies of submodule 'qtsvg'
+-- Checking dependencies of submodule 'qtdeclarative'
+-- Checking dependencies of submodule 'qtquicktimeline'
+-- Checking dependencies of submodule 'qtquick3d'
+-- Checking dependencies of submodule 'qtmultimedia'
+-- Checking dependencies of submodule 'qt3d'
+-- Checking dependencies of submodule 'qt5compat'
+-- Checking dependencies of submodule 'qtactiveqt'
+-- Checking dependencies of submodule 'qtcharts'
+-- Checking dependencies of submodule 'qtcoap'
+-- Checking dependencies of submodule 'qtconnectivity'
+-- Checking dependencies of submodule 'qtdatavis3d'
+-- Checking dependencies of submodule 'qtwebsockets'
+-- Checking dependencies of submodule 'qthttpserver'
+-- Checking dependencies of submodule 'qttools'
+-- Checking dependencies of submodule 'qtserialport'
+-- Checking dependencies of submodule 'qtpositioning'
+-- Checking dependencies of submodule 'qtwebchannel'
+-- Checking dependencies of submodule 'qtwebengine'
+-- Checking dependencies of submodule 'qtdoc'
+-- Checking dependencies of submodule 'qtgraphs'
+-- Checking dependencies of submodule 'qtgrpc'
+-- Checking dependencies of submodule 'qtlocation'
+-- Checking dependencies of submodule 'qtlottie'
+-- Checking dependencies of submodule 'qtmqtt'
+-- Checking dependencies of submodule 'qtnetworkauth'
+-- Checking dependencies of submodule 'qtopcua'
+-- Checking dependencies of submodule 'qtqa'
+-- Checking dependencies of submodule 'qtquick3dphysics'
+-- Checking dependencies of submodule 'qtquickeffectmaker'
+-- Checking dependencies of submodule 'qtremoteobjects'
+-- Checking dependencies of submodule 'qtscxml'
+-- Checking dependencies of submodule 'qtsensors'
+-- Checking dependencies of submodule 'qtserialbus'
+-- Checking dependencies of submodule 'qtspeech'
+-- Checking dependencies of submodule 'qttranslations'
+-- Checking dependencies of submodule 'qtvirtualkeyboard'
+-- Checking dependencies of submodule 'qtwayland'
+-- Checking dependencies of submodule 'qtwebview'
+-- Configuring submodule 'qtbase'
+-- [QtBase] Setting build type to 'Release' as none was specified.
+            -DCMAKE_C_FLAGS_DEBUG=-g
+            -DCMAKE_C_FLAGS_RELEASE=-O3 -DNDEBUG
+            -DCMAKE_C_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
+            -DCMAKE_CXX_FLAGS_DEBUG=-g
+            -DCMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG
+            -DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
+            -DCMAKE_OBJCOPY=/usr/bin/objcopy
+            -DCMAKE_C_STANDARD=11
+            -DCMAKE_C_STANDARD_REQUIRED=ON
+            -DCMAKE_CXX_STANDARD=17
+            -DCMAKE_CXX_STANDARD_REQUIRED=ON
+            -DCMAKE_MODULE_PATH:STRING=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/cmake/platforms
+-- Configuring submodule 'qtimageformats'
+-- Configuring submodule 'qtlanguageserver'
+-- Configuring submodule 'qtshadertools'
+-- Configuring submodule 'qtsvg'
+-- Configuring submodule 'qtdeclarative'
+-- Configuring submodule 'qtquicktimeline'
+-- Configuring submodule 'qtquick3d'
+-- Configuring submodule 'qtmultimedia'
+-- Configuring submodule 'qt3d'
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/render/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/scene3d/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/extras/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/scene2d/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/input/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/logic/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt3d/src/quick3d/imports/animation/CMakeLists.txt:10 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring submodule 'qt5compat'
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qt5compat/src/imports/graphicaleffects5/CMakeLists.txt:36 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring submodule 'qtactiveqt'
+Condition "WIN32" is not met, enabling documentation build only.
+-- Configuring submodule 'qtcharts'
+-- Found XKB: /usr/lib/x86_64-linux-gnu/libxkbcommon.so (found suitable version "1.4.0", minimum required is "0.5.0") 
+-- Configuring submodule 'qtcoap'
+-- Configuring submodule 'qtconnectivity'
+-- Configuring submodule 'qtdatavis3d'
+-- Configuring submodule 'qtwebsockets'
+CMake Warning (dev) at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
+  INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
+  Please port your module to use declarative type registration.
+Call Stack (most recent call first):
+  qtwebsockets/src/imports/qmlwebsockets/CMakeLists.txt:4 (qt_internal_add_qml_module)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring submodule 'qthttpserver'
+-- Configuring submodule 'qttools'
+-- Could NOT find Clang (missing: Clang_DIR)
+-- Could NOT find Clang (missing: Clang_DIR)
+-- Configuring submodule 'qtserialport'
+-- Configuring submodule 'qtpositioning'
+-- Configuring submodule 'qtwebchannel'
+-- Configuring submodule 'qtwebengine'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'html5lib'
+[QtWebEngine] -- Checking 'ulimit -n'
+[QtWebEngine]  -- Open files limit 8192
+[QtWebEngine] -- Support check for QtWebEngine failed: Python3 html5lib is missing.
+[QtWebEngine] -- Support check for QtPdf failed: Python3 html5lib is missing.
+-- Configuring submodule 'qtdoc'
+-- Configuring submodule 'qtgraphs'
+-- Configuring submodule 'qtgrpc'
+-- Configuring submodule 'qtlocation'
+-- Configuring submodule 'qtlottie'
+-- Configuring submodule 'qtmqtt'
+-- Configuring submodule 'qtnetworkauth'
+-- Configuring submodule 'qtopcua'
+-- Configuring submodule 'qtqa'
+-- Configuring submodule 'qtquick3dphysics'
+-- Configuring submodule 'qtquickeffectmaker'
+Nodes path: ./qml/QtQuickEffectMaker/defaultnodes
+-- Configuring submodule 'qtremoteobjects'
+-- Configuring submodule 'qtscxml'
+-- Configuring submodule 'qtsensors'
+-- Configuring submodule 'qtserialbus'
+-- Configuring submodule 'qtspeech'
+-- Configuring submodule 'qttranslations'
+-- Configuring submodule 'qtvirtualkeyboard'
+-- Configuring submodule 'qtwayland'
+CMake Warning at qtwayland/src/CMakeLists.txt:24 (message):
+  QtWayland is missing required dependencies, nothing will be built.
+  Although this could be considered an error, the configuration will still
+  pass as coin (Qt's continuous integration system) will fail the build if
+  configure fails, but will still try to configure the module on targets that
+  are missing dependencies.
+
+
+-- Configuring submodule 'qtwebview'
+-- Could NOT find Qt6WebEngineCore (missing: Qt6WebEngineCore_DIR)
+CMake Warning at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+  Failed to find optional Qt component "WebEngineCore".
+
+  Expected Config file at
+  "/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6WebEngineCore/Qt6WebEngineCoreConfig.cmake"
+  does NOT exist
+
+Call Stack (most recent call first):
+  qtwebview/CMakeLists.txt:15 (find_package)
+
+
+-- Could NOT find Qt6WebEngineQuick (missing: Qt6WebEngineQuick_DIR)
+CMake Warning at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+  Failed to find optional Qt component "WebEngineQuick".
+
+  Expected Config file at
+  "/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6WebEngineQuick/Qt6WebEngineQuickConfig.cmake"
+  does NOT exist
+
+Call Stack (most recent call first):
+  qtwebview/CMakeLists.txt:15 (find_package)
+
+
+
+-- Configuration summary shown below. It has also been written to /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/config.summary
+-- Configure with --log-level=STATUS or higher to increase CMake's message verbosity. The log level does not persist across reconfigurations.
+ 
+-- Configure summary:
+
+Building for: linux-g++ (x86_64, CPU features: )
+Compiler: gcc 11.4.0
+Build options:
+  Mode ................................... release
+  Optimize release build for size ........ no
+  Fully optimize release builds (-O3) .... no
+  Building shared libraries .............. yes
+  Using ccache ........................... no
+  Unity Build ............................ no
+  Using new DTAGS ........................ yes
+  Relocatable ............................ yes
+  Using precompiled headers .............. yes
+  Using Link Time Optimization (LTCG) .... no
+  Using Intel CET ........................ yes
+  Target compiler supports:
+    x86 Intrinsics ....................... Basic VAES AVX512VBMI2
+  Sanitizers:
+    Addresses ............................ no
+    Threads .............................. no
+    Memory ............................... no
+    Fuzzer (instrumentation only) ........ no
+    Undefined ............................ no
+  Build parts ............................ libs tools
+  Install examples sources ............... no
+Qt modules and options:
+  Qt Concurrent .......................... yes
+  Qt D-Bus ............................... yes
+  Qt D-Bus directly linked to libdbus .... no
+  Qt Gui ................................. yes
+  Qt Network ............................. yes
+  Qt PrintSupport ........................ yes
+  Qt Sql ................................. yes
+  Qt Testlib ............................. yes
+  Qt Widgets ............................. yes
+  Qt Xml ................................. yes
+Support enabled for:
+  Using pkg-config ....................... yes
+  Using vcpkg ............................ no
+  udev ................................... no
+  OpenSSL ................................ yes
+    Qt directly linked to OpenSSL ........ no
+  OpenSSL 1.1 ............................ no
+  OpenSSL 3.0 ............................ yes
+  Using system zlib ...................... yes
+  Zstandard support ...................... no
+  Thread support ......................... yes
+Common build options:
+  Linker can resolve circular dependencies  yes
+Qt Core:
+  backtrace .............................. yes
+  DoubleConversion ....................... yes
+    Using system DoubleConversion ........ no
+  CLONE_PIDFD support in forkfd .......... yes
+  GLib ................................... no
+  ICU .................................... no
+  Using system libb2 ..................... no
+  Built-in copy of the MIME database ..... yes
+  Application permissions ................ yes
+  Defaulting legacy IPC to POSIX ......... no
+  Tracing backend ........................ <none>
+  OpenSSL based cryptographic hash ....... no
+  Logging backends:
+    journald ............................. no
+    syslog ............................... no
+    slog2 ................................ no
+  PCRE2 .................................. yes
+    Using system PCRE2 ................... no
+Qt Sql:
+  SQL item models ........................ yes
+Qt Network:
+  getifaddrs() ........................... yes
+  IPv6 ifname ............................ yes
+  libproxy ............................... no
+  Linux AF_NETLINK ....................... yes
+  DTLS ................................... yes
+  OCSP-stapling .......................... yes
+  SCTP ................................... no
+  Use system proxies ..................... yes
+  GSSAPI ................................. no
+  Brotli Decompression Support ........... yes
+  qIsEffectiveTLD() ...................... yes
+    Built-in publicsuffix database ....... yes
+    System publicsuffix database ......... yes
+Core tools:
+  Android deployment tool ................ yes
+  macOS deployment tool .................. no
+  Windows deployment tool ................ no
+  qmake .................................. yes
+Qt Gui:
+  Accessibility .......................... yes
+  FreeType ............................... yes
+    Using system FreeType ................ yes
+  HarfBuzz ............................... yes
+    Using system HarfBuzz ................ no
+  Fontconfig ............................. yes
+  Image formats:
+    GIF .................................. yes
+    ICO .................................. yes
+    JPEG ................................. yes
+      Using system libjpeg ............... no
+    PNG .................................. yes
+      Using system libpng ................ yes
+  Text formats:
+    HtmlParser ........................... yes
+    CssParser ............................ yes
+    OdfWriter ............................ yes
+    MarkdownReader ....................... yes
+      Using system libmd4c ............... no
+    MarkdownWriter ....................... yes
+  EGL .................................... yes
+  OpenVG ................................. no
+  OpenGL:
+    Desktop OpenGL ....................... yes
+    OpenGL ES 2.0 ........................ no
+    OpenGL ES 3.0 ........................ no
+    OpenGL ES 3.1 ........................ no
+    OpenGL ES 3.2 ........................ no
+  Vulkan ................................. no
+  Session Management ..................... yes
+Features used by QPA backends:
+  evdev .................................. yes
+  libinput ............................... no
+  HiRes wheel support in libinput ........ no
+  INTEGRITY HID .......................... no
+  mtdev .................................. no
+  tslib .................................. no
+  xkbcommon .............................. yes
+  X11 specific:
+    XLib ................................. yes
+    XCB Xlib ............................. yes
+    EGL on X11 ........................... yes
+    xkbcommon-x11 ........................ yes
+    xcb-sm ............................... no
+QPA backends:
+  DirectFB ............................... no
+  EGLFS .................................. yes
+  EGLFS details:
+    EGLFS OpenWFD ........................ no
+    EGLFS i.Mx6 .......................... no
+    EGLFS i.Mx6 Wayland .................. no
+    EGLFS RCAR ........................... no
+    EGLFS EGLDevice ...................... no
+    EGLFS GBM ............................ no
+    EGLFS VSP2 ........................... no
+    EGLFS Mali ........................... no
+    EGLFS Raspberry Pi ................... no
+    EGLFS X11 ............................ yes
+  LinuxFB ................................ yes
+  VNC .................................... yes
+  VK_KHR_display ......................... no
+  QNX:
+    lgmon ................................ no
+    IMF .................................. no
+  XCB:
+    Using system-provided xcb-xinput ..... no
+    GL integrations:
+      GLX Plugin ......................... yes
+        XCB GLX .......................... yes
+      EGL-X11 Plugin ..................... yes
+  Windows:
+    Direct 2D ............................ no
+    Direct 2D 1.1 ........................ no
+    DirectWrite .......................... no
+    DirectWrite 3 ........................ no
+Qt Widgets:
+  GTK+ ................................... no
+  Styles ................................. Fusion Windows
+Qt Testlib:
+  Tester for item models ................. yes
+  Batch tests ............................ no
+Qt PrintSupport:
+  CUPS ................................... no
+Qt Sql Drivers:
+  DB2 (IBM) .............................. no
+  InterBase .............................. no
+  MySql .................................. no
+  OCI (Oracle) ........................... no
+  ODBC ................................... no
+  PostgreSQL ............................. no
+  SQLite ................................. yes
+    Using system provided SQLite ......... no
+  Mimer .................................. no
+Further Image Formats:
+  JasPer ................................. no
+  MNG .................................... no
+  TIFF ................................... yes
+    Using system libtiff ................. no
+  WEBP ................................... yes
+    Using system libwebp ................. no
+Qt QML:
+  QML network support .................... yes
+  QML debugging and profiling support .... yes
+  QML just-in-time compiler .............. yes
+  QML XML http request ................... yes
+  QML Locale ............................. yes
+Qt QML Models:
+  QML list model ......................... yes
+  QML delegate model ..................... yes
+Qt Quick:
+  AnimatedImage item ..................... yes
+  Canvas item ............................ yes
+  Support for Qt Quick Designer .......... yes
+  Flipable item .......................... yes
+  GridView item .......................... yes
+  ListView item .......................... yes
+  TableView item ......................... yes
+  TreeView item .......................... yes
+  Path support ........................... yes
+  PathView item .......................... yes
+  Positioner items ....................... yes
+  Repeater item .......................... yes
+  ShaderEffect item ...................... yes
+  Sprite item ............................ yes
+Qt Quick Templates 2:
+  Hover support .......................... yes
+  Multi-touch support .................... yes
+  Calendar support ....................... yes
+Qt Quick Controls 2:
+  Styles ................................. Basic Fusion Imagine Material Universal
+QtQuick3D:
+  Assimp ................................. yes
+  System Assimp .......................... no
+Qt Multimedia:
+  Spatial Audio .......................... yes
+  Spatial Audio (Quick3D) ................ yes
+  Low level Audio Backend:
+    ALSA (experimental) .................. no
+    PulseAudio ........................... no
+    MMRenderer ........................... no
+    CoreAudio ............................ no
+    Windows Media SDK .................... no
+    Open SLES (Android) .................. no
+    Web Assembly ......................... no
+  Plugin:
+    GStreamer 1.0 ........................ no
+    FFmpeg ............................... no
+    MMRenderer ........................... no
+    AVFoundation ......................... no
+    Windows Media Foundation ............. no
+  Hardware acceleration and features:
+    Video for Linux ...................... yes
+    VAAPI support ........................ no
+    Linux DMA buffer support ............. yes
+    VideoToolbox ......................... no
+Qt 3D:
+  Assimp ................................. yes
+  System Assimp .......................... no
+  Aspects:
+    Render aspect ........................ yes
+    Input aspect ......................... yes
+    Logic aspect ......................... yes
+    Animation aspect ..................... yes
+    Extras aspect ........................ yes
+Qt 3D APIs:
+  Vulkan ................................. no
+Qt 3D Renderers:
+  OpenGL Renderer ........................ yes
+  RHI Renderer ........................... yes
+Qt3D Geometry Loaders:
+  Autodesk FBX ........................... no
+Qt 5 Compatibility Libraries:
+  iconv .................................. yes
+Qt Charts Types:
+  Area Chart ............................. yes
+  Line Chart ............................. yes
+  Spline Chart ........................... yes
+  Scatter Chart .......................... yes
+  Bar Chart .............................. yes
+  Pie Chart .............................. yes
+  Boxplot Chart .......................... yes
+  Candlestick Chart ...................... yes
+Qt Axis Types:
+  DateTime Axis .......................... yes
+Qt Bluetooth:
+  BlueZ .................................. no
+  BlueZ Low Energy ....................... no
+  Linux Crypto API ....................... no
+  WinRT Bluetooth API .................... no
+Qt Tools:
+  Qt Assistant ........................... yes
+  libclang found ......................... no
+  Clang-based lupdate parser ............. no
+  Qt Designer ............................ yes
+  Qt Distance Field Generator ............ yes
+  Qt Linguist ............................ yes
+  pixeltool .............................. yes
+  qdbus .................................. yes
+  QDoc ................................... no
+  Qt Attributions Scanner ................ yes
+  qtdiag ................................. yes
+  qtplugininfo ........................... yes
+Serial Port:
+  ntddmodm ............................... no
+WebEngine Repository Build Options:
+  Build Ninja ............................ no
+  Build Gn ............................... yes
+  Jumbo Build ............................ yes
+  Developer build ........................ no
+  Build QtWebEngine Modules:
+    Build QtWebEngineCore ................ no
+    Build QtWebEngineWidgets ............. no
+    Build QtWebEngineQuick ............... no
+  Build QtPdf Modules:
+    Build QtPdfWidgets ................... no
+    Build QtPdfQuick ..................... no
+  Optional system libraries:
+    re2 .................................. no
+    icu .................................. no
+    libwebp, libwebpmux and libwebpdemux . no
+    opus ................................. no
+    ffmpeg ............................... no
+    libvpx ............................... no
+    snappy ............................... no
+    glib ................................. no
+    zlib ................................. yes
+    minizip .............................. no
+    libevent ............................. no
+    libxml2 and libxslt .................. no
+    lcms2 ................................ no
+    png .................................. yes
+    tiff ................................. no
+    jpeg ................................. no
+    libopenjpeg2 ......................... no
+    harfbuzz ............................. no
+    freetype ............................. yes
+    libpci ............................... no
+Qt Protobuf:
+  Qt Core types support .................. no
+  Qt Gui types support ................... no
+  Well-known types support ............... no
+Qt Protobuf tools:
+  Qt Protobuf generator .................. no
+Qt GRPC:
+  gRPC support ........................... yes
+  Native gRPC support .................... no
+Qt GRPC tools:
+  Qt GRPC generator ...................... no
+Qt Opcua:
+  Open62541 .............................. yes
+  Unified Automation C++ SDK ............. no
+  Support for namespace 0 NodeId names ... yes
+  Namespace 0 NodeIds generator .......... no
+  Open62541 security support ............. yes
+  Support for global discovery server .... yes
+Qt Remote Objects:
+  High Availability Manager (ham) ........ no
+Qt Scxml:
+  ECMAScript data model for QtScxml ...... yes
+Qt Sensors:
+  sensorfw ............................... no
+  sensorfw_enabled_with_cmake ............ no
+Qt SerialBus:
+  Socket CAN ............................. yes
+  Socket CAN FD .......................... yes
+  SerialPort Support ..................... yes
+Qt TextToSpeech:
+  Flite .................................. no
+  Flite with ALSA ........................ no
+  Speech Dispatcher ...................... no
+Qt Virtualkeyboard:
+  Desktop integration .................... yes
+  Built-in layouts ....................... yes
+  Key navigation ......................... no
+  Retro style as default ................. no
+  Sensitive Debug ........................ no
+  Cerence ................................ no
+    Static Linking ....................... no
+    Handwriting .......................... no
+      Alphabetic ......................... no
+      CJK ................................ no
+    XT9 .................................. no
+      XT9 Debug .......................... no
+      XT9 9-key layouts .................. no
+    Bundle resources ..................... no
+      Handwriting ........................ no
+      XT9 ................................ no
+  Hunspell ............................... no
+    Using Hunspell copy from 3rdparty/ ... no
+  OpenWnn ................................ yes
+  MyScript ............................... no
+  Example HWR ............................ no
+  Language support enabled for:
+    Arabic ............................... yes
+    Bulgarian ............................ yes
+    Czech ................................ yes
+    Danish ............................... yes
+    German ............................... yes
+    Greek ................................ yes
+    English GB ........................... yes
+    English US ........................... yes
+    Spanish .............................. yes
+    Spanish Mexico ....................... yes
+    Estonian ............................. yes
+    Farsi ................................ yes
+    Finnish .............................. yes
+    French Canada ........................ yes
+    French France ........................ yes
+    Hebrew ............................... yes
+    Hindi ................................ yes
+    Croatian ............................. yes
+    Hungarian ............................ yes
+    Indonesian ........................... yes
+    Italian .............................. yes
+    Japanese ............................. yes
+    Korean ............................... yes
+    Malay ................................ yes
+    Norwegian ............................ yes
+    Dutch ................................ yes
+    Polish ............................... yes
+    Portuguese Brazil .................... yes
+    Portuguese Portugal .................. yes
+    Romanian ............................. yes
+    Russian .............................. yes
+    Slovak ............................... yes
+    Slovenian ............................ yes
+    Albanian ............................. yes
+    Serbian .............................. yes
+    Swedish .............................. yes
+    Thai ................................. yes
+    Turkish .............................. yes
+    Ukrainian ............................ yes
+    Vietnamese ........................... yes
+    Simplified Chinese ................... yes
+    Traditional Chinese .................. yes
+    HongKong Chinese ..................... no
+  Traditional chinese input methods:
+    Zhuyin ............................... yes
+    Cangjie .............................. yes
+ 
+
+Note: Disabling X11 Accessibility Bridge: D-Bus or AT-SPI is missing.
+Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
+
+WARNING: No backend for low level audio found.
+WARNING: QDoc will not be compiled, probably because clang's C and C++ libraries could not be located. This means that you cannot build the Qt documentation.
+You may need to set CMAKE_PREFIX_PATH or LLVM_INSTALL_DIR to the location of your llvm installation.
+Other than clang's libraries, you may need to install another package, such as clang itself, to provide the ClangConfig.cmake file needed to detect your libraries. Once this
+file is in place, the configure script may be able to detect your system-installed libraries without further environment variables.
+On macOS, you can use Homebrew's llvm package.
+You will also need to set the FEATURE_clang CMake variable to ON to re-evaluate this check.
+WARNING: Clang-based lupdate parser will not be available. LLVM and Clang C++ libraries have not been found.
+You will need to set the FEATURE_clangcpp CMake variable to ON to re-evaluate this check.
+WARNING: QtWebEngine won't be built. Python3 html5lib is missing.
+WARNING: QtPdf won't be built. Python3 html5lib is missing.
+WARNING: SensorFW support currently not enabled with cmake
+
+-- 
+
+Qt is now configured for building. Just run 'cmake --build . --parallel'
+
+Once everything is built, you must run 'cmake --install .'
+Qt will be installed into '/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host'
+
+To configure and build other Qt modules, you can use the following convenience script:
+        /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/bin/qt-configure-module
+
+If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
+Alternatively, you can add the --fresh flag to your CMake flags.
+
+-- Configuring done (40.0s)
+-- Generating done (3.6s)
+-- Build files have been written to: /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build

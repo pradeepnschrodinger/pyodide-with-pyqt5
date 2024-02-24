@@ -1,0 +1,18 @@
+pyproject.toml: line 7: using '[tool.sip.metadata]' to specify the project metadata is deprecated and will be removed in SIP v7.0.0, use '[project]' instead
+Querying qmake about your Qt installation...
+/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake -query
+This is the GPL version of PyQt 6.6.1 (licensed under the GNU General Public License) for Python 3.11.3 on linux.
+Found the license file 'pyqt-gpl.sip'.
+Niranjan: Current bindings before removing unbuildables: OrderedDict([('QtCore', <project.QtCore object at 0x7f578089acd0>)])
+Checking to see if the QtCore bindings can be built...
+/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake QtCore.pro
+Info: creating stash file /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-native-build/cfgtest_QtCore/.qmake.stash
+make
+g++ -c -pipe -O2 -Wall -Wextra -fPIC -D_REENTRANT -DQT_KEYPAD_NAVIGATION -DQT_NO_DEBUG -DQT_CORE_LIB -I. -I../../PyQt6-6.6.1/qpy/QtCore -I../../qt6-native-host/include -I../../qt6-native-host/include/QtCore -I. -I../../qt6-native-host/mkspecs/linux-g++ -o cfgtest_QtCore.o ../../PyQt6-6.6.1/config-tests/cfgtest_QtCore.cpp
+g++ -Wl,-O1 -Wl,-rpath,/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/lib -o QtCore  cfgtest_QtCore.o   /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/lib/libQt6Core.so -lpthread   
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-native-build/cfgtest_QtCore/./QtCore /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-native-build/cfgtest_QtCore/cfgtest_QtCore.out
+Niranjan: Current bindings after removing unbuildables: OrderedDict([('QtCore', <project.QtCore object at 0x7f578089acd0>)])
+Checking to see if the dbus-python support should be built...
+The dbus-python package does not seem to be installed.
+These bindings will be built: QtCore.
+sip-build: Niranjan: Reached a point where bindings are going to be built
