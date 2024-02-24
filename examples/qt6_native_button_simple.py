@@ -6,6 +6,7 @@ print(os.environ)
 
 import sys
 sys.path.append('/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-native-target')
+# sys.path.append('/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-target')
 
 from PyQt6 import QtWidgets
 

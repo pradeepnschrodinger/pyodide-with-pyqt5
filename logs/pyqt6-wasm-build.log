@@ -3,7 +3,7 @@ Querying qmake about your Qt installation...
 /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/bin/qmake -query
 This is the GPL version of PyQt 6.6.1 (licensed under the GNU General Public License) for Python 3.11.3 on linux.
 Found the license file 'pyqt-gpl.sip'.
-Niranjan: Current bindings before removing unbuildables: OrderedDict([('QtCore', <project.QtCore object at 0x7fbbef2e8c10>)])
+Niranjan: Current bindings before removing unbuildables: OrderedDict([('QtCore', <project.QtCore object at 0x7f36332b8690>)])
 Checking to see if the QtCore bindings can be built...
 Niranjan: PyQtBindings::bindings.py Building the test program
 /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/bin/qmake QtCore.pro
@@ -14,7 +14,7 @@ sed -e s/@APPNAME@/QtCore/g -e s/@PRELOAD@//g /home/pradeep/projects/pyodide-wit
 cp -f /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/plugins/platforms/qtloader.js /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/cfgtest_QtCore
 cp -f /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/plugins/platforms/qtlogo.svg /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/cfgtest_QtCore
 em++ -s 'ASYNCIFY_IMPORTS=qt_asyncify_suspend_js,qt_asyncify_resume_js' -s WASM=1 -s MAX_WEBGL_VERSION=2 -s ERROR_ON_UNDEFINED_SYMBOLS=1 --bind -s FETCH=1 -s MODULARIZE=1 -s EXPORT_NAME=createQtAppInstance -s WASM_BIGINT=1 -s STACK_SIZE=5MB -O2 -s EXPORTED_RUNTIME_METHODS=UTF16ToString,stringToUTF16,JSEvents,specialHTMLTargets,FS -sALLOW_MEMORY_GROWTH -s INITIAL_MEMORY=50MB -o QtCore.js  cfgtest_QtCore.o   /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/lib/libQt6Core.a -L/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten -lz /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/lib/libQt6BundledPcre2.a -lembind   
-Niranjan: Current bindings after removing unbuildables: OrderedDict([('QtCore', <project.QtCore object at 0x7fbbef2e8c10>)])
+Niranjan: Current bindings after removing unbuildables: OrderedDict([('QtCore', <project.QtCore object at 0x7f36332b8690>)])
 Checking to see if the dbus-python support should be built...
 The dbus-python package does not seem to be installed.
 These bindings will be built: QtCore.
@@ -28,24 +28,4 @@ Generating the Makefiles...
 /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/bin/qmake -recursive PyQt6.pro
 Info: creating stash file /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/.qmake.stash
 Reading /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/QtCore.pro
-Compiling the project...
-make
-sip-build: 'make' failed returning 2
-cd QtCore/ && ( test -e Makefile || /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake -o Makefile /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/QtCore.pro -qtconf /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/bin/target_qt.conf ) && make -f Makefile 
-make[1]: Entering directory '/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore'
-em++ -c -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../../cpython/pradeep/3.11.3/include/python3.11 -I../../qt6/qtbase/include -I../../qt6/qtbase/include/QtCore -I. -I../../qt6/qtbase/mkspecs/wasm-emscripten -o sipQtCorecmodule.o sipQtCorecmodule.cpp
-In file included from sipQtCorecmodule.cpp:24:
-In file included from ./sipAPIQtCore.h:33:
-In file included from ../sip.h:24:
-In file included from ../../../cpython/pradeep/3.11.3/include/python3.11/Python.h:38:
-../../../cpython/pradeep/3.11.3/include/python3.11/pyport.h:601:2: error: "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
-  601 | #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
-      |  ^
-/home/pradeep/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qsemaphore.sip:26:10: fatal error: 'qsemaphore.h' file not found
-   26 | #include <qsemaphore.h>
-      |          ^~~~~~~~~~~~~~
-2 errors generated.
-em++: error: '/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/bin/clang++ -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr -DEMSCRIPTEN --sysroot=/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -c -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../../cpython/pradeep/3.11.3/include/python3.11 -I../../qt6/qtbase/include -I../../qt6/qtbase/include/QtCore -I. -I../../qt6/qtbase/mkspecs/wasm-emscripten sipQtCorecmodule.cpp -o sipQtCorecmodule.o' failed (returned 1)
-make[1]: *** [Makefile:2773: sipQtCorecmodule.o] Error 1
-make[1]: Leaving directory '/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore'
-make: *** [Makefile:47: sub-QtCore-make_first-ordered] Error 2
+The project has been built.

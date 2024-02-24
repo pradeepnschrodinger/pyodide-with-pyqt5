@@ -240,7 +240,31 @@ pip install --no-cache-dir PyQt-builder
 # this doesn't work with pyodide-venv
 chmod +x /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
 chmod +666 /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
-sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose &> ../logs/pyqt6-wasm-build.log
+
+# TODO (pradeep): This doesn't work cause of many errors. Try breaking it down and patch makefiles individually
+# sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose &> ../logs/pyqt6-wasm-build.log
+
+# This builds and runs the Makefile, resulting in a LOT of errors
+# I manually removed the entries that failed in /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/Makefile and /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp
+# Once that's done I ran make in QtCore and that built libQtCore.a succesfully
+# sip-build --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
+
+# This works fine by first letting sip-build construct the make files and then making it manually after applying the patch files
+sip-build --no-make --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(re
+alpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
+
+cd pyqt6-wasm-build
+
+# apply patch files
+# TODO (pradeep): Turn these into patch files
+cp temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp pyqt6-wasm-build/QtCore/sip
+cp temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp 
+cp temp/pyqt6-wasm-build__QtCore__sipQtCoreQwriteLocker.cpp  pyqt6-wasm-build/QtCore/sipQtCore
+cp temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp  pyqt6-wasm-build/QtCore/sipQtCoreQWriteLocker.cpp 
+make
+make install
+
+
 # this also doesn't work with pyodide-venv
 # sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose &> pyqt6-build.log
 
