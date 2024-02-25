@@ -249,22 +249,34 @@ chmod +666 /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
 # Once that's done I ran make in QtCore and that built libQtCore.a succesfully
 # sip-build --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
 
+# patch project.py
+# self.bindings_factories = [QtCore, QtGui, QtWidgets]
+
+# patch QtCoremmod.sip
+cp ../temp/pyqt6-wasm-build__QtCore__QtCoremod.sip pyqt6-wasm-build__QtCore__QtCoremod.sip
+
 # This works fine by first letting sip-build construct the make files and then making it manually after applying the patch files
-sip-build --no-make --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(re
-alpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
+sip-build --no-make --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
 
 cd pyqt6-wasm-build
 
 # apply patch files
 # TODO (pradeep): Turn these into patch files
-cp temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp pyqt6-wasm-build/QtCore/sip
-cp temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp 
-cp temp/pyqt6-wasm-build__QtCore__sipQtCoreQwriteLocker.cpp  pyqt6-wasm-build/QtCore/sipQtCore
-cp temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp  pyqt6-wasm-build/QtCore/sipQtCoreQWriteLocker.cpp 
+# TODO (pradeep): Make -fPIC work. Maybe changing sourcecode is disrupting mappings?
+cp ../temp/pyqt6-wasm-build__QtCore__Makefile QtCore/Makefile
+cp ../temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp QtCore/sipQtCorecmodule.cpp 
+cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQReadLocker.cpp  QtCore/sipQtCoreQReadLocker.cpp
+cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp QtCore/sipQtCoreQWriteLocker.cpp 
+
+cp ../temp/pyqt6-wasm-build__QtGui__Makefile QtGui/Makefile
+cp ../temp/pyqt6-wasm-build__QtWidgets__Makefile QtWidgets/Makefile
+
 make
 make install
 
 # HACKY: create the wheel manually post-installation
+# TODO (pradeep): Rename .so library files to .a so pyodide doesn't think it's a dynamic module. Also rename the entries in distinfo/RECORD
+cd pyqt6-wasm-target
 cp ../temp/WHEEL PyQt6-6.6.1.dist-info/
 zip -r PyQt6-6.6.1-py3-none-any.whl .
 
