@@ -264,6 +264,9 @@ cp temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp  pyqt6-wasm-build/Qt
 make
 make install
 
+# HACKY: create the wheel manually post-installation
+cp ../temp/WHEEL PyQt6-6.6.1.dist-info/
+zip -r PyQt6-6.6.1-py3-none-any.whl .
 
 # this also doesn't work with pyodide-venv
 # sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose &> pyqt6-build.log
