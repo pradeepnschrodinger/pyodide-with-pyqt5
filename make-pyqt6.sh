@@ -193,24 +193,24 @@ PYODIDE_ROOT=../pyodide pyodide build
 
 # (wasm build with emcc outputing .lib)
 mkdir -p build
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
 
 # looks like sip_bool.cpp is only required on windows
-# emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build/sip_bool.o
+# emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build/sip_bool.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build/sip_core.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build/sip_core.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_descriptors.c -o build/sip_descriptors.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_descriptors.c -o build/sip_descriptors.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_enum.c -o build/sip_enum.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_enum.c -o build/sip_enum.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_int_convertors.c -o build/sip_int_convertors.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_int_convertors.c -o build/sip_int_convertors.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_object_map.c -o build/sip_object_map.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_object_map.c -o build/sip_object_map.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_threads.c -o build/sip_threads.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_threads.c -o build/sip_threads.o
 
-emcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_voidptr.c -o build/sip_voidptr.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_voidptr.c -o build/sip_voidptr.o
 
 emar cqs libsip.a build/*.o
 
@@ -264,7 +264,7 @@ cd pyqt6-wasm-build
 # TODO (pradeep): Turn these into patch files
 # TODO (pradeep): Make -fPIC work. Maybe changing sourcecode is disrupting mappings?
 cp ../temp/pyqt6-wasm-build__QtCore__Makefile QtCore/Makefile
-cp ../temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp QtCore/sipQtCorecmodule.cpp 
+# cp ../temp/pyqt6-wasm-build__QtCore__sipQtCorecmodule.cpp QtCore/sipQtCorecmodule.cpp 
 cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQReadLocker.cpp  QtCore/sipQtCoreQReadLocker.cpp
 cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp QtCore/sipQtCoreQWriteLocker.cpp 
 
@@ -275,9 +275,11 @@ make
 make install
 
 # HACKY: create the wheel manually post-installation
-# TODO (pradeep): Rename .so library files to .a so pyodide doesn't think it's a dynamic module. Also rename the entries in distinfo/RECORD
 cd pyqt6-wasm-target
 cp ../temp/WHEEL PyQt6-6.6.1.dist-info/
+# Rename .so library files to .a so pyodide doesn't think it's a dynamic module. 
+for f in PyQt6/*.so; do mv -- "$f" "${f%.so}.a"; done
+# Also rename the entries in distinfo/RECORD
 zip -r PyQt6-6.6.1-py3-none-any.whl .
 
 # this also doesn't work with pyodide-venv
