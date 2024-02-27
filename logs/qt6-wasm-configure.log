@@ -3,7 +3,7 @@
 + exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -qt-host-path /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase
 '/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_HOST_PATH=/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DCMAKE_INSTALL_PREFIX=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
 -- Extracting Emscripten SDK info from EMSDK env var: /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk
--- Emscripten 3.1.45 toolchain file detected at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+-- Emscripten 3.1.37 toolchain file detected at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 -- The ASM compiler identification is unknown
 -- Found assembler: /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/emcc
 -- Warning: Did not find file Compiler/-ASM
@@ -52,7 +52,6 @@
 -- Checking dependencies of submodule 'qtwebview'
 -- Configuring submodule 'qtbase'
 -- Warning: Did not find file Compiler/-ASM
--- [QtBase] Setting build type to 'Release' as none was specified.
             -DCMAKE_C_FLAGS_DEBUG=-g
             -DCMAKE_C_FLAGS_RELEASE=-O3 -DNDEBUG
             -DCMAKE_C_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
@@ -97,7 +96,7 @@ Condition "WIN32" is not met, enabling documentation build only.
 -- Configuring submodule 'qtcoap'
 -- Configuring submodule 'qtconnectivity'
 -- Could NOT find Qt6DBus (missing: Qt6DBus_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "DBus".
 
   Expected Config file at
@@ -119,7 +118,7 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- Configuring submodule 'qthttpserver'
 -- Could NOT find Qt6Concurrent (missing: Qt6Concurrent_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "Concurrent".
 
   Expected Config file at
@@ -135,17 +134,17 @@ Call Stack (most recent call first):
 -- Could NOT find Clang (missing: Clang_DIR)
 [QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
 [QtTools] Qt Wasm built with Emscripten version: 
-[QtTools] You are using Emscripten version: 3.1.45
+[QtTools] You are using Emscripten version: 3.1.37
 [QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
 [QtTools] This may not work correctly
 [QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
 [QtTools] Qt Wasm built with Emscripten version: 
-[QtTools] You are using Emscripten version: 3.1.45
+[QtTools] You are using Emscripten version: 3.1.37
 [QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
 [QtTools] This may not work correctly
 [QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
 [QtTools] Qt Wasm built with Emscripten version: 
-[QtTools] You are using Emscripten version: 3.1.45
+[QtTools] You are using Emscripten version: 3.1.37
 [QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
 [QtTools] This may not work correctly
 -- Configuring submodule 'qtserialport'
@@ -154,7 +153,7 @@ Skipping the build as the condition "NOT EMSCRIPTEN" is not met.
 Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtwebchannel'
 -- Could NOT find Qt6Concurrent (missing: Qt6Concurrent_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "Concurrent".
 
   Expected Config file at
@@ -192,7 +191,7 @@ Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtscxml'
 -- Configuring submodule 'qtsensors'
 -- Could NOT find Qt6DBus (missing: Qt6DBus_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "DBus".
 
   Expected Config file at
@@ -212,7 +211,7 @@ Skipping the build as the condition "NOT EMSCRIPTEN" is not met.
 Skipping the build as the condition "LINUX OR MACOS OR QNX" is not met.
 -- Configuring submodule 'qtwebview'
 -- Could NOT find Qt6WebEngineCore (missing: Qt6WebEngineCore_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "WebEngineCore".
 
   Expected Config file at
@@ -224,7 +223,7 @@ Call Stack (most recent call first):
 
 
 -- Could NOT find Qt6WebEngineQuick (missing: Qt6WebEngineQuick_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "WebEngineQuick".
 
   Expected Config file at
@@ -242,7 +241,7 @@ Call Stack (most recent call first):
 -- Configure summary:
 
 Building for: wasm-emscripten (wasm, CPU features: )
-Compiler: clang 18.0.0
+Compiler: clang 17.0.0
 Build options:
   Mode ................................... release
   Optimize release build for size ........ no
@@ -644,7 +643,6 @@ WebEngine Repository Build Options:
 Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
 Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
 
-WARNING: You should use the recommended Emscripten version 3.1.37 with this Qt. You have 3.1.45.
 WARNING: QDoc will not be compiled, probably because clang's C and C++ libraries could not be located. This means that you cannot build the Qt documentation.
 You may need to set CMAKE_PREFIX_PATH or LLVM_INSTALL_DIR to the location of your llvm installation.
 Other than clang's libraries, you may need to install another package, such as clang itself, to provide the ClangConfig.cmake file needed to detect your libraries. Once this
@@ -670,6 +668,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (103.7s)
--- Generating done (2.9s)
+-- Configuring done (126.7s)
+-- Generating done (3.5s)
 -- Build files have been written to: /home/pradeep/projects/pyodide-with-pyqt5/qt6

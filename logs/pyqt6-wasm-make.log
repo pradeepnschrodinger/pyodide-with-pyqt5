@@ -1,0 +1,56 @@
+cd QtCore/ && ( test -e Makefile || /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake -o Makefile /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/QtCore.pro -qtconf /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/bin/target_qt.conf ) && make -f Makefile 
+make[1]: Entering directory '/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore'
+em++ -c -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -DQT_FEATURE_timezone=1 -fPIC -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6/qtbase/include -I../../qt6/qtbase/include/QtCore -I. -I../../qt6/qtbase/mkspecs/wasm-emscripten -o sipQtCorecmodule.o sipQtCorecmodule.cpp
+In file included from sipQtCorecmodule.cpp:24:
+In file included from ./sipAPIQtCore.h:35:
+In file included from ../../qt6/qtbase/include/QtCore/QMetaType:1:
+In file included from ../../qt6/qtbase/include/QtCore/qmetatype.h:1:
+In file included from ../../qt6/qtbase/include/QtCore/../../src/corelib/kernel/qmetatype.h:9:
+In file included from ../../qt6/qtbase/include/QtCore/qglobal.h:1:
+In file included from ../../qt6/qtbase/include/QtCore/../../src/corelib/global/qglobal.h:24:
+In file included from ../../qt6/qtbase/include/QtCore/qtversionchecks.h:1:
+In file included from ../../qt6/qtbase/include/QtCore/../../src/corelib/global/qtversionchecks.h:12:
+In file included from ../../qt6/qtbase/include/QtCore/qtconfiginclude.h:1:
+In file included from ../../qt6/qtbase/include/QtCore/../../src/corelib/global/qtconfiginclude.h:19:
+In file included from ../../qt6/qtbase/include/QtCore/qtcore-config.h:1:
+../../qt6/qtbase/include/QtCore/../../src/corelib/qtcore-config.h:77:9: warning: 'QT_FEATURE_timezone' macro redefined [-Wmacro-redefined]
+#define QT_FEATURE_timezone -1
+        ^
+<command line>:11:9: note: previous definition is here
+#define QT_FEATURE_timezone 1
+        ^
+/home/pradeep/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qobject.sip:276:10: error: use of undeclared identifier 'sipName_QThreadPool'
+        {sipName_QThreadPool, &sipType_QThreadPool, -1, 19},
+         ^
+/home/pradeep/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qobject.sip:276:32: error: use of undeclared identifier 'sipType_QThreadPool'
+        {sipName_QThreadPool, &sipType_QThreadPool, -1, 19},
+                               ^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9028:19: error: no member named 'QSystemSemaphore' in the global namespace
+    qMetaTypeId<::QSystemSemaphore::SystemSemaphoreError>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9029:19: error: no member named 'QSystemSemaphore' in the global namespace
+    qMetaTypeId<::QSystemSemaphore::AccessMode>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9049:19: error: no member named 'QProcess' in the global namespace
+    qMetaTypeId<::QProcess::InputChannelMode>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9050:19: error: no member named 'QProcess' in the global namespace
+    qMetaTypeId<::QProcess::ProcessChannelMode>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9051:19: error: no member named 'QProcess' in the global namespace
+    qMetaTypeId<::QProcess::ProcessChannel>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9052:19: error: no member named 'QProcess' in the global namespace
+    qMetaTypeId<::QProcess::ProcessState>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9053:19: error: no member named 'QProcess' in the global namespace
+    qMetaTypeId<::QProcess::ProcessError>();
+                ~~^
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp:9054:19: error: no member named 'QProcess' in the global namespace
+    qMetaTypeId<::QProcess::ExitStatus>();
+                ~~^
+1 warning and 10 errors generated.
+em++: error: '/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/bin/clang++ -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr -DEMSCRIPTEN --sysroot=/home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -c -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -DQT_FEATURE_timezone=1 -fPIC -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6/qtbase/include -I../../qt6/qtbase/include/QtCore -I. -I../../qt6/qtbase/mkspecs/wasm-emscripten sipQtCorecmodule.cpp -o sipQtCorecmodule.o' failed (returned 1)
+make[1]: *** [Makefile:2699: sipQtCorecmodule.o] Error 1
+make[1]: Leaving directory '/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore'
+make: *** [Makefile:49: sub-QtCore-make_first-ordered] Error 2

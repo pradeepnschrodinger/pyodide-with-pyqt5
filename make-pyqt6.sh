@@ -50,7 +50,8 @@ pip install pyyaml
 ### PYODIDE
 git clone https://github.com/iodide-project/pyodide.git
 cd pyodide
-git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
+# git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
+# TODO (pradeep): apply patch to checkout bda1ba4e so that we get the 3.1.37 version of emsdk which Qt6 needs
 pip install -r requirements.txt
 
 # TODO (pradeep): Can't build all packages because executables rustup and swif. I'm gonna disable the failing ones:
@@ -71,7 +72,7 @@ source ./emsdk/emsdk/emsdk_env.sh
 git clone git://code.qt.io/qt/qt5.git qt6
 # git clone https://code.qt.io/qt/qt5.git qt6
 cd qt6
-git switch 6.6
+git switch 6.6.1
 # needs to be timed
 perl init-repository
 
@@ -138,7 +139,7 @@ cmake --build . &> ../logs/qt6-wasm-build.log
 # install pyodide builder
 # pip install pyodide-build
 # TODO (pradeep): Why doesn't the local pyodide-build not work correctly when building packages?
-pip install -e pyodide/pyodide-build
+pip install -e pyodide/pyodide-build --no-cache-dir
 PYODIDE_ROOT=pyodide pyodide venv .venv-pyodide
 
 ## Build SIP
@@ -153,7 +154,7 @@ cd sip-6.8.3
 # use pyodide itself to build and package SIP - https://pyodide.org/en/0.24.1/development/building-and-testing-packages.html#build-the-wasm-emscripten-wheel
 PYODIDE_ROOT=../pyodide pyodide build
 # should putput Successfully built /home/pradeep/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl
-pip install dist/sip-6.8.3-py3-none-any.whl # looks like this is already installed
+pip install dist/sip-6.8.3-py3-none-any.whl
 # we should then be able to load this in the browser by doing a micropip.install('http://localhost:8000/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl')
 
 # APPROACH 2
@@ -161,15 +162,15 @@ pip install dist/sip-6.8.3-py3-none-any.whl # looks like this is already install
 # Use pyodide's python to create a virtual environment (see https://pyodide.org/en/0.24.1/development/building-and-testing-packages.html#build-the-wasm-emscripten-wheel)
 
 # activate pyodide venv in new terminal
-source .venv-pyodide/bin/activate
+# source .venv-pyodide/bin/activate
 
 # build and install sip into pyodide's host python
-cd sip-6.8.3
+# cd sip-6.8.3
 
 # pip install -e ./pyodide-build
 # ^ should output:  Successfully built /home/pradeep/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl
 
-python setup.py install
+# python setup.py install
 # ^ should output: Installed /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/lib/python3.11/site-packages/sip-6.8.3-py3.11.egg
 
 
@@ -188,10 +189,12 @@ python setup.py install
 # (wasm build with pyodide)
 # below command does not work in pyodide environment
 # should output /home/pradeep/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_45_wasm32.whl
+# TODO (pradeep): Should pyqt6-sip be built with SIP_STATIC_MODULE defined?
 PYODIDE_ROOT=../pyodide pyodide build
 # we should then be able to load this in the browser by doing a  await micropip.install('http://localhost:8000/PyQt6_sip-13.6.0/dist/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_45_wasm32.whl')
 
 # (wasm build with emcc outputing .lib)
+rm -rf libsip.a build
 mkdir -p build
 emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
 
@@ -228,29 +231,16 @@ pip install --no-cache-dir PyQt-builder
 # sip-install --qmake ../qt6-native-host/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-native-build) --target-dir $(realpath ../pyqt6-native-target) --verbose &> pyqt6-native-install.log
 
 # patches for project.py
-# approach #1
-# set 'WebAssembly' as the platform for 'QtCore'
 # self.bindings_factories = [QtCore, QtWidgets, QtGui]
-# approach #2
-# removed 8 failing packages: dbus, positioning, serialport, pdf, pdfwidgets, spatialaudio, axcontainer
-
-# build PyQt6
-#sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --verbose
 
 # this doesn't work with pyodide-venv
-chmod +x /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
-chmod +666 /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
-
-# TODO (pradeep): This doesn't work cause of many errors. Try breaking it down and patch makefiles individually
-# sip-install --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose &> ../logs/pyqt6-wasm-build.log
+# chmod +x /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
+# chmod +666 /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
 
 # This builds and runs the Makefile, resulting in a LOT of errors
 # I manually removed the entries that failed in /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/Makefile and /home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp
 # Once that's done I ran make in QtCore and that built libQtCore.a succesfully
 # sip-build --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
-
-# patch project.py
-# self.bindings_factories = [QtCore, QtGui, QtWidgets]
 
 # patch QtCoremmod.sip
 cp ../temp/pyqt6-wasm-build__QtCore__QtCoremod.sip pyqt6-wasm-build__QtCore__QtCoremod.sip

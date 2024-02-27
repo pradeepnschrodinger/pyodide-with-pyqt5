@@ -1,7 +1,7 @@
 + mkdir -p qtbase
 + cd qtbase
-+ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -prefix ../qt6-native-host -nomake examples -confirm-license -feature-thread
-'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-DINPUT_thread=yes' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
++ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -prefix ../qt6-native-host -nomake examples -confirm-license
+'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
 -- The CXX compiler identification is GNU 11.4.0
 -- The C compiler identification is GNU 11.4.0
 -- The ASM compiler identification is GNU
@@ -60,7 +60,6 @@
 -- Checking dependencies of submodule 'qtwayland'
 -- Checking dependencies of submodule 'qtwebview'
 -- Configuring submodule 'qtbase'
--- [QtBase] Setting build type to 'Release' as none was specified.
             -DCMAKE_C_FLAGS_DEBUG=-g
             -DCMAKE_C_FLAGS_RELEASE=-O3 -DNDEBUG
             -DCMAKE_C_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
@@ -199,7 +198,7 @@ CMake Warning at qtwayland/src/CMakeLists.txt:24 (message):
 
 -- Configuring submodule 'qtwebview'
 -- Could NOT find Qt6WebEngineCore (missing: Qt6WebEngineCore_DIR)
-CMake Warning at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "WebEngineCore".
 
   Expected Config file at
@@ -211,7 +210,7 @@ Call Stack (most recent call first):
 
 
 -- Could NOT find Qt6WebEngineQuick (missing: Qt6WebEngineQuick_DIR)
-CMake Warning at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:221 (message):
+CMake Warning at /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "WebEngineQuick".
 
   Expected Config file at
@@ -687,6 +686,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (40.0s)
--- Generating done (3.6s)
+-- Configuring done (42.7s)
+-- Generating done (3.8s)
 -- Build files have been written to: /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build
