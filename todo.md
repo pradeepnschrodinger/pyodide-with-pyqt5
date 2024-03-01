@@ -21,7 +21,8 @@ warning: undefined symbol: pcre2_jit_compile_16 (referenced by top-level compile
 warning: undefined symbol: pcre2_jit_stack_assign_16 (referenced by top-level compiled C/C++ code)
 warning: undefined symbol: pcre2_jit_stack_create_16 (referenced by top-level compiled C/C++ code)
 
---
+----
+[TODO]: Configure Qt6 native and wasm builds with -feature-thread
 
 References to QThread libraries' symbols (eg: _ZN7QThread11setPriorityENS_8PriorityE) are undefined (U) in the wasm version of QtCore.abi3.so
 However, libQt6Core.so from native version does work

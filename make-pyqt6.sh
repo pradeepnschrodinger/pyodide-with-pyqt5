@@ -108,7 +108,7 @@ cd qt6
 # ./configure -DQT_FEATURE_timezone=1 -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
 
 # patch qtbase/src/corelib/configure.cmake to not disable timezone for WASM
-./configure -static -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
+./configure -static -feature-thread -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
 
 # Should give the following output:
 # Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.

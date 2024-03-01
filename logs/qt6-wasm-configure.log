@@ -1,7 +1,7 @@
 + mkdir -p qtbase
 + cd qtbase
-+ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -qt-host-path /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase
-'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_HOST_PATH=/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
++ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -feature-thread -qt-host-path /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase
+'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_HOST_PATH=/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-DINPUT_thread=yes' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
 -- Extracting Emscripten SDK info from EMSDK env var: /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk
 -- Emscripten 3.1.37 toolchain file detected at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 -- The ASM compiler identification is unknown
@@ -78,7 +78,6 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Configuring submodule 'qtdeclarative'
 -- Configuring submodule 'qtquicktimeline'
 -- Configuring submodule 'qtquick3d'
-[QtQuick3D] Skipping balsamui as the condition "TARGET Qt::Concurrent" is not met.
 -- Configuring submodule 'qtmultimedia'
 -- Configuring submodule 'qt3d'
 Skipping the build as the condition "QT_FEATURE_opengl AND NOT WASM" is not met.
@@ -117,21 +116,14 @@ Call Stack (most recent call first):
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- Configuring submodule 'qthttpserver'
--- Could NOT find Qt6Concurrent (missing: Qt6Concurrent_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
-  Failed to find optional Qt component "Concurrent".
-
-  Expected Config file at
-  "/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake"
-  does NOT exist
-
-Call Stack (most recent call first):
-  qthttpserver/CMakeLists.txt:17 (find_package)
-
-
 -- Configuring submodule 'qttools'
 -- Could NOT find Clang (missing: Clang_DIR)
 -- Could NOT find Clang (missing: Clang_DIR)
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
 [QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
 [QtTools] Qt Wasm built with Emscripten version: 
 [QtTools] You are using Emscripten version: 3.1.37
@@ -162,18 +154,6 @@ Skipping the build as the condition "NOT EMSCRIPTEN" is not met.
 -- Configuring submodule 'qtpositioning'
 Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtwebchannel'
--- Could NOT find Qt6Concurrent (missing: Qt6Concurrent_DIR)
-CMake Warning at qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
-  Failed to find optional Qt component "Concurrent".
-
-  Expected Config file at
-  "/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake"
-  does NOT exist
-
-Call Stack (most recent call first):
-  qtwebchannel/CMakeLists.txt:20 (find_package)
-
-
 -- Configuring submodule 'qtwebengine'
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
@@ -190,7 +170,6 @@ Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtlottie'
 -- Configuring submodule 'qtmqtt'
 -- Configuring submodule 'qtnetworkauth'
-Skipping the build as the condition "QT_FEATURE_http" is not met.
 -- Configuring submodule 'qtopcua'
 Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtqa'
@@ -275,7 +254,7 @@ Build options:
   Build parts ............................ libs
   Install examples sources ............... no
 Qt modules and options:
-  Qt Concurrent .......................... no
+  Qt Concurrent .......................... yes
   Qt D-Bus ............................... no
   Qt D-Bus directly linked to libdbus .... no
   Qt Gui ................................. yes
@@ -295,7 +274,7 @@ Support enabled for:
   OpenSSL 3.0 ............................ no
   Using system zlib ...................... yes
   Zstandard support ...................... no
-  Thread support ......................... no
+  Thread support ......................... yes
 Common build options:
   Linker can resolve circular dependencies  yes
 Qt Core:
@@ -512,7 +491,7 @@ Qt Tools:
   libclang found ......................... no
   Clang-based lupdate parser ............. no
   Qt Designer ............................ yes
-  Qt Distance Field Generator ............ no
+  Qt Distance Field Generator ............ yes
   Qt Linguist ............................ yes
   pixeltool .............................. yes
   qdbus .................................. no
@@ -642,7 +621,7 @@ WebEngine Repository Build Options:
       Turkish ............................ yes
       Ukrainian .......................... yes
       Vietnamese ......................... yes
-      Simplified Chinese ................. no
+      Simplified Chinese ................. yes
       Traditional Chinese ................ yes
       HongKong Chinese ................... no
     Traditional chinese input methods:
@@ -651,6 +630,7 @@ WebEngine Repository Build Options:
  
 
 Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
+Note: Enable thread support
 Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
 
 WARNING: QDoc will not be compiled, probably because clang's C and C++ libraries could not be located. This means that you cannot build the Qt documentation.
@@ -659,7 +639,6 @@ Other than clang's libraries, you may need to install another package, such as c
 file is in place, the configure script may be able to detect your system-installed libraries without further environment variables.
 On macOS, you can use Homebrew's llvm package.
 You will also need to set the FEATURE_clang CMake variable to ON to re-evaluate this check.
-WARNING: QDoc cannot be compiled without Qt's commandline parser or thread features.
 WARNING: Clang-based lupdate parser will not be available. LLVM and Clang C++ libraries have not been found.
 You will need to set the FEATURE_clangcpp CMake variable to ON to re-evaluate this check.
 WARNING: QtWebEngine won't be built. Build can be done only on Linux, Windows or macOS.
@@ -678,6 +657,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (108.6s)
--- Generating done (2.9s)
+-- Configuring done (112.2s)
+-- Generating done (3.4s)
 -- Build files have been written to: /home/pradeep/projects/pyodide-with-pyqt5/qt6
