@@ -1,8 +1,65 @@
-last command:
+-----------
 
-(.venv-native) pradeep@pradeep-ubuntu-vm:~/projects/pyodide-with-pyqt5/pyqt6-wasm-build$ make &> ../logs/pyqt6-wasm-make.log
+Pyodide link troubles
+
+../make-pyodide.sh 
+warning: undefined symbol: _ZN7QThread11setPriorityENS_8PriorityE (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: _ZN7QThread21setTerminationEnabledEb (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: _ZNK7QThread8priorityEv (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: _ZNK7QThread9loopLevelEv (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: emscripten_idb_async_delete (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: emscripten_idb_async_exists (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: emscripten_idb_async_load (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: emscripten_idb_async_store (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: emscripten_sleep (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_code_free_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_compile_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_config_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_get_error_message_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_get_ovector_pointer_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_jit_compile_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_jit_stack_assign_16 (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: pcre2_jit_stack_create_16 (referenced by top-level compiled C/C++ code)
+
+--
+
+References to QThread libraries' symbols (eg: _ZN7QThread11setPriorityENS_8PriorityE) are undefined (U) in the wasm version of QtCore.abi3.so
+However, libQt6Core.so from native version does work
+
+warning: undefined symbol: _ZN7QThread11setPriorityENS_8PriorityE (referenced by top-level compiled C/C++ code)
+
+emnm PyQt6/QtCore.abi3.so | grep _ZN7QThread11setPriorityENS_8PriorityE
+         U _ZN7QThread11setPriorityENS_8PriorityE
 
 
+nm /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/lib/libQt6Core.so | grep _ZN7QThread11setPriorityENS_8PriorityE
+00000000002710b0 T _ZN7QThread11setPriorityENS_8PriorityE
+00000000000c7b06 t _ZN7QThread11setPriorityENS_8PriorityE.cold
+
+-----------
+
+PyQt6.QtCore import troubles
+
+>>> import PyQt6.QtCore
+Niranjan:  In PyQt6__init__.py
+Niranjan:  __path__ =  ['/lib/python3.11/site-packages/PyQt6']
+Niranjan:  __name__ =  PyQt6
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: dynamic module does not define module export function (PyInit_QtCore)
+
+Checkout why Pyinit_QtCore isn't defined in QtCore.abi3.so ?
+/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCorecmodule.cpp
+
+emnm PyQt6/QtCore.abi3.so | grep PyInit_QtCore
+00003804 T PyInit_QtCore
+00012d50 d _ZZ13PyInit_QtCoreE11sip_methods
+00013ca8 d _ZZ13PyInit_QtCoreE14sip_module_def
+
+emnm ../pyqt6-native-target/PyQt6/QtCore.abi3.so | grep PyInit_QtCore
+00000000000c66d0 T PyInit_QtCore
+00000000003024e0 d _ZZ13PyInit_QtCoreE11sip_methods
+00000000002ff140 d _ZZ13PyInit_QtCoreE14sip_module_def
 ------------
 
 pyqt6 make troubles
@@ -19,6 +76,11 @@ There's a high chance this is not defined?
 
 checkout /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/src/corelib/qtcore-config.h where they have explicitly disabled timezone
 
+checkout /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/src/corelib/global/qtconfigmacros.h for definition for QT_CONFIG
+
+#define QT_CONFIG(feature) (1/QT_FEATURE_##feature == 1)
+
+This seems to be the source: /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/src/corelib/configure.cmake
 ------------
 
 [FIXED] The pyodide version used here is pretty old, and does not have the pyodide.unpackArchive API.

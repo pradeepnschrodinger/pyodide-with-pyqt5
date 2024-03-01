@@ -1,7 +1,7 @@
 + mkdir -p qtbase
 + cd qtbase
-+ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -qt-host-path /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase
-'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_HOST_PATH=/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DCMAKE_INSTALL_PREFIX=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
++ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -qt-host-path /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase
+'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_HOST_PATH=/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
 -- Extracting Emscripten SDK info from EMSDK env var: /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk
 -- Emscripten 3.1.37 toolchain file detected at /home/pradeep/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 -- The ASM compiler identification is unknown
@@ -132,6 +132,16 @@ Call Stack (most recent call first):
 -- Configuring submodule 'qttools'
 -- Could NOT find Clang (missing: Clang_DIR)
 -- Could NOT find Clang (missing: Clang_DIR)
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
 [QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
 [QtTools] Qt Wasm built with Emscripten version: 
 [QtTools] You are using Emscripten version: 3.1.37
@@ -668,6 +678,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (126.7s)
--- Generating done (3.5s)
+-- Configuring done (108.6s)
+-- Generating done (2.9s)
 -- Build files have been written to: /home/pradeep/projects/pyodide-with-pyqt5/qt6

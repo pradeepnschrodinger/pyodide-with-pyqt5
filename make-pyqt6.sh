@@ -103,7 +103,13 @@ cmake --install . &> ../logs/qt6-native-install.log
 ## build qt6 for wasm
 # https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
 cd qt6
-./configure -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
+# ./configure -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
+# same build command but with QT_FEATURE_timezone enabled
+# ./configure -DQT_FEATURE_timezone=1 -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
+
+# patch qtbase/src/corelib/configure.cmake to not disable timezone for WASM
+./configure -static -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $PWD/qtbase &> ../logs/qt6-wasm-configure.log
+
 # Should give the following output:
 # Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
 # Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
@@ -134,6 +140,9 @@ cd qt6
 # create qt6 static libs
 # qt6/qtbase/lib/libQt6Core.a
 cmake --build . &> ../logs/qt6-wasm-build.log
+
+# do we need to build it using `cmake --install .` like what core does ?
+# cmake --install .
 
 ## Create pyodide environment
 # install pyodide builder
@@ -231,7 +240,7 @@ pip install --no-cache-dir PyQt-builder
 # sip-install --qmake ../qt6-native-host/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-native-build) --target-dir $(realpath ../pyqt6-native-target) --verbose &> pyqt6-native-install.log
 
 # patches for project.py
-# self.bindings_factories = [QtCore, QtWidgets, QtGui]
+cp ../temp/pyqt6__project.py project.py
 
 # this doesn't work with pyodide-venv
 # chmod +x /home/pradeep/projects/pyodide-with-pyqt5/.venv-pyodide/bin/sip-*
@@ -243,7 +252,7 @@ pip install --no-cache-dir PyQt-builder
 # sip-build --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
 
 # patch QtCoremmod.sip
-cp ../temp/pyqt6-wasm-build__QtCore__QtCoremod.sip pyqt6-wasm-build__QtCore__QtCoremod.sip
+cp ../temp/pyqt6-wasm-build__QtCore__QtCoremod.sip sip/QtCore/QtCoremod.sip
 
 # This works fine by first letting sip-build construct the make files and then making it manually after applying the patch files
 sip-build --no-make --qmake ../qt6/qtbase/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
@@ -261,15 +270,22 @@ cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp QtCore/sipQtCoreQ
 cp ../temp/pyqt6-wasm-build__QtGui__Makefile QtGui/Makefile
 cp ../temp/pyqt6-wasm-build__QtWidgets__Makefile QtWidgets/Makefile
 
-make
-make install
+# TODO (pradeep):
+# Had to remove sipType_QThreadPool from qobject.sip:276:32
+# Had to remove "%Include qthreadpool.sip" and "%Include qsemaphore.sip" from QtCoremod.sip
+# Had to remove sipQtCoreQSystemSemaphore.o, sipQtCoreQThreadPool.o, sipQtCoreQSemaphoreReleaser.o, sipQtCoreQSemaphore.o, sipQtCoreQRecursiveMutex.o, from Makefile due to missing headers
+# Had to remove sipQtCoreQMutex.o from Makefie due to hard compilation errors
+
+make &> ../logs/pyqt6-wasm-make.log
+make install &> ../logs/pyqt6-wasm-install.log
 
 # HACKY: create the wheel manually post-installation
 cd pyqt6-wasm-target
 cp ../temp/WHEEL PyQt6-6.6.1.dist-info/
 # Rename .so library files to .a so pyodide doesn't think it's a dynamic module. 
-for f in PyQt6/*.so; do mv -- "$f" "${f%.so}.a"; done
+# for f in PyQt6/*.so; do mv -- "$f" "${f%.so}.a"; done
 # Also rename the entries in distinfo/RECORD
+rm -rf PyQt6-6.6.1-py3-none-any.whl .
 zip -r PyQt6-6.6.1-py3-none-any.whl .
 
 # this also doesn't work with pyodide-venv
