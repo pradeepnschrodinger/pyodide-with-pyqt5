@@ -1,3 +1,12 @@
+----------
+
+[DONE?]: Looks like I need to compile pyodide with and cpython with pthreads enabled (eg: https://github.com/pyodide/pyodide/issues/237#issuecomment-1689899764)
+
+# attempt compiling pyodide with "-s USE_PTHREADS=1"
+../make-pyodide.sh
+
+wasm-ld: error: --shared-memory is disallowed by pegen.o because it was not compiled with 'atomics' or 'bulk-memory' features.
+
 -----------
 
 Pyodide link troubles
