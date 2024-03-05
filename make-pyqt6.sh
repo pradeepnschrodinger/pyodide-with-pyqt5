@@ -51,7 +51,7 @@ pip install pyyaml
 git clone https://github.com/iodide-project/pyodide.git
 cd pyodide
 # git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
-# TODO (pradeep): apply patch to checkout bda1ba4e so that we get the 3.1.37 version of emsdk which Qt6 needs
+# TODO (pradeep): apply patch for emsdk to fetch tags and checkout the 3.1.37 version of emsdk which Qt6 needs
 pip install -r requirements.txt
 
 # TODO (pradeep): Can't build all packages because executables rustup and swif. I'm gonna disable the failing ones:
@@ -82,7 +82,7 @@ cd qt6-native-build
 # ./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase -feature-thread -opensource -confirm-license
 # TODO (pradeep): Disable feature thread for Qt cause it's to be used in pyodide?
 # ../qt6/configure -prefix ../qt6-native-host -nomake examples -confirm-license -feature-thread
-../qt6/configure -prefix ../qt6-native-host -nomake examples -confirm-license -feature-thread &> ../logs/qt6-native-configure.log
+../qt6/configure -static -feature-thread -prefix ../qt6-native-host -nomake examples -confirm-license &> ../logs/qt6-native-configure.log
 
 # Should give the follow output:
 # Qt is now configured for building. Just run 'cmake --build . --parallel'
