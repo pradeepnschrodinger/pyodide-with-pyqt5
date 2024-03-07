@@ -1,0 +1,419 @@
+running egg_info
+writing sip.egg-info/PKG-INFO
+writing dependency_links to sip.egg-info/dependency_links.txt
+writing entry points to sip.egg-info/entry_points.txt
+writing requirements to sip.egg-info/requires.txt
+writing top-level names to sip.egg-info/top_level.txt
+reading manifest file 'sip.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+adding license file 'LICENSE-GPL2'
+adding license file 'LICENSE-GPL3'
+writing manifest file 'sip.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/sipbuild
+copying sipbuild/toml.py -> build/lib/sipbuild
+copying sipbuild/version.py -> build/lib/sipbuild
+copying sipbuild/exceptions.py -> build/lib/sipbuild
+copying sipbuild/__init__.py -> build/lib/sipbuild
+copying sipbuild/bindings.py -> build/lib/sipbuild
+copying sipbuild/project.py -> build/lib/sipbuild
+copying sipbuild/builder.py -> build/lib/sipbuild
+copying sipbuild/argument_parser.py -> build/lib/sipbuild
+copying sipbuild/abstract_project.py -> build/lib/sipbuild
+copying sipbuild/setuptools_builder.py -> build/lib/sipbuild
+copying sipbuild/pyproject.py -> build/lib/sipbuild
+copying sipbuild/distutils_builder.py -> build/lib/sipbuild
+copying sipbuild/configurable.py -> build/lib/sipbuild
+copying sipbuild/api.py -> build/lib/sipbuild
+copying sipbuild/installable.py -> build/lib/sipbuild
+copying sipbuild/bindings_configuration.py -> build/lib/sipbuild
+copying sipbuild/py_versions.py -> build/lib/sipbuild
+copying sipbuild/abstract_builder.py -> build/lib/sipbuild
+copying sipbuild/buildable.py -> build/lib/sipbuild
+creating build/lib/sipbuild/module
+copying sipbuild/module/abi_version.py -> build/lib/sipbuild/module
+copying sipbuild/module/__init__.py -> build/lib/sipbuild/module
+copying sipbuild/module/main.py -> build/lib/sipbuild/module
+copying sipbuild/module/module.py -> build/lib/sipbuild/module
+creating build/lib/sipbuild/distinfo
+copying sipbuild/distinfo/__init__.py -> build/lib/sipbuild/distinfo
+copying sipbuild/distinfo/main.py -> build/lib/sipbuild/distinfo
+copying sipbuild/distinfo/distinfo.py -> build/lib/sipbuild/distinfo
+creating build/lib/sipbuild/tools
+copying sipbuild/tools/install.py -> build/lib/sipbuild/tools
+copying sipbuild/tools/__init__.py -> build/lib/sipbuild/tools
+copying sipbuild/tools/build.py -> build/lib/sipbuild/tools
+copying sipbuild/tools/wheel.py -> build/lib/sipbuild/tools
+copying sipbuild/tools/sdist.py -> build/lib/sipbuild/tools
+creating build/lib/sipbuild/generator
+copying sipbuild/generator/scoped_name.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/python_slots.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/error_log.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/__init__.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/specification.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/instantiations.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/templates.py -> build/lib/sipbuild/generator
+copying sipbuild/generator/utils.py -> build/lib/sipbuild/generator
+creating build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/xml.py -> build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/__init__.py -> build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/extracts.py -> build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/pyi.py -> build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/api.py -> build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/code.py -> build/lib/sipbuild/generator/outputs
+copying sipbuild/generator/outputs/type_hints.py -> build/lib/sipbuild/generator/outputs
+creating build/lib/sipbuild/generator/resolver
+copying sipbuild/generator/resolver/__init__.py -> build/lib/sipbuild/generator/resolver
+copying sipbuild/generator/resolver/resolver.py -> build/lib/sipbuild/generator/resolver
+creating build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/parser_manager.py -> build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/tokens.py -> build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/annotations.py -> build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/__init__.py -> build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/rules.py -> build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/parser.py -> build/lib/sipbuild/generator/parser
+copying sipbuild/generator/parser/python_exceptions.py -> build/lib/sipbuild/generator/parser
+creating build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/__init__.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/template.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/variable.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/value_list.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/enum.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/klass.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/signature.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/argument.py -> build/lib/sipbuild/generator/outputs/formatters
+copying sipbuild/generator/outputs/formatters/misc.py -> build/lib/sipbuild/generator/outputs/formatters
+creating build/lib/sipbuild/generator/parser/ply
+copying sipbuild/generator/parser/ply/__init__.py -> build/lib/sipbuild/generator/parser/ply
+copying sipbuild/generator/parser/ply/yacc.py -> build/lib/sipbuild/generator/parser/ply
+copying sipbuild/generator/parser/ply/lex.py -> build/lib/sipbuild/generator/parser/ply
+creating build/lib/sipbuild/module/source
+creating build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/sipint.h -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/threads.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/pyproject.toml -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/objmap.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/bool.cpp -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/LICENSE -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/MANIFEST.in -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/sip.h.in -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/sip_array.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/sip.rst.in -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/qtlib.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/README.in -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/apiversions.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/sip_array.h -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/setup.py.in -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/LICENSE-GPL3 -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/descriptors.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/int_convertors.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/setup.cfg.in -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/LICENSE-GPL2 -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/sip.pyi -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/siplib.c -> build/lib/sipbuild/module/source/12
+copying sipbuild/module/source/12/voidptr.c -> build/lib/sipbuild/module/source/12
+creating build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_object_map.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_enum.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_bool.cpp -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/pyproject.toml -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_voidptr.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/LICENSE -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/MANIFEST.in -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip.h.in -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_array.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip.rst.in -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_core.h -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_enum.h -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_descriptors.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/README.in -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_array.h -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_int_convertors.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/setup.py.in -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/LICENSE-GPL3 -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/setup.cfg.in -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/LICENSE-GPL2 -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_threads.c -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip.pyi -> build/lib/sipbuild/module/source/13
+copying sipbuild/module/source/13/sip_core.c -> build/lib/sipbuild/module/source/13
+installing to build/bdist.emscripten_3_1_37_wasm32/wheel
+running install
+running install_lib
+creating build/bdist.emscripten_3_1_37_wasm32
+creating build/bdist.emscripten_3_1_37_wasm32/wheel
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/toml.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/version.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module
+copying build/lib/sipbuild/module/abi_version.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module
+copying build/lib/sipbuild/module/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module
+copying build/lib/sipbuild/module/main.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/sipint.h -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/threads.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/pyproject.toml -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/objmap.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/bool.cpp -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/LICENSE -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/MANIFEST.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/sip.h.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/sip_array.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/sip.rst.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/qtlib.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/README.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/apiversions.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/sip_array.h -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/setup.py.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/LICENSE-GPL3 -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/descriptors.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/int_convertors.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/setup.cfg.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/LICENSE-GPL2 -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/sip.pyi -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/siplib.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+copying build/lib/sipbuild/module/source/12/voidptr.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/12
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_object_map.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_enum.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_bool.cpp -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/pyproject.toml -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_voidptr.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/LICENSE -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/MANIFEST.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip.h.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_array.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip.rst.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_core.h -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_enum.h -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_descriptors.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/README.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_array.h -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_int_convertors.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/setup.py.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/LICENSE-GPL3 -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/setup.cfg.in -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/LICENSE-GPL2 -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_threads.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip.pyi -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/source/13/sip_core.c -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module/source/13
+copying build/lib/sipbuild/module/module.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/module
+copying build/lib/sipbuild/exceptions.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/bindings.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/project.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/builder.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/distinfo
+copying build/lib/sipbuild/distinfo/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/distinfo
+copying build/lib/sipbuild/distinfo/main.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/distinfo
+copying build/lib/sipbuild/distinfo/distinfo.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/distinfo
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/tools
+copying build/lib/sipbuild/tools/install.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/tools
+copying build/lib/sipbuild/tools/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/tools
+copying build/lib/sipbuild/tools/build.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/tools
+copying build/lib/sipbuild/tools/wheel.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/tools
+copying build/lib/sipbuild/tools/sdist.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/tools
+copying build/lib/sipbuild/argument_parser.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/abstract_project.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/setuptools_builder.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/pyproject.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/distutils_builder.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/configurable.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/api.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/installable.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+copying build/lib/sipbuild/generator/scoped_name.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+copying build/lib/sipbuild/generator/python_slots.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/xml.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/extracts.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/pyi.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/api.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/code.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+copying build/lib/sipbuild/generator/outputs/type_hints.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/template.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/variable.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/value_list.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/enum.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/klass.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/signature.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/argument.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/outputs/formatters/misc.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/outputs/formatters
+copying build/lib/sipbuild/generator/error_log.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+copying build/lib/sipbuild/generator/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+copying build/lib/sipbuild/generator/specification.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+copying build/lib/sipbuild/generator/instantiations.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/resolver
+copying build/lib/sipbuild/generator/resolver/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/resolver
+copying build/lib/sipbuild/generator/resolver/resolver.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/resolver
+copying build/lib/sipbuild/generator/templates.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+copying build/lib/sipbuild/generator/utils.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/generator/parser/parser_manager.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/generator/parser/tokens.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/generator/parser/annotations.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/generator/parser/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/generator/parser/rules.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser/ply
+copying build/lib/sipbuild/generator/parser/ply/__init__.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser/ply
+copying build/lib/sipbuild/generator/parser/ply/yacc.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser/ply
+copying build/lib/sipbuild/generator/parser/ply/lex.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser/ply
+copying build/lib/sipbuild/generator/parser/parser.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/generator/parser/python_exceptions.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild/generator/parser
+copying build/lib/sipbuild/bindings_configuration.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/py_versions.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/abstract_builder.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+copying build/lib/sipbuild/buildable.py -> build/bdist.emscripten_3_1_37_wasm32/wheel/sipbuild
+running install_egg_info
+running egg_info
+writing sip.egg-info/PKG-INFO
+writing dependency_links to sip.egg-info/dependency_links.txt
+writing entry points to sip.egg-info/entry_points.txt
+writing requirements to sip.egg-info/requires.txt
+writing top-level names to sip.egg-info/top_level.txt
+reading manifest file 'sip.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+adding license file 'LICENSE-GPL2'
+adding license file 'LICENSE-GPL3'
+writing manifest file 'sip.egg-info/SOURCES.txt'
+Copying sip.egg-info to build/bdist.emscripten_3_1_37_wasm32/wheel/sip-6.8.3-py3.11.egg-info
+running install_scripts
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/sip-6.8.3.dist-info/WHEEL
+creating '/home/niranjanpba/projects/pyodide-with-pyqt5/sip-6.8.3/dist/.tmp-x3gi48i_/sip-6.8.3-py3-none-any.whl' and adding 'build/bdist.emscripten_3_1_37_wasm32/wheel' to it
+adding 'sipbuild/__init__.py'
+adding 'sipbuild/abstract_builder.py'
+adding 'sipbuild/abstract_project.py'
+adding 'sipbuild/api.py'
+adding 'sipbuild/argument_parser.py'
+adding 'sipbuild/bindings.py'
+adding 'sipbuild/bindings_configuration.py'
+adding 'sipbuild/buildable.py'
+adding 'sipbuild/builder.py'
+adding 'sipbuild/configurable.py'
+adding 'sipbuild/distutils_builder.py'
+adding 'sipbuild/exceptions.py'
+adding 'sipbuild/installable.py'
+adding 'sipbuild/project.py'
+adding 'sipbuild/py_versions.py'
+adding 'sipbuild/pyproject.py'
+adding 'sipbuild/setuptools_builder.py'
+adding 'sipbuild/toml.py'
+adding 'sipbuild/version.py'
+adding 'sipbuild/distinfo/__init__.py'
+adding 'sipbuild/distinfo/distinfo.py'
+adding 'sipbuild/distinfo/main.py'
+adding 'sipbuild/generator/__init__.py'
+adding 'sipbuild/generator/error_log.py'
+adding 'sipbuild/generator/instantiations.py'
+adding 'sipbuild/generator/python_slots.py'
+adding 'sipbuild/generator/scoped_name.py'
+adding 'sipbuild/generator/specification.py'
+adding 'sipbuild/generator/templates.py'
+adding 'sipbuild/generator/utils.py'
+adding 'sipbuild/generator/outputs/__init__.py'
+adding 'sipbuild/generator/outputs/api.py'
+adding 'sipbuild/generator/outputs/code.py'
+adding 'sipbuild/generator/outputs/extracts.py'
+adding 'sipbuild/generator/outputs/pyi.py'
+adding 'sipbuild/generator/outputs/type_hints.py'
+adding 'sipbuild/generator/outputs/xml.py'
+adding 'sipbuild/generator/outputs/formatters/__init__.py'
+adding 'sipbuild/generator/outputs/formatters/argument.py'
+adding 'sipbuild/generator/outputs/formatters/enum.py'
+adding 'sipbuild/generator/outputs/formatters/klass.py'
+adding 'sipbuild/generator/outputs/formatters/misc.py'
+adding 'sipbuild/generator/outputs/formatters/signature.py'
+adding 'sipbuild/generator/outputs/formatters/template.py'
+adding 'sipbuild/generator/outputs/formatters/value_list.py'
+adding 'sipbuild/generator/outputs/formatters/variable.py'
+adding 'sipbuild/generator/parser/__init__.py'
+adding 'sipbuild/generator/parser/annotations.py'
+adding 'sipbuild/generator/parser/parser.py'
+adding 'sipbuild/generator/parser/parser_manager.py'
+adding 'sipbuild/generator/parser/python_exceptions.py'
+adding 'sipbuild/generator/parser/rules.py'
+adding 'sipbuild/generator/parser/tokens.py'
+adding 'sipbuild/generator/parser/ply/__init__.py'
+adding 'sipbuild/generator/parser/ply/lex.py'
+adding 'sipbuild/generator/parser/ply/yacc.py'
+adding 'sipbuild/generator/resolver/__init__.py'
+adding 'sipbuild/generator/resolver/resolver.py'
+adding 'sipbuild/module/__init__.py'
+adding 'sipbuild/module/abi_version.py'
+adding 'sipbuild/module/main.py'
+adding 'sipbuild/module/module.py'
+adding 'sipbuild/module/source/12/LICENSE'
+adding 'sipbuild/module/source/12/LICENSE-GPL2'
+adding 'sipbuild/module/source/12/LICENSE-GPL3'
+adding 'sipbuild/module/source/12/MANIFEST.in'
+adding 'sipbuild/module/source/12/README.in'
+adding 'sipbuild/module/source/12/apiversions.c'
+adding 'sipbuild/module/source/12/bool.cpp'
+adding 'sipbuild/module/source/12/descriptors.c'
+adding 'sipbuild/module/source/12/int_convertors.c'
+adding 'sipbuild/module/source/12/objmap.c'
+adding 'sipbuild/module/source/12/pyproject.toml'
+adding 'sipbuild/module/source/12/qtlib.c'
+adding 'sipbuild/module/source/12/setup.cfg.in'
+adding 'sipbuild/module/source/12/setup.py.in'
+adding 'sipbuild/module/source/12/sip.h.in'
+adding 'sipbuild/module/source/12/sip.pyi'
+adding 'sipbuild/module/source/12/sip.rst.in'
+adding 'sipbuild/module/source/12/sip_array.c'
+adding 'sipbuild/module/source/12/sip_array.h'
+adding 'sipbuild/module/source/12/sipint.h'
+adding 'sipbuild/module/source/12/siplib.c'
+adding 'sipbuild/module/source/12/threads.c'
+adding 'sipbuild/module/source/12/voidptr.c'
+adding 'sipbuild/module/source/13/LICENSE'
+adding 'sipbuild/module/source/13/LICENSE-GPL2'
+adding 'sipbuild/module/source/13/LICENSE-GPL3'
+adding 'sipbuild/module/source/13/MANIFEST.in'
+adding 'sipbuild/module/source/13/README.in'
+adding 'sipbuild/module/source/13/pyproject.toml'
+adding 'sipbuild/module/source/13/setup.cfg.in'
+adding 'sipbuild/module/source/13/setup.py.in'
+adding 'sipbuild/module/source/13/sip.h.in'
+adding 'sipbuild/module/source/13/sip.pyi'
+adding 'sipbuild/module/source/13/sip.rst.in'
+adding 'sipbuild/module/source/13/sip_array.c'
+adding 'sipbuild/module/source/13/sip_array.h'
+adding 'sipbuild/module/source/13/sip_bool.cpp'
+adding 'sipbuild/module/source/13/sip_core.c'
+adding 'sipbuild/module/source/13/sip_core.h'
+adding 'sipbuild/module/source/13/sip_descriptors.c'
+adding 'sipbuild/module/source/13/sip_enum.c'
+adding 'sipbuild/module/source/13/sip_enum.h'
+adding 'sipbuild/module/source/13/sip_int_convertors.c'
+adding 'sipbuild/module/source/13/sip_object_map.c'
+adding 'sipbuild/module/source/13/sip_threads.c'
+adding 'sipbuild/module/source/13/sip_voidptr.c'
+adding 'sipbuild/tools/__init__.py'
+adding 'sipbuild/tools/build.py'
+adding 'sipbuild/tools/install.py'
+adding 'sipbuild/tools/sdist.py'
+adding 'sipbuild/tools/wheel.py'
+adding 'sip-6.8.3.dist-info/LICENSE'
+adding 'sip-6.8.3.dist-info/LICENSE-GPL2'
+adding 'sip-6.8.3.dist-info/LICENSE-GPL3'
+adding 'sip-6.8.3.dist-info/METADATA'
+adding 'sip-6.8.3.dist-info/WHEEL'
+adding 'sip-6.8.3.dist-info/entry_points.txt'
+adding 'sip-6.8.3.dist-info/top_level.txt'
+adding 'sip-6.8.3.dist-info/RECORD'
+removing build/bdist.emscripten_3_1_37_wasm32/wheel
+* Creating virtualenv isolated environment...
+* Installing packages in isolated environment... (setuptools >=30.3, wheel)
+* Getting dependencies for wheel...
+* Installing packages in isolated environment... (wheel)
+* Building wheel...
+Successfully built /home/niranjanpba/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl

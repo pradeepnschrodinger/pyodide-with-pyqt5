@@ -1,0 +1,68 @@
+running egg_info
+writing PyQt6_sip.egg-info/PKG-INFO
+writing dependency_links to PyQt6_sip.egg-info/dependency_links.txt
+writing top-level names to PyQt6_sip.egg-info/top_level.txt
+reading manifest file 'PyQt6_sip.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+adding license file 'LICENSE-GPL2'
+adding license file 'LICENSE-GPL3'
+writing manifest file 'PyQt6_sip.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_ext
+building 'PyQt6.sip' extension
+creating build
+creating build/temp.emscripten_3_1_37_wasm32-cpython-311
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_array.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_array.o
+sip_array.c:323:22: warning: assigning to 'char *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        view->format = format;
+                     ^ ~~~~~~
+1 warning generated.
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_core.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_core.o
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_descriptors.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_descriptors.o
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_enum.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_enum.o
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_int_convertors.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_int_convertors.o
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_object_map.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_object_map.o
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_threads.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_threads.o
+/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_voidptr.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_voidptr.o
+creating build/lib.emscripten_3_1_37_wasm32-cpython-311
+creating build/lib.emscripten_3_1_37_wasm32-cpython-311/PyQt6
+/tmp/tmp9obwvxmt/cc build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_array.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_core.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_descriptors.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_enum.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_int_convertors.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_object_map.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_threads.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_voidptr.o -o build/lib.emscripten_3_1_37_wasm32-cpython-311/PyQt6/sip.cpython-311-wasm32-emscripten.so
+installing to build/bdist.emscripten_3_1_37_wasm32/wheel
+running install
+running install_lib
+creating build/bdist.emscripten_3_1_37_wasm32
+creating build/bdist.emscripten_3_1_37_wasm32/wheel
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/PyQt6
+copying build/lib.emscripten_3_1_37_wasm32-cpython-311/PyQt6/sip.cpython-311-wasm32-emscripten.so -> build/bdist.emscripten_3_1_37_wasm32/wheel/PyQt6
+running install_egg_info
+running egg_info
+writing PyQt6_sip.egg-info/PKG-INFO
+writing dependency_links to PyQt6_sip.egg-info/dependency_links.txt
+writing top-level names to PyQt6_sip.egg-info/top_level.txt
+reading manifest file 'PyQt6_sip.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+adding license file 'LICENSE-GPL2'
+adding license file 'LICENSE-GPL3'
+writing manifest file 'PyQt6_sip.egg-info/SOURCES.txt'
+Copying PyQt6_sip.egg-info to build/bdist.emscripten_3_1_37_wasm32/wheel/PyQt6_sip-13.6.0-py3.11.egg-info
+running install_scripts
+creating build/bdist.emscripten_3_1_37_wasm32/wheel/PyQt6_sip-13.6.0.dist-info/WHEEL
+creating '/home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/.tmp-cm3cyis0/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_37_wasm32.whl' and adding 'build/bdist.emscripten_3_1_37_wasm32/wheel' to it
+adding 'PyQt6/sip.cpython-311-wasm32-emscripten.so'
+adding 'PyQt6_sip-13.6.0.dist-info/LICENSE'
+adding 'PyQt6_sip-13.6.0.dist-info/LICENSE-GPL2'
+adding 'PyQt6_sip-13.6.0.dist-info/LICENSE-GPL3'
+adding 'PyQt6_sip-13.6.0.dist-info/METADATA'
+adding 'PyQt6_sip-13.6.0.dist-info/WHEEL'
+adding 'PyQt6_sip-13.6.0.dist-info/top_level.txt'
+adding 'PyQt6_sip-13.6.0.dist-info/RECORD'
+removing build/bdist.emscripten_3_1_37_wasm32/wheel
+* Creating virtualenv isolated environment...
+* Installing packages in isolated environment... (setuptools >=30.3, wheel)
+* Getting dependencies for wheel...
+* Installing packages in isolated environment... (wheel)
+* Building wheel...
+Successfully built /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_37_wasm32.whl

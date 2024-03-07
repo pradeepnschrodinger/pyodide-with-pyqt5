@@ -1,3 +1,17 @@
+
+
+----------
+
+QtWayland isn't configured.
+
+-- Configuring submodule 'qtwayland'
+CMake Warning at qtwayland/src/CMakeLists.txt:24 (message):
+  QtWayland is missing required dependencies, nothing will be built.
+  Although this could be considered an error, the configuration will still
+  pass as coin (Qt's continuous integration system) will fail the build if
+  configure fails, but will still try to configure the module on targets that
+  are missing dependencies.
+
 ----------
 
 [DONE?]: Looks like I need to compile pyodide with and cpython with pthreads enabled (eg: https://github.com/pyodide/pyodide/issues/237#issuecomment-1689899764)
@@ -9,7 +23,15 @@ wasm-ld: error: --shared-memory is disallowed by pegen.o because it was not comp
 
 -----------
 
+Try getting an egg/wheel by using sip-wheel
+eg: sip-wheel --verbose --jobs {cpu_count()} --build-dir {temp_build_dir} --pep484-pyi'
+https://github.com/schrodinger/lib-build-scripts/blob/b73ff16974bc77c11c1ffec07f0d3f46422e8367/scripts/pyqt_tasks.py#L301
+
+-----------
+
 Pyodide link troubles
+
+[POSSIBLE-SOLUTION]: link dependencies as described in qt6-wasm-build/qtbase/lib/libQt6Core.prl
 
 ../make-pyodide.sh 
 warning: undefined symbol: _ZN7QThread11setPriorityENS_8PriorityE (referenced by top-level compiled C/C++ code)
