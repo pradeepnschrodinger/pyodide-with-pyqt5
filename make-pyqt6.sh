@@ -219,35 +219,35 @@ python setup.py install
 # should output /home/pradeep/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_37_wasm32.whl
 # TODO (pradeep): Should pyqt6-sip be built with SIP_STATIC_MODULE defined?
 
-# attempt to fix memory errors when importing pyqt6-sip
-# EXTRA_LDFLAGS="-sSHARED_MEMORY=1" EXTRA_CFLAGS="-pthread" PYODIDE_ROOT=../pyodide pyodide build
+# fixes memory errors when importing pyqt6-sip with pthread turned on
+LDFLAGS="-sSHARED_MEMORY=1" CFLAGS="-pthread -fPIC -lembind" PYODIDE_ROOT=../pyodide pyodide build &> ../logs/pyqt6-sip-build.log
 
-PYODIDE_ROOT=../pyodide pyodide build &> ../logs/pyqt6-sip-build.log
+# PYODIDE_ROOT=../pyodide pyodide build &> ../logs/pyqt6-sip-build.log
 # we should then be able to load this in the browser by doing a  await micropip.install('http://localhost:8000/PyQt6_sip-13.6.0/dist/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_37_wasm32.whl')
 
 # (wasm build with emcc outputing .lib)
-rm -rf libsip.a build
-mkdir -p build
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build/sip_array.o
+rm -rf libsip.a build_objects
+mkdir -p build_objects
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build_objects/sip_array.o
 
 # looks like sip_bool.cpp is only required on windows
-# emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build/sip_bool.o
+# emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build_objects/sip_bool.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build/sip_core.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build_objects/sip_core.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_descriptors.c -o build/sip_descriptors.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_descriptors.c -o build_objects/sip_descriptors.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_enum.c -o build/sip_enum.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_enum.c -o build_objects/sip_enum.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_int_convertors.c -o build/sip_int_convertors.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_int_convertors.c -o build_objects/sip_int_convertors.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_object_map.c -o build/sip_object_map.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_object_map.c -o build_objects/sip_object_map.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_threads.c -o build/sip_threads.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_threads.c -o build_objects/sip_threads.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_voidptr.c -o build/sip_voidptr.o
+emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_voidptr.c -o build_objects/sip_voidptr.o
 
-emar cqs libsip.a build/*.o
+emar cqs libsip.a build_objects/*.o
 
 
 ## PyQt6
@@ -314,16 +314,19 @@ cp ../temp/pyqt6-wasm-build__QtWidgets__Makefile QtWidgets/Makefile
 make &> ../logs/pyqt6-wasm-make.log
 make install &> ../logs/pyqt6-wasm-install.log
 
-
+mkdir -p pyqt6-wasm-target
 cd pyqt6-wasm-target
 
-# TODO (pradeep): Create shared object files out of .a files
-# for f in PyQt6/*.so; do mv -- "$f" "${f%.so}.a"; done
-em++  -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include  -shared QtGui.a ../../pyodide/cpython/installs/python-3.11.3/lib/libpython3.11.a -sSIDE_MODULE=2 -o QtGui.abi3.so
-em++ -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -sSIDE_MODULE -shared -fPIC ../../pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/pic/libc++.a ../../pyodide/cpython/installs/python-3.11.3/lib/libpython3.11.a QtGui.a  -o QtGui.abi3.so
-em++ -s EXPORT_ALL=1 -s ASSERTIONS=1 -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -sSIDE_MODULE -shared -fPIC --rtlib=compiler-rt ../../pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/pic/libc.a ../../pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/pic/libc++.a ../../pyodide/cpython/installs/python-3.11.3/lib/libpython3.11.a QtGui.a  -o QtGui.abi3.so
+# # TODO (pradeep): Create shared object files out of .a files
+# # for f in PyQt6/*.so; do mv -- "$f" "${f%.so}.a"; done
+# em++  -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include  -shared QtGui.a ../../pyodide/cpython/installs/python-3.11.3/lib/libpython3.11.a -sSIDE_MODULE=2 -o QtGui.abi3.so
+# em++ -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -sSIDE_MODULE -shared -fPIC ../../pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/pic/libc++.a ../../pyodide/cpython/installs/python-3.11.3/lib/libpython3.11.a QtGui.a  -o QtGui.abi3.so
+# em++ -s EXPORT_ALL=1 -s ASSERTIONS=1 -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -sSIDE_MODULE -shared -fPIC --rtlib=compiler-rt ../../pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/pic/libc.a ../../pyodide/emsdk/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/pic/libc++.a ../../pyodide/cpython/installs/python-3.11.3/lib/libpython3.11.a QtGui.a  -o QtGui.abi3.so
+# em++ $(OBJECTS) -shared -sSIDE_MODULE=1 -o QtCore.abi3.so
+# em++ $(OBJECTS) -shared -sSIDE_MODULE=2 -o QtCore.abi3.so
 
 # HACKY: create the wheel manually post-installation
+# (cp ../temp/WHEEL PyQt6-6.6.1.dist-info/ && rm -rf PyQt6-6.6.1-py3-none-any.whl && zip -r PyQt6-6.6.1-py3-none-any.whl .)
 # (cd .. && cp ../temp/WHEEL PyQt6-6.6.1.dist-info/ && rm -rf PyQt6-6.6.1-py3-none-any.whl && zip -r PyQt6-6.6.1-py3-none-any.whl .)
 cp ../temp/WHEEL PyQt6-6.6.1.dist-info/
 rm -rf PyQt6-6.6.1-py3-none-any.whl

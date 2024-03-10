@@ -2,7 +2,8 @@
 + cd qtbase
 + exec /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -feature-thread -qt-host-path /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host
 '/home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_HOST_PATH=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-DINPUT_thread=yes' '-G' 'Ninja' '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6'
--- Reusing cached Emscripten 3.1.37 toolchain file detected at /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+-- Extracting Emscripten SDK info from EMSDK env var: /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk
+-- Emscripten 3.1.37 toolchain file detected at /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 -- The ASM compiler identification is unknown
 -- Found assembler: /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/emcc
 -- Warning: Did not find file Compiler/-ASM
@@ -51,30 +52,12 @@
 -- Checking dependencies of submodule 'qtwebview'
 -- Configuring submodule 'qtbase'
 -- Warning: Did not find file Compiler/-ASM
-[QtBase]     'qtwebengine_build' was changed from OFF to ON
-[QtBase]     'qtpdf_build' was changed from OFF to ON
-[QtBase]     'qtwebengine_core_build' was changed from OFF to ON
-[QtBase]     'qtwebengine_widgets_build' was changed from OFF to ON
-[QtBase]     'qtwebengine_quick_build' was changed from OFF to ON
-[QtBase]     'qtpdf_widgets_build' was changed from OFF to ON
-[QtBase]     'qtpdf_quick_build' was changed from OFF to ON
-CMake Warning at qtbase/cmake/QtFeature.cmake:906 (message):
-  Due to detected feature set changes, dependent features will be re-computed
-  automatically.  This might cause a lot of files to be rebuilt.  To disable
-  this behavior, configure with -DQT_NO_FEATURE_AUTO_RESET=ON
-Call Stack (most recent call first):
-  qtbase/cmake/QtSetup.cmake:392 (qt_internal_detect_dirty_features)
-  qtbase/cmake/QtBuildInternals/QtBuildInternalsConfig.cmake:273 (include)
-  qtbase/cmake/QtBuildInternals/QtBuildInternalsConfig.cmake:435 (qt_build_internals_set_up_private_api)
-  qtbase/CMakeLists.txt:127 (qt_build_repo_begin)
-
-
             -DCMAKE_C_FLAGS_DEBUG=-g
-            -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG -O2
-            -DCMAKE_C_FLAGS_RELWITHDEBINFO=-g -DNDEBUG -O2
+            -DCMAKE_C_FLAGS_RELEASE=-O3 -DNDEBUG
+            -DCMAKE_C_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
             -DCMAKE_CXX_FLAGS_DEBUG=-g
-            -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG -O2
-            -DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-g -DNDEBUG -O2
+            -DCMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG
+            -DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
             -DCMAKE_OBJCOPY=/usr/bin/objcopy
             -DCMAKE_TOOLCHAIN_FILE=/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
             -DCMAKE_C_STANDARD=11
@@ -82,6 +65,12 @@ Call Stack (most recent call first):
             -DCMAKE_CXX_STANDARD=17
             -DCMAKE_CXX_STANDARD_REQUIRED=ON
             -DCMAKE_MODULE_PATH:STRING=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/cmake/platforms
+CMake Warning (dev) at /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/config.tests/no_direct_extern_access/CMakeLists.txt:7 (add_library):
+  ADD_LIBRARY called with SHARED option but the target platform does not
+  support dynamic linking.  Building a STATIC library instead.  This may lead
+  to problems.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
 -- Configuring submodule 'qtimageformats'
 -- Configuring submodule 'qtlanguageserver'
 -- Configuring submodule 'qtshadertools'
@@ -130,11 +119,41 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Configuring submodule 'qttools'
 -- Could NOT find Clang (missing: Clang_DIR)
 -- Could NOT find Clang (missing: Clang_DIR)
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
+[QtTools] qconfig.h not found, unable to determine Qt build Emscripten version
+[QtTools] Qt Wasm built with Emscripten version: 
+[QtTools] You are using Emscripten version: 3.1.37
+[QtTools] The recommended version of Emscripten for this Qt is: 3.1.37
+[QtTools] This may not work correctly
 -- Configuring submodule 'qtserialport'
 Skipping the build as the condition "NOT EMSCRIPTEN" is not met.
 -- Configuring submodule 'qtpositioning'
-Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtwebchannel'
+Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtwebengine'
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
@@ -147,8 +166,8 @@ ModuleNotFoundError: No module named 'html5lib'
 -- Could NOT find Qt6ProtobufTools (missing: Qt6ProtobufTools_DIR)
 -- Could NOT find Qt6GrpcTools (missing: Qt6GrpcTools_DIR)
 -- Configuring submodule 'qtlocation'
-Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtlottie'
+Skipping the build as the condition "NOT WASM" is not met.
 -- Configuring submodule 'qtmqtt'
 -- Configuring submodule 'qtnetworkauth'
 -- Configuring submodule 'qtopcua'
@@ -625,6 +644,19 @@ You will need to set the FEATURE_clangcpp CMake variable to ON to re-evaluate th
 WARNING: QtWebEngine won't be built. Build can be done only on Linux, Windows or macOS.
 WARNING: QtPdf won't be built. Build can be done only on Linux, Windows, macO, iOS and Android(on non-Windows hosts only).
 
--- Configuring done (26.4s)
--- Generating done (3.6s)
+-- 
+
+Qt is now configured for building. Just run 'cmake --build . --parallel'
+
+Once everything is built, you must run 'cmake --install .'
+Qt will be installed into '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host'
+
+To configure and build other Qt modules, you can use the following convenience script:
+        /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/bin/qt-configure-module
+
+If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
+Alternatively, you can add the --fresh flag to your CMake flags.
+
+-- Configuring done (129.0s)
+-- Generating done (6.3s)
 -- Build files have been written to: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-build

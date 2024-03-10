@@ -14,21 +14,45 @@ running build_ext
 building 'PyQt6.sip' extension
 creating build
 creating build/temp.emscripten_3_1_37_wasm32-cpython-311
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_array.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_array.o
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_array.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_array.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
 sip_array.c:323:22: warning: assigning to 'char *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
         view->format = format;
                      ^ ~~~~~~
 1 warning generated.
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_core.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_core.o
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_descriptors.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_descriptors.o
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_enum.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_enum.o
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_int_convertors.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_int_convertors.o
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_object_map.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_object_map.o
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_threads.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_threads.o
-/tmp/tmp9obwvxmt/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -I/tmp/build-env-o8u_71zd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_voidptr.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_voidptr.o
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_core.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_core.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_descriptors.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_descriptors.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_enum.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_enum.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_int_convertors.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_int_convertors.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_object_map.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_object_map.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_threads.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_threads.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+/tmp/tmp0vvbl34i/cc -DNDEBUG -g -fwrapv -O3 -Wall -O2 -g0 -fPIC -DPY_CALL_TRAMPOLINE -pthread -fPIC -lembind -I/tmp/build-env-o0pd9vhd/include -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -c sip_voidptr.c -o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_voidptr.o
+emcc: warning: linker setting ignored during compilation: 'DYLINK_DEBUG' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
+emcc: warning: argument unused during compilation: '-lembind' [-Wunused-command-line-argument]
 creating build/lib.emscripten_3_1_37_wasm32-cpython-311
 creating build/lib.emscripten_3_1_37_wasm32-cpython-311/PyQt6
-/tmp/tmp9obwvxmt/cc build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_array.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_core.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_descriptors.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_enum.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_int_convertors.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_object_map.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_threads.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_voidptr.o -o build/lib.emscripten_3_1_37_wasm32-cpython-311/PyQt6/sip.cpython-311-wasm32-emscripten.so
+/tmp/tmp0vvbl34i/cc -sSHARED_MEMORY=1 -pthread -fPIC -lembind build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_array.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_core.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_descriptors.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_enum.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_int_convertors.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_object_map.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_threads.o build/temp.emscripten_3_1_37_wasm32-cpython-311/sip_voidptr.o -o build/lib.emscripten_3_1_37_wasm32-cpython-311/PyQt6/sip.cpython-311-wasm32-emscripten.so
 installing to build/bdist.emscripten_3_1_37_wasm32/wheel
 running install
 running install_lib
@@ -50,7 +74,7 @@ writing manifest file 'PyQt6_sip.egg-info/SOURCES.txt'
 Copying PyQt6_sip.egg-info to build/bdist.emscripten_3_1_37_wasm32/wheel/PyQt6_sip-13.6.0-py3.11.egg-info
 running install_scripts
 creating build/bdist.emscripten_3_1_37_wasm32/wheel/PyQt6_sip-13.6.0.dist-info/WHEEL
-creating '/home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/.tmp-cm3cyis0/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_37_wasm32.whl' and adding 'build/bdist.emscripten_3_1_37_wasm32/wheel' to it
+creating '/home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/.tmp-fn6wztdo/PyQt6_sip-13.6.0-cp311-cp311-emscripten_3_1_37_wasm32.whl' and adding 'build/bdist.emscripten_3_1_37_wasm32/wheel' to it
 adding 'PyQt6/sip.cpython-311-wasm32-emscripten.so'
 adding 'PyQt6_sip-13.6.0.dist-info/LICENSE'
 adding 'PyQt6_sip-13.6.0.dist-info/LICENSE-GPL2'

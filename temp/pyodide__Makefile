@@ -94,7 +94,40 @@ dist/pyodide.asm.js: \
 	dist/libpyodide.a
 	date +"[%F %T] Building pyodide.asm.js..."
 	[ -d dist ] || mkdir dist
-	$(CXX) -pthread -o dist/pyodide.asm.js dist/libpyodide.a src/core/main.o $(MAIN_MODULE_LDFLAGS)
+	$(CXX) -o dist/pyodide.asm.js dist/libpyodide.a \
+	src/core/main.o $(MAIN_MODULE_LDFLAGS) \
+	-s USE_WEBGL2=1 -sFULL_ES3=1 \
+	-sERROR_ON_UNDEFINED_SYMBOLS=0 \
+	-pthread \
+	-lembind \
+	-lidbfs.js \
+	-lidbstore.js \
+	-lasync.js \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/libsip.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Widgets_resources_1/.rcc/qrc_qstyle.cpp.o \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Widgets_resources_2/.rcc/qrc_qstyle1.cpp.o \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Gui_resources_1/.rcc/qrc_qpdf.cpp.o \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Gui_resources_2/.rcc/qrc_gui_shaders.cpp.o \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Widgets_resources_3/.rcc/qrc_qmessagebox.cpp.o \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledPcre2.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledHarfbuzz.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6Core.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/libQtCore.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledFreetype.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledLibpng.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6Gui.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/libQtGui.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6Widgets.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/libQtWidgets.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqwasm.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqoffscreen.a \
+	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqminimal.a \
+	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/wasm-window \
+	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/plugins/platforms/wasm/resources \
+	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/home/pyodide/wasm-window \
+	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
+	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/qt5/lib/fonts \
+	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/qt/lib/fonts \
 
 	if [[ -n $${PYODIDE_SOURCEMAP+x} ]] || [[ -n $${PYODIDE_SYMBOLS+x} ]] || [[ -n $${PYODIDE_DEBUG_JS+x} ]]; then \
 		cd dist && npx prettier -w pyodide.asm.js ; \

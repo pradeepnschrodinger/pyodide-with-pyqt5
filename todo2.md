@@ -1,4 +1,57 @@
+-----------------------------------
+
+"no target window errors" gets spammed for every mouse event
+
+
+
+-----------------------------------
+
+Font's not loading in static PyQt6
+
+maybe the ttf font file is missing in the virtual file system?
+
+https://doc.qt.io/qt-6/qt-embedded-fonts.html says Qt might look in the lib/fonts/ directory
+
+https://stackoverflow.com/questions/7402576/get-current-working-directory-in-a-qt-application
+
+https://forum.qt.io/topic/30008/solved-qt-font-search-path/5
+
+-----------------------------------
+Hack to avoid tslInit errors when attempting to relocate module
+-fpic did not work here...
+
+    function tlsInitWrapper() {
+      // HACK (pradeep): Why is tlsInitFunc undefined? We might need fpic here
+      if (!tlsInitFunc) {
+        console.error("Niranjan: tslInitFunc is undefined!")
+        return;
+      }
+      var __tls_base = tlsInitFunc();
+
+FinalizationRegistry hacks to avoid errors while initilization pyodide.asm.js when Qt modules are linked because of -lembind
+
+    $$ = { ptr: ptrobj, type: "PyProxy", cache, flags };
+    // HACK (pradeep): Massive hack to fix finialization registry error
+    Module.finalizationRegistry = new FinalizationRegistry((value: string) => {
+      console.log('Pradeep: Finalization registry value: ', value);
+    });
+    Module.finalizationRegistry.register($$, [ptrobj, cache], $$);
+    Module._Py_IncRef(ptrobj);
+
 ------------------------------------
+
+https://github.com/emscripten-core/emscripten/issues/11985#issuecomment-1018733271
+-lcompiler_rt 
+
+------------------------------------
+Trying to import PyQt6 using .so shared lib files
+
+
+Tip: Use `pyodide auditwheel exports` to show what symbols are exported.
+eg:
+PYODIDE_ROOT=../../pyodide pyodide auditwheel exports /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/dist/extracted/PyQt6/sip.cpython-311-wasm32-emscripten.so
+
+
   if settings.SIDE_MODULE:
     if metadata.emJsFuncs:
       # HACK (pradeep):
