@@ -1,15 +1,16 @@
 ./tools/dependency-check.sh
+emcc -o src/core/main.o -c src/core/main.c -O2 -g0 -fPIC  -Wall -Wno-warn-absolute-paths -Werror=unused-variable -Werror=sometimes-uninitialized -Werror=int-conversion -Werror=incompatible-pointer-types -Werror=unused-result -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -s EXCEPTION_CATCHING_ALLOWED=['we only want to allow exception handling in side modules'] -Isrc/core/
 # TODO(ryanking13): Link this to a side module not to the main module.
 # For unknown reason, a side module cannot see symbols when libGL is linked to it.
 embuilder build libgl
 embuilder:INFO: building libGL
 embuilder:INFO: ...success. Took (0.00s)
 date +"[%F %T] Building pyodide.asm.js..."
-[2024-03-10 16:32:19] Building pyodide.asm.js...
+[2024-03-12 18:17:01] Building pyodide.asm.js...
 [ -d dist ] || mkdir dist
 em++ -o dist/pyodide.asm.js dist/libpyodide.a \
 src/core/main.o -O2 -g0  -s MODULARIZE=1 -s LZ4=1 -L /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/ -s WASM_BIGINT  -s MAIN_MODULE=1 -s EXPORT_NAME="'_createPyodideModule'" -s EXPORT_EXCEPTION_HANDLING_HELPERS -s EXCEPTION_CATCHING_ALLOWED=['we only want to allow exception handling in side modules'] -sEXPORTED_RUNTIME_METHODS='stackAlloc,stackRestore,stackSave' -s DEMANGLE_SUPPORT=1 -s USE_ZLIB -s USE_BZIP2 -s FORCE_FILESYSTEM=1 -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s EXPORT_ALL=1 -s POLYFILL -s MIN_SAFARI_VERSION=140000 -s STACK_SIZE=5MB -s AUTO_JS_LIBRARIES=0 -s AUTO_NATIVE_LIBRARIES=0 -s NODEJS_CATCH_EXIT=0 -s NODEJS_CATCH_REJECTION=0 -lpython3.11 -lffi -lstdc++ -lidbfs.js -lnodefs.js -lproxyfs.js -lworkerfs.js -lwebsocket.js -leventloop.js -lGL -legl.js -lwebgl.js -lhtml5_webgl.js -sGL_WORKAROUND_SAFARI_GETCONTEXT_BUG=0 \
--s USE_WEBGL2=1 -sFULL_ES3=1 \
+-sUSE_WEBGL2=1 -sFULL_ES2=1 \
 -sERROR_ON_UNDEFINED_SYMBOLS=0 \
 -pthread \
 -lembind \
@@ -35,21 +36,16 @@ src/core/main.o -O2 -g0  -s MODULARIZE=1 -s LZ4=1 -L /home/niranjanpba/projects/
 /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqwasm.a \
 /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqoffscreen.a \
 /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqminimal.a \
---preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/wasm-window \
---preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/plugins/platforms/wasm/resources \
---preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/home/pyodide/wasm-window \
 --preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
---preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/qt5/lib/fonts \
---preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/qt/lib/fonts \
 
 em++: warning: -sMAIN_MODULE + pthreads is experimental [-Wexperimental]
 em++: warning: -pthread + ALLOW_MEMORY_GROWTH may run non-wasm code slowly, see https://github.com/WebAssembly/design/issues/1271 [-Wpthreads-mem-growth]
 em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with WASM_BIGINT (150000 or above required) [-Wcompatibility]
 em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with pthreads (140100 or above required) [-Wcompatibility]
 em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with pthreads (150000 or above required) [-Wcompatibility]
-compressing package of size 4880733
-compressed package into 4001743
-compressed in 101 ms
+compressing package of size 1258729
+compressed package into 981586
+compressed in 37 ms
 warning: undefined symbol: ppoll (referenced by top-level compiled C/C++ code)
 em++: warning: warnings in JS library compilation [-Wjs-compiler]
 if [[ -n ${PYODIDE_SOURCEMAP+x} ]] || [[ -n ${PYODIDE_SYMBOLS+x} ]] || [[ -n ${PYODIDE_DEBUG_JS+x} ]]; then \
@@ -64,7 +60,7 @@ sed -i '1i "use strict";' dist/pyodide.asm.js
 sed -i -n -e :a -e '1,6!{P;N;D;};N;ba' dist/pyodide.asm.js
 echo "globalThis._createPyodideModule = _createPyodideModule;" >> dist/pyodide.asm.js
 date +"[%F %T] done building pyodide.asm.js."
-[2024-03-10 16:33:07] done building pyodide.asm.js.
+[2024-03-12 18:17:45] done building pyodide.asm.js.
 cp src/templates/console.html dist/console.html
 sed -i -e 's#{{ PYODIDE_BASE_URL }}#./#g' dist/console.html
 /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/bin/python3.11 -m pip install -e ./pyodide-build
@@ -119,8 +115,8 @@ Requirement already satisfied: shellingham<2.0.0,>=1.3.0 in /home/niranjanpba/pr
 Building wheels for collected packages: pyodide-build
   Building editable for pyodide-build (pyproject.toml): started
   Building editable for pyodide-build (pyproject.toml): finished with status 'done'
-  Created wheel for pyodide-build: filename=pyodide_build-0.24.0.dev0-0.editable-py3-none-any.whl size=7833 sha256=7e4d7df7eb2d562d4e87355a4017f5164287cdbbbdc8ad480a3e69e54e493416
-  Stored in directory: /tmp/pip-ephem-wheel-cache-ppfx7e5g/wheels/63/39/55/a6559fe3bb1c11a67674e79704e7364a6632606b4c96143a44
+  Created wheel for pyodide-build: filename=pyodide_build-0.24.0.dev0-0.editable-py3-none-any.whl size=7834 sha256=e2f8dc676c0dff55a4fc085ad1236ee03e0f4aabd3014e2d053d6b1682b21a76
+  Stored in directory: /tmp/pip-ephem-wheel-cache-qx0joz_m/wheels/63/39/55/a6559fe3bb1c11a67674e79704e7364a6632606b4c96143a44
 Successfully built pyodide-build
 Installing collected packages: pyodide-build
   Attempting uninstall: pyodide-build
@@ -134,7 +130,7 @@ Successfully installed pyodide-build-0.24.0.dev0
 which pyodide-build >/dev/null
 which pyodide >/dev/null
 date +"[%F %T] Building packages..."
-[2024-03-10 16:33:13] Building packages...
+[2024-03-12 18:17:51] Building packages...
 make -C packages
 make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages'
 mkdir -p /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages/.artifacts /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages/.libs
@@ -153,7 +149,7 @@ Copying built packages to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/
 Writing repodata.json to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist/repodata.json                                                                   
 make[1]: Leaving directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages'
 date +"[%F %T] done building packages..."
-[2024-03-10 16:33:17] done building packages...
+[2024-03-12 18:17:54] done building packages...
 pyodide create-zipfile /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/python3.11 src/py --compression-level "6" --output dist/python_stdlib.zip
 Zip file created at /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist/python_stdlib.zip
 cp src/templates/webworker.js dist/webworker.js

@@ -67,15 +67,19 @@ export interface Module {
  */
 export function createModule(): any {
   let Module: any = {};
-  let canvas = document.querySelector('#qtcanvas');
   Module.noImageDecoding = true;
   Module.noAudioDecoding = true;
   Module.noWasmDecoding = false; // we preload wasm using the built in plugin now
-  Module.canvas = canvas
-  Module.qtContainerElements = [canvas]
-  Module.canvasElements = [canvas];
-  Module.qtCanvasElements = [canvas];
-  console.error("Niranjan: createModule() called!")
+  
+  /**
+   * NOTE (pradeep): Pass container element to QT for it render against.
+   * From qt6/qtbase/src/plugins/platforms/wasm/qwasmscreen.cpp:
+   *   Each screen is represented by a div container. All of the windows exist
+   *   therein as its children.
+   */
+  const qtScreen = document.querySelector('.qt-screen')
+  Module.qtContainerElements = [qtScreen]
+
   Module.preRun = [];
   Module.quit = (status: number, toThrow: Error) => {
     Module.exited = { status, toThrow };

@@ -10,19 +10,26 @@
       rel="stylesheet"
     />
     <style>
-      #qt-shadow-container {
-        width: 500px !important;
-        height: 500px !important;
+      * {
+        box-sizing: border-box;
       }
       .terminal {
         --size: 1.5;
         --color: rgba(255, 255, 255, 0.8);
+        flex: 1 1 auto;
+        width: 100%;
+        overflow: hidden;
       }
       .noblink {
         --animation: terminal-none;
       }
       body {
         background-color: black;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 0;
+        margin: 0;
       }
       #jquery-terminal-logo {
         color: white;
@@ -64,13 +71,14 @@
     </style>
   </head>
   <body>
-    <div class="canvas-container" style="width: 500px; height: 500px">
-      <canvas id="qtcanvas" class="QtCanvas" oncontextmenu="event.preventDefault()" contenteditable="true" width="600" height="300" style="border: 1px solid red"></canvas>
+    <div class="qt-container" style="width: 500px; height: 500px">
+      <div class="qt-screen" style="width: 500px; height: 500px"></div>
     </div>
     <div id="jquery-terminal-logo">
       <a href="https://terminal.jcubic.pl/">jQuery Terminal</a>
     </div>
     <div id="loading"></div>
+    <div class="terminal-container"></div>
     <script>
       "use strict";
 
@@ -205,10 +213,14 @@
           unlock();
         }
 
-        term = $("body").terminal(interpreter, {
+        term = $(".terminal-container").terminal(interpreter, {
           greetings: banner,
           prompt: ps1,
           completionEscape: false,
+          onResize: function (terminalObj) {
+            const { height } = terminalObj[0].getBoundingClientRect();
+            terminalObj.resize(undefined, height);
+          },
           completion: function (command, callback) {
             callback(pyconsole.complete(command).toJs()[0]);
           },

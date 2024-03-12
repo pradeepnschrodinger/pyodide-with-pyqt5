@@ -96,7 +96,7 @@ dist/pyodide.asm.js: \
 	[ -d dist ] || mkdir dist
 	$(CXX) -o dist/pyodide.asm.js dist/libpyodide.a \
 	src/core/main.o $(MAIN_MODULE_LDFLAGS) \
-	-s USE_WEBGL2=1 -sFULL_ES3=1 \
+	-sUSE_WEBGL2=1 -sFULL_ES2=1 \
 	-sERROR_ON_UNDEFINED_SYMBOLS=0 \
 	-pthread \
 	-lembind \
@@ -122,12 +122,7 @@ dist/pyodide.asm.js: \
 	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqwasm.a \
 	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqoffscreen.a \
 	/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqminimal.a \
-	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/wasm-window \
-	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/plugins/platforms/wasm/resources \
-	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/widgets/styles/images@/home/pyodide/wasm-window \
 	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
-	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/qt5/lib/fonts \
-	--preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/qt/lib/fonts \
 
 	if [[ -n $${PYODIDE_SOURCEMAP+x} ]] || [[ -n $${PYODIDE_SYMBOLS+x} ]] || [[ -n $${PYODIDE_DEBUG_JS+x} ]]; then \
 		cd dist && npx prettier -w pyodide.asm.js ; \

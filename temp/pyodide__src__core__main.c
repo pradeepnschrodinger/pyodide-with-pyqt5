@@ -75,11 +75,6 @@ initialize_python(int argc, char** argv)
   status = Py_InitializeFromConfig(&config);
   FAIL_IF_STATUS_EXCEPTION(status);
 
-  PyRun_SimpleString(
-    "print ('Niranjan says hi')\n" \
-    "print ('Niranjan says hi again')" \
-  );
-
   // Fix import system to accomendate the shallow PyQt6 mock module
   // Thanks to dgym @ https://stackoverflow.com/questions/39250524/programmatically-define-a-package-structure-in-embedded-python-3
   PyRun_SimpleString(
@@ -93,15 +88,12 @@ initialize_python(int argc, char** argv)
         "            return machinery.ModuleSpec(fullname, machinery.BuiltinImporter)\n" \
         "\n" \
         "sys.meta_path.append(Finder())\n" \
-        "print (\"Import Magic run!\")"
+        "print (\"Import magic run!\")"
   );
 
   // Create our QApplication inside Python
-  PyRun_SimpleString("print (\"qtApp going to be created\")");
-  
-  // Create our QApplication inside Python
-  PyRun_SimpleString("from PyQt6.QtWidgets import QApplication\nqtApp = QApplication([\"pyodide\"])\nprint (\"qtApp created\")");
-
+  PyRun_SimpleString("print (\"qtApp going to be created\")");  
+  PyRun_SimpleString("from PyQt6.QtWidgets import QApplication\nqtApp = QApplication([\"pyodide\"])");
   PyRun_SimpleString("print (\"qtApp should be created now\")");
 
   execLastQApp();

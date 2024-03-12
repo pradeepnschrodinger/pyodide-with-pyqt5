@@ -27,6 +27,7 @@ class App(QWidget):
 
 QApplication([])
 app = App()
+QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
 
 # if __name__ == '__main__':
 #     app = QApplication(sys.argv)

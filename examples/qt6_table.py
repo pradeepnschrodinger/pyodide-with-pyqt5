@@ -1,6 +1,5 @@
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtCore import Qt
- 
  
 class MyModel(QtCore.QAbstractTableModel):
  
@@ -32,6 +31,10 @@ class MyModel(QtCore.QAbstractTableModel):
  
  
 # app = QtWidgets.QApplication([])
+
+# NOTE (pradeep): provide font from pyodide's file system to our QT app
+QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
+
 model = MyModel()
 view = QtWidgets.QTableView()
 view.setModel(model)

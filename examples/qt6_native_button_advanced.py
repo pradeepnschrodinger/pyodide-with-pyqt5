@@ -1,5 +1,5 @@
 # run with:
-# DISABLE_WAYLAND=1 QT_DEBUG_PLUGINS=1 python3 examples/qt5_button_advanced.py
+# DISABLE_WAYLAND=1 QT_DEBUG_PLUGINS=1 python3 examples/qt6_button_advanced.py
 
 import sys
 sys.path.append('/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-native-target')
