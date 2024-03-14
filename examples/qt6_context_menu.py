@@ -14,10 +14,13 @@ class MainWindow(QMainWindow):
         context.addAction(QAction("test 1", self))
         context.addAction(QAction("test 2", self))
         context.addAction(QAction("test 3", self))
-        context.exec(e.globalPos())
+        # NOTE (pradeep): exec() won't work in WASM... See https://bugreports.qt.io/browse/QTBUG-76586
+        #context.exec(e.globalPos())
+        # Alternative is to use show() or open()
+        context.show()
 
 
-# app = QApplication(sys.argv)
+#app = QApplication([])
 QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
 
 window = MainWindow()

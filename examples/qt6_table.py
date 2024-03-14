@@ -30,7 +30,7 @@ class MyModel(QtCore.QAbstractTableModel):
         return None
  
  
-# app = QtWidgets.QApplication([])
+#app = QtWidgets.QApplication([])
 
 # NOTE (pradeep): provide font from pyodide's file system to our QT app
 QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')

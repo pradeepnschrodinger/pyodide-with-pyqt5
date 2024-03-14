@@ -10,7 +10,7 @@ sys.path.append('/home/pradeep/projects/pyodide-with-pyqt5/pyqt6-native-target')
 
 from PyQt6 import QtWidgets
 
-app = QtWidgets.QApplication([])
+#app = QtWidgets.QApplication([])
 btn = QtWidgets.QPushButton("This is a button")
 btn.show()
 app.exec()

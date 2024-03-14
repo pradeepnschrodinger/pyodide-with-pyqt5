@@ -47,7 +47,6 @@ initialize_python(int argc, char** argv)
   bool success = false;
   PyStatus status;
 
-
   // Register PyQT modules to Python
   PyImport_AppendInittab("PyQt6", PyInit_PyQt6);
   PyImport_AppendInittab("PyQt6.sip", PyInit_sip);
@@ -96,7 +95,7 @@ initialize_python(int argc, char** argv)
   PyRun_SimpleString("from PyQt6.QtWidgets import QApplication\nqtApp = QApplication([\"pyodide\"])");
   PyRun_SimpleString("print (\"qtApp should be created now\")");
 
-  execLastQApp();
+  // execLastQApp();
   success = true;
 finally:
   PyConfig_Clear(&config);

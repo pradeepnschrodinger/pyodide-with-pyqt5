@@ -11,8 +11,7 @@ class Window(QWidget):
         button.move(100, 100)
  
  
-# app = QApplication(sys.argv)
-# app = QApplication([])
+#app = QApplication([])
 QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
 window = Window()
 window.show()

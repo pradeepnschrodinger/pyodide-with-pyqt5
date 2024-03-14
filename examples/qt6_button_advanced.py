@@ -1,9 +1,10 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt6 import QtGui
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import pyqtSlot
 
-class App(QWidget):
+class MyWidget(QWidget):
     def __init__(self):
         super().__init__()
         self.title = 'PyQt5 button'
@@ -25,11 +26,6 @@ class App(QWidget):
     def on_click(self):
         print('PyQt6 button click')
 
-QApplication([])
-app = App()
+#app = QApplication([])
 QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
-
-# if __name__ == '__main__':
-#     app = QApplication(sys.argv)
-#     ex = App()
-#     sys.exit(app.exec_())
+widget = MyWidget()

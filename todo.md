@@ -1,3 +1,45 @@
+### QFileDialog doesn't work
+
+It doesn't work cause it internally uses exec and QFileSystemModel, both of which starts threads.
+```
+    qWarning("Hello from getOpenFileUrl()");
+    // auto fileOpenCompleted = [&](const QString &fileName, const QByteArray &fileContent) {
+    //     qWarning("Hello from fileOpenCompleted()");
+    // };
+    // QFileDialog::getOpenFileContent("All Files (*)", fileOpenCompleted);
+    // const QString x = "Hello!";
+    // const QUrl y(x);
+    // return x;
+```
+    
+### Proper QT screen/window integration
+
+Take a look at QWasmIntegration::setContainerElements
+
+
+-----------------------------------
+
+
+### Multithreading for Pyodide's Python in WASM
+https://www.qt.io/blog/2019/06/26/qt-webassembly-multithreading says that "We’ve found that emscripten 1.38.30 works well for threaded builds.".
+
+```
+Main thread deadlocks Calling QThread::wait (or pthread_join) on the main thread may deadlock, since the browser will be blocked from servicing application requests such as starting a new Web Worker for the thread we are waiting on. Possible workarounds include:
+
+Pre-allocate Web Workers using QMAKE_WASM_PTHREAD_POOL_SIZE (maps to emscripten PTHREAD_POOL_SIZE)
+Don't join worker threads when not needed (e.g. app exit). Earlier versions of the Mandelbrot demo was freezing the tab on exit; solved by disabling application cleanup for the Qt build which powers it.
+
+```
+
+experiment with PTHREAD_POOL_SIZE
+
+
+-----------------------------------
+
+Checkout all examples from https://www.pythonguis.com/pyqt6-tutorial/ and https://www.pythonguis.com/tutorials/pyqt6-signals-slots-events/
+
+-----------------------------------
+
 ### "no target window errors" gets spammed for every mouse event
 
 This is likely from QT trying to support touch events.

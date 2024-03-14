@@ -13,12 +13,23 @@
       * {
         box-sizing: border-box;
       }
+      .qt-container {
+        display: flex;
+        flex: 1 1;
+      }
+      .qt-screen {
+        flex: 1 1;
+      }
       .terminal {
         --size: 1.5;
         --color: rgba(255, 255, 255, 0.8);
         flex: 1 1 auto;
+        max-height: 50%;
         width: 100%;
         overflow: hidden;
+      }
+      .terminal.hidden {
+        display: none;
       }
       .noblink {
         --animation: terminal-none;
@@ -71,16 +82,39 @@
     </style>
   </head>
   <body>
-    <div class="qt-container" style="width: 500px; height: 500px">
-      <div class="qt-screen" style="width: 500px; height: 500px"></div>
+    <div class="qt-container">
+      <div class="qt-screen"></div>
     </div>
     <div id="jquery-terminal-logo">
       <a href="https://terminal.jcubic.pl/">jQuery Terminal</a>
     </div>
     <div id="loading"></div>
+    <button onClick="toggleTerminal()">TOGGLE TERMINAL</button>
+    <input type="file" onChange="loadExample(event)">LOAD EXAMPLE</button>
     <div class="terminal-container"></div>
     <script>
       "use strict";
+
+      function toggleTerminal() {
+        document.querySelector('.terminal').classList.toggle('hidden');
+      }
+
+      async function loadExample(event) {
+        var file = event.target.files[0];
+        if (!file) {
+          return;
+        }
+        const exampleCode = await file.text();
+        // exit current app
+        pyodide.runPython(`
+        import PyQt6.QtWidgets
+        if (PyQt6.QtWidgets.QApplication.instance()):
+          PyQt6.QtWidgets.QApplication.instance().closeAllWindows()
+        `)
+
+        // restart app against new example code
+        pyodide.runPython(exampleCode);
+      }
 
       function sleep(s) {
         return new Promise((resolve) => setTimeout(resolve, s));
@@ -271,6 +305,17 @@
         if (searchParams.has("noblink")) {
           $(".cmd-cursor").addClass("noblink");
         }
+        
+        // NOTE (pradeep): Resize QT screen whenever the screen DOM resizes.
+        (new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.contentBoxSize) {
+              if (pyodide._module.qtResizeContainerElement) {
+                pyodide._module.qtResizeContainerElement($('.qt-screen')[0])
+              }
+            }
+          }
+        })).observe(document.querySelector('.qt-screen'))
       }
       window.console_ready = main();
     </script>

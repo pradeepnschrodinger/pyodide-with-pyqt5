@@ -13,6 +13,9 @@ sudo apt-get install -y libgl1-mesa-dev
 sudo apt-get install -y libglu1-mesa-dev
 sudo apt install -y libfontconfig1-dev libfreetype6-dev libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev libxcb-cursor-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
 
+# TODO (pradeep): Do we need this for unicode support?
+sudo apt-get install -y libicu-dev
+
 # pyodide
 # rustup has a prompt - specify 1 (for default installation)
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -351,5 +354,37 @@ pushd pyodide
     # apply patches for pyodide
     cp ../temp/pyodide__src__core__main.c src/core/main.c
     cp ../temp/pyodide__src__js__module.ts src/js/module.ts 
-    cp ../temp/pyodide__src__templates__console.html  src/templates/console.html 
+    cp ../temp/pyodide__src__templates__console.html  src/templates/console.html
+popd
+
+# Build final bundle
+rm -rf build-qt6
+mkdir -p build-qt6
+pushd build-qt6
+    # copy necessary build artifacts from pyodide
+    cp ../pyodide/dist/console.html index.html
+    cp ../pyodide/dist/pyodide.asm.data .
+    cp ../pyodide/dist/pyodide.asm.js .
+    cp ../pyodide/dist/pyodide.asm.wasm .
+    cp ../pyodide/dist/pyodide.mjs .
+    cp ../pyodide/dist/pyodide.mjs.map .
+    cp ../pyodide/dist/python_stdlib.zip .
+    cp ../pyodide/dist/repodata.json .
+
+    # copy pyqt6 examples
+    mkdir -p examples
+    cp ../examples/qt6_*.py ./examples/
+
+    # remove broken examples
+    rm -rf ./examples/qt6_file_picker.py
+
+    # don't keep native examples since they don't run in WASM
+    rm -rf ./examples/qt6_native*
+
+    # copy the http server util script
+    cp ../http_server.py .
+
+    # bundle everything!
+    rm -rf pyqt6-wasm.zip
+    zip -r pyqt6-wasm.zip .
 popd

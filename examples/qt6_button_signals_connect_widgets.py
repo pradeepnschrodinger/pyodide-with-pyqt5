@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(container)
 
 
-# app = QApplication(sys.argv)
+#app = QApplication([])
 QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
 
 window = MainWindow()

@@ -31,7 +31,7 @@ class MyModel(QtCore.QAbstractTableModel):
         return None
  
  
-# app = QtWidgets.QApplication([])
+# #app = QtWidgets.QApplication([])
 model = MyModel()
 view = QtWidgets.QTableView()
 view.setModel(model)

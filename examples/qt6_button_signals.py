@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
         print("Clicked!")
 
 
-# app = QApplication(sys.argv)
+#app = QApplication([])
 QtGui.QFontDatabase.addApplicationFont('/usr/lib/fonts/Vera.ttf')
 
 window = MainWindow()
