@@ -12891,14 +12891,7 @@
 -- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qsimplecodec_p.h
 -- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qisciicodec_p.h
 -- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qtsciicodec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qbig5codec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qeucjpcodec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qeuckrcodec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qgb18030codec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qjiscodec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qjpunicode_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qsjiscodec_p.h
--- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qiconvcodec_p.h
+-- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/include/QtCore5Compat/6.6.1/QtCore5Compat/private/qicucodec_p.h
 -- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/mkspecs/modules/qt_lib_core5compat.pri
 -- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/mkspecs/modules/qt_lib_core5compat_private.pri
 -- Installing: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/lib/cmake/Qt6Qml/QmlPlugins/Qt6qtgraphicaleffectspluginConfig.cmake

@@ -21,8 +21,13 @@ class Main(QMainWindow):
             "/home/pyodide/examples",
             "All Files (*);; Python Files (*.py);; PNG Files (*.png)",
         )
-        # print(fname)
-        # exec(open(fname).read())
+        print ("Got filename: ", fname)
+
+        # NOTE (pradeep): Execute program
+        import PyQt6.QtWidgets
+        if (PyQt6.QtWidgets.QApplication.instance()):
+          PyQt6.QtWidgets.QApplication.instance().closeAllWindows()
+        exec(open(fname).read())
         
     
 #app = QApplication([])

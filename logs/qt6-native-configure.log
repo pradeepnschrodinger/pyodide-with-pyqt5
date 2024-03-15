@@ -1,7 +1,7 @@
 + mkdir -p qtbase
 + cd qtbase
-+ exec /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -feature-thread -prefix ../qt6-native-host -nomake examples -confirm-license
-'/home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-DINPUT_thread=yes' '-G' 'Ninja' '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6'
++ exec /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -prefix ../qt6-native-host -nomake examples -confirm-license
+'/home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-G' 'Ninja' '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6'
 -- The CXX compiler identification is GNU 11.4.0
 -- The C compiler identification is GNU 11.4.0
 -- The ASM compiler identification is GNU
@@ -73,14 +73,50 @@
             -DCMAKE_CXX_STANDARD_REQUIRED=ON
             -DCMAKE_MODULE_PATH:STRING=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/cmake/platforms
 -- Configuring submodule 'qtimageformats'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtlanguageserver'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtshadertools'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtsvg'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtdeclarative'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtquicktimeline'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtquick3d'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtmultimedia'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qt3d'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 CMake Warning (dev) at /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
   INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
   Please port your module to use declarative type registration.
@@ -131,6 +167,10 @@ Call Stack (most recent call first):
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- Configuring submodule 'qt5compat'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 CMake Warning (dev) at /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
   INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
   Please port your module to use declarative type registration.
@@ -141,11 +181,31 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Configuring submodule 'qtactiveqt'
 Condition "WIN32" is not met, enabling documentation build only.
 -- Configuring submodule 'qtcharts'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Found XKB: /usr/lib/x86_64-linux-gnu/libxkbcommon.so (found suitable version "1.4.0", minimum required is "0.5.0") 
 -- Configuring submodule 'qtcoap'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtconnectivity'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtdatavis3d'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtwebsockets'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 CMake Warning (dev) at /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6Qml/Qt6QmlBuildInternals.cmake:404 (message):
   INSTALL_SOURCE_QMLTYPES option is deprecated and should not be used.
   Please port your module to use declarative type registration.
@@ -154,13 +214,37 @@ Call Stack (most recent call first):
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- Configuring submodule 'qthttpserver'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qttools'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Could NOT find Clang (missing: Clang_DIR)
 -- Could NOT find Clang (missing: Clang_DIR)
 -- Configuring submodule 'qtserialport'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtpositioning'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtwebchannel'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtwebengine'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
 ModuleNotFoundError: No module named 'html5lib'
@@ -169,25 +253,101 @@ ModuleNotFoundError: No module named 'html5lib'
 [QtWebEngine] -- Support check for QtWebEngine failed: Static build is not supported.
 [QtWebEngine] -- Support check for QtPdf failed: Python3 html5lib is missing.
 -- Configuring submodule 'qtdoc'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtgraphs'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtgrpc'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtlocation'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtlottie'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtmqtt'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtnetworkauth'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtopcua'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtqa'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtquick3dphysics'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtquickeffectmaker'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 Nodes path: ./qml/QtQuickEffectMaker/defaultnodes
 -- Configuring submodule 'qtremoteobjects'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtscxml'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtsensors'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtserialbus'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtspeech'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qttranslations'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtvirtualkeyboard'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Configuring submodule 'qtwayland'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 CMake Warning at qtwayland/src/CMakeLists.txt:24 (message):
   QtWayland is missing required dependencies, nothing will be built.
   Although this could be considered an error, the configuration will still
@@ -197,6 +357,10 @@ CMake Warning at qtwayland/src/CMakeLists.txt:24 (message):
 
 
 -- Configuring submodule 'qtwebview'
+-- Found the following ICU libraries:
+--   i18n (required): /usr/lib/x86_64-linux-gnu/libicui18n.so
+--   uc (required): /usr/lib/x86_64-linux-gnu/libicuuc.so
+--   data (required): /usr/lib/x86_64-linux-gnu/libicudata.so
 -- Could NOT find Qt6WebEngineCore (missing: Qt6WebEngineCore_DIR)
 CMake Warning at /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build/qtbase/lib/cmake/Qt6/Qt6Config.cmake:213 (message):
   Failed to find optional Qt component "WebEngineCore".
@@ -281,7 +445,7 @@ Qt Core:
     Using system DoubleConversion ........ no
   CLONE_PIDFD support in forkfd .......... yes
   GLib ................................... no
-  ICU .................................... no
+  ICU .................................... yes
   Using system libb2 ..................... no
   Built-in copy of the MIME database ..... yes
   Application permissions ................ yes
@@ -488,7 +652,7 @@ Qt 3D Renderers:
 Qt3D Geometry Loaders:
   Autodesk FBX ........................... no
 Qt 5 Compatibility Libraries:
-  iconv .................................. yes
+  iconv .................................. no
 Qt Charts Types:
   Area Chart ............................. yes
   Line Chart ............................. yes
@@ -693,6 +857,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (104.4s)
--- Generating done (13.7s)
+-- Configuring done (54.5s)
+-- Generating done (7.2s)
 -- Build files have been written to: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build

@@ -1,3 +1,16 @@
+### WASM resources like fonts, window svg icons not set
+
+/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/plugins/platforms/wasm/CMakeLists.txt
+
+Can be worked around by preloading resources into pyodide.asm.js
+
+### Shared/dynamic library support
+
+Dynamic linking support is currently in developer preview. The implementation is suitable for prototyping and evaluation, but is not suitable for production use. Current limitations and restrictions include:
+
+
+https://doc.qt.io/qt-6/wasm.html#shared-libraries-and-dynamic-linking-developer-preview
+
 ### QFileDialog doesn't work
 
 It doesn't work cause it internally uses exec and QFileSystemModel, both of which starts threads.
@@ -11,7 +24,19 @@ It doesn't work cause it internally uses exec and QFileSystemModel, both of whic
     // const QUrl y(x);
     // return x;
 ```
-    
+
+I tried using a build of QT not configured with qthreads.
+This does open the dialog and I am able to play around it.
+Unfortunately control never goes back to the dialog.
+
+pyodide.asm.js:9 Warning: exec() is not supported on Qt for WebAssembly in this configuration. Please build with asyncify support, or use an asynchronous API like QDialog::open()
+pyodide.asm.js:9 Uncaught Please compile your program with async support in order to use asynchronous operations like emscripten_sleep
+
+https://forum.qt.io/topic/137030/trouble-using-asyncify/2
+
+The warning is thrown by /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/corelib/kernel/qeventdispatcher_wasm.cpp
+It looks like QT_STATIC isn't defined even though we're using a STATIC BUILD!
+
 ### Proper QT screen/window integration
 
 Take a look at QWasmIntegration::setContainerElements
@@ -46,7 +71,7 @@ This is likely from QT trying to support touch events.
 
 -----------------------------------
 
-### [FIXED] Font's not loading in static PyQt6
+### [WORKEDAROUND] Font's not loading in static PyQt6
 
 maybe the ttf font file is missing in the virtual file system?
 
@@ -56,7 +81,7 @@ https://stackoverflow.com/questions/7402576/get-current-working-directory-in-a-q
 
 https://forum.qt.io/topic/30008/solved-qt-font-search-path/5
 
-### [FIX]
+### [WORKAROUND]
 Recompile pyodide and preload fonts directory via:
 ```
   --preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
