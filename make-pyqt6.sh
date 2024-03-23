@@ -1,41 +1,40 @@
 ### CPYTHON
 # git clone https://github.com/python/cpython.git
 pushd cpython
-#git checkout v3.11.8
-git checkout v3.11.3
-./configure --prefix ./configure --prefix /home/pradeep/projects/cpython/pradeep/3.11.3
-make
-make install
+    #git checkout v3.11.8
+    git checkout v3.11.3
+    ./configure --prefix $(realpath -m ./host/3.11.3)
+    make
+    make install
 popd
 
 ### PYTHON VENV
-./cpython/pradeep/3.11.3/bin/python3.11 -m venv .venv-native
-python3.11 -m venv .venv-native
+./cpython/host/3.11.3/bin/python3.11 -m venv .venv-native
 source .venv-native/bin/activate
 pip install pyyaml
 
 ### PYODIDE
 # git clone https://github.com/iodide-project/pyodide.git
-cd pyodide
-# git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
-git checkout 0fe04cd97d9c808a9d77335a630faf371f7ec200
-pip install -r requirements.txt --no-cache-dir
-# fix an issue related to pyndatic (see: https://stackoverflow.com/a/76958769)
-pip install pydantic==1.10.9 --no-cache-dir
+push pyodide
+    # git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
+    git checkout 0fe04cd97d9c808a9d77335a630faf371f7ec200
+    pip install -r requirements.txt --no-cache-dir
+    # fix an issue related to pyndatic (see: https://stackoverflow.com/a/76958769)
+    pip install pydantic==1.10.9 --no-cache-dir
 
-# apply patch for emsdk to fetch tags and checkout the 3.1.37 version of emsdk which Qt6 needs
-# TODO (pradeep): Turn these into real patches
-cp ../temp/pyodide__emsdk__Makefile emsdk/Makefile 
-cp ../temp/pyodide__Makefile.envs Makefile.envs
+    # apply patch for emsdk to fetch tags and checkout the 3.1.37 version of emsdk which Qt6 needs
+    # TODO (pradeep): Turn these into real patches
+    git apply ../patches/pyodide-emsdk-old-checkout.patch
 
-# apply patches for pyodide's cpython for wasm pthread support
-# TODO (pradeep): Turn these into real patches
-cp ../temp/pyodide__cpython__Makefile cpython/Makefile 
+    # apply patches for pyodide's cpython for wasm pthread support
+    # TODO (pradeep): Turn these into real patches
+    cp ../temp/pyodide__cpython__Makefile cpython/Makefile 
 
-# build setuptools and other core libraries
-PYODIDE_PACKAGES="toolz,attrs,core" make &> ../logs/pyodide-make.log
+    # build setuptools and other core libraries
+    PYODIDE_PACKAGES="toolz,attrs,core" make &> ../logs/pyodide-make.log
 
-source ./emsdk/emsdk/emsdk_env.sh
+    source ./emsdk/emsdk/emsdk_env.sh
+popd
 
 ### QT6
 # git clone git://code.qt.io/qt/qt5.git qt6
