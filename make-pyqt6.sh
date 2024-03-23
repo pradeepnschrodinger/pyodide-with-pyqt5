@@ -1,58 +1,21 @@
-# TODO (pradeep): Compile qt with multi processing disabled
-# https://doc.qt.io/QtApplicationManager/singlevsmultiprocess.html#build-and-runtime-options
-
-# TODO (pradeep): multiprocessing isn't functional in pyodide, but can still be imported
-# try building it in pyodide -- https://pyodide.org/en/stable/usage/wasm-constraints.html#included-but-not-working-modules -- to see if pyqt compilation works
-
-###### PREREQUISITES
-
-### Dev dependencies
-sudo apt-get install -y autoconf
-sudo apt-get install -y libtool
-sudo apt-get install -y libgl1-mesa-dev
-sudo apt-get install -y libglu1-mesa-dev
-sudo apt install -y libfontconfig1-dev libfreetype6-dev libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev libxcb-cursor-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
-
-# TODO (pradeep): Do we need this for unicode support?
-sudo apt-get install -y libicu-dev
-
-# pyodide
-# rustup has a prompt - specify 1 (for default installation)
-# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# sudo apt-get install -y swig3.0
-sudo apt install -y sqlite3
-sudo apt install -y f2c
-
-### NINJA (alternate to cmake that Qt uses)
-sudo apt-get install -y ninja-build
-# put ninja to bin
-
-### NVM
-# https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-# reload bashrc
-nvm install v18.5.0
-nvm use v18.5.0
-
 ### CPYTHON
-cd <cpython-root>
+# git clone https://github.com/python/cpython.git
+pushd cpython
 #git checkout v3.11.8
 git checkout v3.11.3
 ./configure --prefix ./configure --prefix /home/pradeep/projects/cpython/pradeep/3.11.3
 make
 make install
+popd
 
 ### PYTHON VENV
-# /home/pradeep/projects/cpython/pradeep/3.11.3/bin/python3.11 -m venv .venv-native
+./cpython/pradeep/3.11.3/bin/python3.11 -m venv .venv-native
 python3.11 -m venv .venv-native
 source .venv-native/bin/activate
 pip install pyyaml
 
-
-###### MAKE.SH
-
 ### PYODIDE
-git clone https://github.com/iodide-project/pyodide.git
+# git clone https://github.com/iodide-project/pyodide.git
 cd pyodide
 # git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
 git checkout 0fe04cd97d9c808a9d77335a630faf371f7ec200
@@ -75,7 +38,7 @@ PYODIDE_PACKAGES="toolz,attrs,core" make &> ../logs/pyodide-make.log
 source ./emsdk/emsdk/emsdk_env.sh
 
 ### QT6
-git clone git://code.qt.io/qt/qt5.git qt6
+# git clone git://code.qt.io/qt/qt5.git qt6
 # git clone https://code.qt.io/qt/qt5.git qt6
 cd qt6
 git switch 6.6.1

@@ -1,3 +1,9 @@
+### multiprocessing isn't functional in pyodide
+This causes setup.py to not work for python running in a pyodide venv.
+`multiprocessing` can still be imported in pyodide though.
+
+Try building it in pyodide -- https://pyodide.org/en/stable/usage/wasm-constraints.html#included-but-not-working-modules
+
 ### WASM resources like fonts, window svg icons not set
 
 /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/plugins/platforms/wasm/CMakeLists.txt
