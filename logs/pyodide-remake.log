@@ -1,51 +1,57 @@
 ./tools/dependency-check.sh
-emcc -o src/core/main.o -c src/core/main.c -O2 -g0 -fPIC  -Wall -Wno-warn-absolute-paths -Werror=unused-variable -Werror=sometimes-uninitialized -Werror=int-conversion -Werror=incompatible-pointer-types -Werror=unused-result -I/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/include/python3.11 -s EXCEPTION_CATCHING_ALLOWED=['we only want to allow exception handling in side modules'] -Isrc/core/
 # TODO(ryanking13): Link this to a side module not to the main module.
 # For unknown reason, a side module cannot see symbols when libGL is linked to it.
 embuilder build libgl
 embuilder:INFO: building libGL
 embuilder:INFO: ...success. Took (0.00s)
 date +"[%F %T] Building pyodide.asm.js..."
-[2024-03-12 18:17:01] Building pyodide.asm.js...
+[2024-03-24 18:18:18] Building pyodide.asm.js...
 [ -d dist ] || mkdir dist
 em++ -o dist/pyodide.asm.js dist/libpyodide.a \
 src/core/main.o -O2 -g0  -s MODULARIZE=1 -s LZ4=1 -L /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/ -s WASM_BIGINT  -s MAIN_MODULE=1 -s EXPORT_NAME="'_createPyodideModule'" -s EXPORT_EXCEPTION_HANDLING_HELPERS -s EXCEPTION_CATCHING_ALLOWED=['we only want to allow exception handling in side modules'] -sEXPORTED_RUNTIME_METHODS='stackAlloc,stackRestore,stackSave' -s DEMANGLE_SUPPORT=1 -s USE_ZLIB -s USE_BZIP2 -s FORCE_FILESYSTEM=1 -s TOTAL_MEMORY=20971520 -s ALLOW_MEMORY_GROWTH=1 -s EXPORT_ALL=1 -s POLYFILL -s MIN_SAFARI_VERSION=140000 -s STACK_SIZE=5MB -s AUTO_JS_LIBRARIES=0 -s AUTO_NATIVE_LIBRARIES=0 -s NODEJS_CATCH_EXIT=0 -s NODEJS_CATCH_REJECTION=0 -lpython3.11 -lffi -lstdc++ -lidbfs.js -lnodefs.js -lproxyfs.js -lworkerfs.js -lwebsocket.js -leventloop.js -lGL -legl.js -lwebgl.js -lhtml5_webgl.js -sGL_WORKAROUND_SAFARI_GETCONTEXT_BUG=0 \
 -sUSE_WEBGL2=1 -sFULL_ES2=1 \
 -sERROR_ON_UNDEFINED_SYMBOLS=0 \
--pthread \
 -lembind \
 -lidbfs.js \
 -lidbstore.js \
 -lasync.js \
-/home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6_sip-13.6.0/libsip.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Widgets_resources_1/.rcc/qrc_qstyle.cpp.o \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Widgets_resources_2/.rcc/qrc_qstyle1.cpp.o \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Gui_resources_1/.rcc/qrc_qpdf.cpp.o \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Gui_resources_2/.rcc/qrc_gui_shaders.cpp.o \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/objects-Release/Widgets_resources_3/.rcc/qrc_qmessagebox.cpp.o \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledPcre2.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledHarfbuzz.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6Core.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/libQtCore.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledFreetype.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6BundledLibpng.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6Gui.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/libQtGui.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/lib/libQt6Widgets.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/libQtWidgets.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqwasm.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqoffscreen.a \
-/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/plugins/platforms/libqminimal.a \
---preload-file /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
+../PyQt6_sip-13.6.0/libsip.a \
+../qt6-wasm-host/lib/objects-Release/Widgets_resources_1/.rcc/qrc_qstyle.cpp.o \
+../qt6-wasm-host/lib/objects-Release/Widgets_resources_2/.rcc/qrc_qstyle1.cpp.o \
+../qt6-wasm-host/lib/objects-Release/Gui_resources_1/.rcc/qrc_qpdf.cpp.o \
+../qt6-wasm-host/lib/objects-Release/Gui_resources_2/.rcc/qrc_gui_shaders.cpp.o \
+../qt6-wasm-host/lib/objects-Release/Widgets_resources_3/.rcc/qrc_qmessagebox.cpp.o \
+../qt6-wasm-host/lib/libQt6BundledPcre2.a \
+../qt6-wasm-host/lib/libQt6BundledHarfbuzz.a \
+../qt6-wasm-host/lib/libQt6Core.a \
+../pyqt6-wasm-build/QtCore/libQtCore.a \
+../qt6-wasm-host/lib/libQt6BundledFreetype.a \
+../qt6-wasm-host/lib/libQt6BundledLibpng.a \
+../qt6-wasm-host/lib/libQt6Gui.a \
+../pyqt6-wasm-build/QtGui/libQtGui.a \
+../qt6-wasm-host/lib/libQt6Widgets.a \
+../pyqt6-wasm-build/QtWidgets/libQtWidgets.a \
+../qt6-wasm-host/plugins/platforms/libqwasm.a \
+../qt6-wasm-host/plugins/platforms/libqoffscreen.a \
+../qt6-wasm-host/plugins/platforms/libqminimal.a \
+../pyqt6-wasm-build/QtSvg/libQtSvg.a \
+../qt6-wasm-host/lib/libQt6Svg.a \
+../pyqt6-wasm-build/QtPrintSupport/libQtPrintSupport.a \
+../qt6-wasm-host/lib/libQt6PrintSupport.a \
+../qt6-wasm-host/lib/objects-Release/PrintSupport_resources_1/.rcc/qrc_qprintdialog.cpp.o \
+../qt6-wasm-host/lib/objects-Release/PrintSupport_resources_2/.rcc/qrc_qprintdialog1.cpp.o \
+--preload-file ../qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
+--preload-file ../qt6/qtbase/src/plugins/platforms/wasm/resources@/usr/lib/icons \
+--preload-file ../examples@/home/pyodide/examples \
 
-em++: warning: -sMAIN_MODULE + pthreads is experimental [-Wexperimental]
-em++: warning: -pthread + ALLOW_MEMORY_GROWTH may run non-wasm code slowly, see https://github.com/WebAssembly/design/issues/1271 [-Wpthreads-mem-growth]
 em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with WASM_BIGINT (150000 or above required) [-Wcompatibility]
-em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with pthreads (140100 or above required) [-Wcompatibility]
-em++: warning: MIN_SAFARI_VERSION=140000 is not compatible with pthreads (150000 or above required) [-Wcompatibility]
-compressing package of size 1258729
-compressed package into 981586
-compressed in 37 ms
+compressing package of size 1095668
+compressed package into 832745
+compressed in 32 ms
+warning: undefined symbol: _ZN7QThread11setPriorityENS_8PriorityE (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: _ZN7QThread21setTerminationEnabledEb (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: _ZNK7QThread8priorityEv (referenced by top-level compiled C/C++ code)
+warning: undefined symbol: _ZNK7QThread9loopLevelEv (referenced by top-level compiled C/C++ code)
 warning: undefined symbol: ppoll (referenced by top-level compiled C/C++ code)
 em++: warning: warnings in JS library compilation [-Wjs-compiler]
 if [[ -n ${PYODIDE_SOURCEMAP+x} ]] || [[ -n ${PYODIDE_SYMBOLS+x} ]] || [[ -n ${PYODIDE_DEBUG_JS+x} ]]; then \
@@ -60,7 +66,7 @@ sed -i '1i "use strict";' dist/pyodide.asm.js
 sed -i -n -e :a -e '1,6!{P;N;D;};N;ba' dist/pyodide.asm.js
 echo "globalThis._createPyodideModule = _createPyodideModule;" >> dist/pyodide.asm.js
 date +"[%F %T] done building pyodide.asm.js."
-[2024-03-12 18:17:45] done building pyodide.asm.js.
+[2024-03-24 18:19:38] done building pyodide.asm.js.
 cp src/templates/console.html dist/console.html
 sed -i -e 's#{{ PYODIDE_BASE_URL }}#./#g' dist/console.html
 /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/bin/python3.11 -m pip install -e ./pyodide-build
@@ -78,30 +84,31 @@ Obtaining file:///home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/pyodide-b
 Requirement already satisfied: pyyaml in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (6.0.1)
 Requirement already satisfied: cython<3.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.29.37)
 Requirement already satisfied: ruamel.yaml in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.18.6)
-Requirement already satisfied: packaging in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (23.2)
-Requirement already satisfied: wheel in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.42.0)
+Requirement already satisfied: packaging in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (24.0)
+Requirement already satisfied: wheel in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.43.0)
 Requirement already satisfied: tomli in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (2.0.1)
 Requirement already satisfied: build==0.7.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.7.0)
 Requirement already satisfied: virtualenv in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (20.25.1)
 Requirement already satisfied: pydantic>=1.10.2 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (1.10.9)
 Requirement already satisfied: pyodide-cli~=0.2.1 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.2.3)
-Requirement already satisfied: cmake>=3.24 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (3.28.3)
-Requirement already satisfied: unearth~=0.6 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.14.0)
+Requirement already satisfied: cmake>=3.24 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (3.28.4)
+Requirement already satisfied: unearth~=0.6 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.15.0)
 Requirement already satisfied: requests in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (2.31.0)
-Requirement already satisfied: types-requests in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (2.31.0.20240218)
+Requirement already satisfied: types-requests in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (2.31.0.20240311)
 Requirement already satisfied: typer in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.9.0)
 Requirement already satisfied: auditwheel-emscripten~=0.0.9 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (0.0.14)
 Requirement already satisfied: resolvelib in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (1.0.1)
 Requirement already satisfied: rich in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (13.7.1)
 Requirement already satisfied: loky in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pyodide-build==0.24.0.dev0) (3.4.1)
 Requirement already satisfied: pep517>=0.9.1 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from build==0.7.0->pyodide-build==0.24.0.dev0) (0.13.1)
-Requirement already satisfied: leb128 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from auditwheel-emscripten~=0.0.9->pyodide-build==0.24.0.dev0) (1.0.6)
+Requirement already satisfied: leb128 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from auditwheel-emscripten~=0.0.9->pyodide-build==0.24.0.dev0) (1.0.7)
 Requirement already satisfied: typing-extensions>=4.2.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from pydantic>=1.10.2->pyodide-build==0.24.0.dev0) (4.10.0)
+Requirement already satisfied: httpx<1,>=0.27.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from unearth~=0.6->pyodide-build==0.24.0.dev0) (0.27.0)
+Requirement already satisfied: cloudpickle in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from loky->pyodide-build==0.24.0.dev0) (3.0.0)
 Requirement already satisfied: charset-normalizer<4,>=2 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from requests->pyodide-build==0.24.0.dev0) (3.3.2)
 Requirement already satisfied: idna<4,>=2.5 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from requests->pyodide-build==0.24.0.dev0) (3.6)
 Requirement already satisfied: urllib3<3,>=1.21.1 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from requests->pyodide-build==0.24.0.dev0) (2.2.1)
 Requirement already satisfied: certifi>=2017.4.17 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from requests->pyodide-build==0.24.0.dev0) (2024.2.2)
-Requirement already satisfied: cloudpickle in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from loky->pyodide-build==0.24.0.dev0) (3.0.0)
 Requirement already satisfied: markdown-it-py>=2.2.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from rich->pyodide-build==0.24.0.dev0) (3.0.0)
 Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from rich->pyodide-build==0.24.0.dev0) (2.17.2)
 Requirement already satisfied: ruamel.yaml.clib>=0.2.7 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from ruamel.yaml->pyodide-build==0.24.0.dev0) (0.2.8)
@@ -109,14 +116,18 @@ Requirement already satisfied: click<9.0.0,>=7.1.1 in /home/niranjanpba/projects
 Requirement already satisfied: distlib<1,>=0.3.7 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from virtualenv->pyodide-build==0.24.0.dev0) (0.3.8)
 Requirement already satisfied: filelock<4,>=3.12.2 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from virtualenv->pyodide-build==0.24.0.dev0) (3.13.1)
 Requirement already satisfied: platformdirs<5,>=3.9.1 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from virtualenv->pyodide-build==0.24.0.dev0) (4.2.0)
+Requirement already satisfied: anyio in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from httpx<1,>=0.27.0->unearth~=0.6->pyodide-build==0.24.0.dev0) (4.3.0)
+Requirement already satisfied: httpcore==1.* in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from httpx<1,>=0.27.0->unearth~=0.6->pyodide-build==0.24.0.dev0) (1.0.4)
+Requirement already satisfied: sniffio in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from httpx<1,>=0.27.0->unearth~=0.6->pyodide-build==0.24.0.dev0) (1.3.1)
+Requirement already satisfied: h11<0.15,>=0.13 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from httpcore==1.*->httpx<1,>=0.27.0->unearth~=0.6->pyodide-build==0.24.0.dev0) (0.14.0)
 Requirement already satisfied: mdurl~=0.1 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich->pyodide-build==0.24.0.dev0) (0.1.2)
 Requirement already satisfied: colorama<0.5.0,>=0.4.3 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from typer->pyodide-build==0.24.0.dev0) (0.4.6)
 Requirement already satisfied: shellingham<2.0.0,>=1.3.0 in /home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages (from typer->pyodide-build==0.24.0.dev0) (1.5.4)
 Building wheels for collected packages: pyodide-build
   Building editable for pyodide-build (pyproject.toml): started
   Building editable for pyodide-build (pyproject.toml): finished with status 'done'
-  Created wheel for pyodide-build: filename=pyodide_build-0.24.0.dev0-0.editable-py3-none-any.whl size=7834 sha256=e2f8dc676c0dff55a4fc085ad1236ee03e0f4aabd3014e2d053d6b1682b21a76
-  Stored in directory: /tmp/pip-ephem-wheel-cache-qx0joz_m/wheels/63/39/55/a6559fe3bb1c11a67674e79704e7364a6632606b4c96143a44
+  Created wheel for pyodide-build: filename=pyodide_build-0.24.0.dev0-0.editable-py3-none-any.whl size=7834 sha256=895d0e7ecaad1ed4f4a7fdbfc98bf470ee7a3484cab1a95cae50626e4edf9fae
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mif80wcy/wheels/63/39/55/a6559fe3bb1c11a67674e79704e7364a6632606b4c96143a44
 Successfully built pyodide-build
 Installing collected packages: pyodide-build
   Attempting uninstall: pyodide-build
@@ -130,7 +141,7 @@ Successfully installed pyodide-build-0.24.0.dev0
 which pyodide-build >/dev/null
 which pyodide >/dev/null
 date +"[%F %T] Building packages..."
-[2024-03-12 18:17:51] Building packages...
+[2024-03-24 18:19:44] Building packages...
 make -C packages
 make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages'
 mkdir -p /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages/.artifacts /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages/.libs
@@ -142,14 +153,14 @@ PYODIDE_ROOT=/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide pyodide build
 --n-jobs ${PYODIDE_JOBS:-4} \
 --log-dir=./build-logs \
 --compression-level "6"
-The following packages are already built: distutils, hashlib, liblzma, lzma, micropip, openssl, packaging, pydecimal, pydoc_data, sqlite3, ssl, and test            
-All packages already built. Quitting.                                                                                                                               
-Copying build logs to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages/build-logs                                                                     
-Copying built packages to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist                                                                                
-Writing repodata.json to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist/repodata.json                                                                   
+The following packages are already built: distutils, hashlib, liblzma, lzma, micropip, openssl, packaging, pydecimal, pydoc_data, sqlite3, ssl, and test           
+All packages already built. Quitting.                                                                                                                              
+Copying build logs to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages/build-logs                                                                    
+Copying built packages to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist                                                                               
+Writing repodata.json to /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist/repodata.json                                                                  
 make[1]: Leaving directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/packages'
 date +"[%F %T] done building packages..."
-[2024-03-12 18:17:54] done building packages...
+[2024-03-24 18:19:47] done building packages...
 pyodide create-zipfile /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/cpython/installs/python-3.11.3/lib/python3.11 src/py --compression-level "6" --output dist/python_stdlib.zip
 Zip file created at /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/dist/python_stdlib.zip
 cp src/templates/webworker.js dist/webworker.js

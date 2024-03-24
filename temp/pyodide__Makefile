@@ -121,6 +121,12 @@ dist/pyodide.asm.js: \
 	../qt6-wasm-host/plugins/platforms/libqwasm.a \
 	../qt6-wasm-host/plugins/platforms/libqoffscreen.a \
 	../qt6-wasm-host/plugins/platforms/libqminimal.a \
+	../pyqt6-wasm-build/QtSvg/libQtSvg.a \
+	../qt6-wasm-host/lib/libQt6Svg.a \
+	../pyqt6-wasm-build/QtPrintSupport/libQtPrintSupport.a \
+	../qt6-wasm-host/lib/libQt6PrintSupport.a \
+	../qt6-wasm-host/lib/objects-Release/PrintSupport_resources_1/.rcc/qrc_qprintdialog.cpp.o \
+	../qt6-wasm-host/lib/objects-Release/PrintSupport_resources_2/.rcc/qrc_qprintdialog1.cpp.o \
 	--preload-file ../qt6/qtbase/src/3rdparty/wasm@/usr/lib/fonts \
 	--preload-file ../qt6/qtbase/src/plugins/platforms/wasm/resources@/usr/lib/icons \
 	--preload-file ../examples@/home/pyodide/examples \

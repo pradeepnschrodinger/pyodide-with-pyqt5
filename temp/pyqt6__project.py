@@ -46,9 +46,9 @@ class PyQt(PyQtProject):
 
         # Each set of bindings must appear after any set they depend on.
         # QtLocation is still to be ported to Qt6.
-        # NOTE (pradeep): Only build QtCore, QtGui, and QtWidgets
+        # NOTE (pradeep): Only build bindings for QtCore, QtGui, QtWidgets, QtSvg, QtPrintSupport
         # TODO (pradeep): This should be confiurable through project.toml
-        self.bindings_factories = [QtCore, QtGui, QtWidgets]
+        self.bindings_factories = [QtCore, QtGui, QtWidgets, QtSvg, QtPrintSupport]
         # self.bindings_factories = [QtCore, QtNetwork, QtGui, QtQml, QtWidgets,
         #         QtDBus, QtDesigner, QtHelp, QtOpenGL, QtOpenGLWidgets,
         #         QtPrintSupport, QtQuick, QtQuick3D, QtQuickWidgets, QtSql,

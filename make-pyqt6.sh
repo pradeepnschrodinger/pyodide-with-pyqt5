@@ -39,48 +39,56 @@ popd
 ### QT6
 # git clone git://code.qt.io/qt/qt5.git qt6
 # git clone https://code.qt.io/qt/qt5.git qt6
-cd qt6
-git switch 6.6.1
-# needs to be timed
-perl init-repository
+push qt6
+    git switch 6.6.1
+    # needs to be timed
+    perl init-repository
 
-# apply patches in qtbase to configure timzeone, semaphore, and thread features to always be enabled
-push qtbase
-    cp ../../temp/qt6__qtbase__src__corelib__configure.cmake src/corelib/configure.cmake
-    cp ../../temp/qt6__qtbase__src__plugins__platforms__CMakeLists.txt src/plugins/platforms/CMakeLists.txt 
-    cp ../../temp/qt6__qtbase__src__plugins__platforms__minimal__CMakeLists.txt src/plugins/platforms/minimal/CMakeLists.txt
-    cp ../../temp/qt6__qtbase__src__plugins__platforms__offscreen__CMakeLists.txt src/plugins/platforms/offscreen/CMakeLists.txt 
+    # apply patches in qtbase to configure timzeone, semaphore, and thread features to always be enabled
+    push qtbase
+        # TODO (pradeep): Do we need to patch cmake/QtInternalTargets.cmake ?
 
-    # optional patch to supress pointer event warnings for touch events
-    # TODO (pradeep): Fix this or configure to not use touch events
-     cp ../../temp/qt6__qtbase__src__gui_kernel_guiapplication.cpp src/gui/kernel/qguiapplication.cpp
+        # patch to enable most features for WASM build
+        git apply ../../patches/qt6-wasm-enable-features.patch
 
-    # apply patch to use correct icons for FileDialog for wasm
-    # qt6/qtbase/src/plugins/platforms/wasm/qwasmbase64iconstore.cpp
-    cp ../../temp/qt6__qtbase__src__plugins__platforms__wasm__qwasmbase64iconstore.cpp src/plugins/platforms/wasm/qwasmbase64iconstore.cpp
+        # patch to enable "minimal" and "offscreen" plugins for WASM build
+        git apply ../../patches/qt6-wasm-enable-plugins.patch
+
+        # patch to supress pointer event warnings for touch events
+        # TODO (pradeep): Fix this or configure to not use touch events
+        git apply ../../patches/qt6-disable-touch-events.patch
+
+        # apply patch to fix icon paths for FileDialog for wasm
+        # TODO (pradeep): Figure out why this was broken in the first place
+        git apply ../../patches/qt6-wasm-fix-window-svgs.patch
+    popd
 popd
 
+# only configure required modules by skipping everything else
+QT_MODULES_SKIP_FLAGS=$(./qt6_module_skip_flags.sh "qtbase qtsvg")
+
 ## setup qt6 for native platform
-mkdir qt6-native-build
-cd qt6-native-build
-
-../qt6/configure -static -prefix ../qt6-native-host -nomake examples -confirm-license &> ../logs/qt6-native-configure.log
-
-## build qt6 for native platform
-cmake --build . --parallel &> ../logs/qt6-native-build.log
-cmake --install . &> ../logs/qt6-native-install.log
-
+mkdir -p qt6-native-build
+pushd qt6-native-build
+    # configure qt6 for native platform
+    ../qt6/configure -static $QT_MODULES_SKIP_FLAGS -prefix ../qt6-native-host -nomake examples -confirm-license &> ../logs/qt6-native-configure.log
+    
+    # build qt6 for native platform
+    cmake --build . --parallel &> ../logs/qt6-native-build.log
+    cmake --install . &> ../logs/qt6-native-install.log
+popd
 
 ## setup qt6 for wasm platform
 # https://doc.qt.io/qt-6/wasm.html#wasm-building-qt-from-source
 mkdir qt6-wasm-build
-cd qt6-wasm-build
+pushd qt6-wasm-build
+    # configure qt6 for wasm platform
+    ../qt6/configure -static $QT_MODULES_SKIP_FLAGS -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $(realpath ../qt6-wasm-host) &> ../logs/qt6-wasm-configure.log
 
-../qt6/configure -static -qt-host-path $(realpath ../qt6-native-host) -platform wasm-emscripten -prefix $(realpath ../qt6-wasm-host) &> ../logs/qt6-wasm-configure.log
-
-## build qt6 for wasm platform
-cmake --build . --parallel -v &> ../logs/qt6-wasm-build.log
-cmake --install . &> ../logs/qt6-wasm-install.log
+    # build qt6 for wasm platform
+    cmake --build . --parallel -v &> ../logs/qt6-wasm-build.log
+    cmake --install . &> ../logs/qt6-wasm-install.log
+popd
 
 ### SIP
 ## Create pyodide environment
@@ -104,86 +112,99 @@ pip install dist/sip-6.8.3-py3-none-any.whl
 ### PyQt6-SIP
 # extract pyqt6sip from https://pypi.org/project/PyQt6-sip/#files
 tar -xf sources/PyQt6_sip-13.6.0.tar.gz
-cd PyQt6_sip-13.6.0
+pushd PyQt6_sip-13.6.0
 
-# (wasm build with emcc outputing .lib)
-rm -rf libsip.a build_objects
-mkdir -p build_objects
+    rm -rf libsip.a build_objects
+    mkdir -p build_objects
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build_objects/sip_array.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_array.c -o build_objects/sip_array.o
 
-# looks like sip_bool.cpp is only required on windows
-# emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build_objects/sip_bool.o
+    # looks like sip_bool.cpp is only required on windows
+    # emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_bool.cpp -o build_objects/sip_bool.o
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build_objects/sip_core.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_core.c -o build_objects/sip_core.o
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_descriptors.c -o build_objects/sip_descriptors.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_descriptors.c -o build_objects/sip_descriptors.o
 
-emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_enum.c -o build_objects/sip_enum.o
+    emcc -pthread -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_enum.c -o build_objects/sip_enum.o
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_int_convertors.c -o build_objects/sip_int_convertors.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_int_convertors.c -o build_objects/sip_int_convertors.o
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_object_map.c -o build_objects/sip_object_map.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_object_map.c -o build_objects/sip_object_map.o
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_threads.c -o build_objects/sip_threads.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_threads.c -o build_objects/sip_threads.o
 
-emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_voidptr.c -o build_objects/sip_voidptr.o
+    emcc -fPIC -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall  -I../pyodide/cpython/build/Python-3.11.3 -I../pyodide/cpython/build/Python-3.11.3/Include -c sip_voidptr.c -o build_objects/sip_voidptr.o
 
-emar cqs libsip.a build_objects/*.o
-
+    # bundle all the object files into a static library
+    emar cqs libsip.a build_objects/*.o
+popd
 
 ### PyQt6
 # extract pyqt6 from https://pypi.org/project/PyQt6/#files
-tar -xf sources/PyQt6-6.6.1.tar.gz
-cd PyQt6-6.6.1
+    tar -xf sources/PyQt6-6.6.1.tar.gz
+    pushd PyQt6-6.6.1
 
-# install PyQt tools (eg: sip-build)
-pip install --no-cache-dir PyQt-builder
+    # install PyQt tools (eg: sip-build)
+    pip install --no-cache-dir PyQt-builder
 
-# patches for project.py so that we only build QtCore, QtWidgets, QtGui
-# the rest aren't required, and they either cause build errors or takes a long time to complete
-cp ../temp/pyqt6__project.py project.py
+    # patches for project.py so that we only build QtCore, QtWidgets, QtGui
+    # the rest aren't required, and they either cause build errors or takes a long time to complete
+    cp ../temp/pyqt6__project.py project.py
 
-# patches for pyqtbuild
-cp ../temp/pyqtbuild__bindings.py ../.venv-native/lib/python3.11/site-packages/pyqtbuild/bindings.py
+    # patches for pyqtbuild
+    cp ../temp/pyqtbuild__bindings.py ../.venv-native/lib/python3.11/site-packages/pyqtbuild/bindings.py
 
-# PyQt6 to not initialize qt.conf
-cp ../temp/PyQt6__qpy__QtCore__qpycore_post_init.cpp qpy/QtCore/qpycore_post_init.cpp
+    # PyQt6 to not initialize qt.conf
+    cp ../temp/PyQt6__qpy__QtCore__qpycore_post_init.cpp qpy/QtCore/qpycore_post_init.cpp
 
-# patch QtCoremmod.sip to remove "%Include qthreadpool.sip" and "%Include qsemaphore.sip" from QtCoremod.sip
-cp ../temp/pyqt6-wasm-build__QtCore__QtCoremod.sip sip/QtCore/QtCoremod.sip
+    # patch QtCoremmod.sip to remove "%Include qthreadpool.sip" and "%Include qsemaphore.sip" from QtCoremod.sip
+    cp ../temp/pyqt6-wasm-build__QtCore__QtCoremod.sip sip/QtCore/QtCoremod.sip
 
-# remove sipType_QThreadPool from qobject.sip:276:32
-cp ../temp/PyQt6__sip__QtCore__qobject.sip sip/QtCore/qobject.sip
+    # remove sipType_QThreadPool from qobject.sip:276:32
+    cp ../temp/PyQt6__sip__QtCore__qobject.sip sip/QtCore/qobject.sip
 
-# configure PyQt6 wasm build but without running make yet
-sip-build --no-make --qmake ../qt6-wasm-host/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
+    # configure PyQt6 wasm build but without running make yet
+    sip-build --no-make --qmake ../qt6-wasm-host/bin/qmake --confirm-license --build-dir $(realpath ../pyqt6-wasm-build) --target-dir $(realpath ../pyqt6-wasm-target) --verbose  &> ../logs/pyqt6-wasm-build.log
+popd
 
 ## Fix PyQt6 before building
-cd pyqt6-wasm-build
+push pyqt6-wasm-build
+    # patch pyqt6-wasm-build/QtWidgets/sipQtWidgetsQApplication.cpp to import static QT plugins
 
-# apply patch files
+    # patch pyqt6-wasm-build/QtCore/sipQtCoreQRecursiveMutex.cpp and pyqt6-wasm-build/QtCore/sipQtCoreQMutex.cpp to call sipCpp->tryLock() with zero timeout
+    # eg: sipRes = sipCpp->tryLock(*a0);
 
-# patch pyqt6-wasm-build/QtWidgets/sipQtWidgetsQApplication.cpp to import static QT plugins
+    # Add -fPIC to compiler flags
+    sed -i 's/CFLAGS[[:space:]]*=/& -fPIC/' ./QtCore/Makefile
+    sed -i 's/CFLAGS[[:space:]]*=/& -fPIC/' ./QtGui/Makefile
+    sed -i 's/CFLAGS[[:space:]]*=/& -fPIC/' ./QtWidgets/Makefile
+    sed -i 's/CFLAGS[[:space:]]*=/& -fPIC/' ./QtSvg/Makefile
+    sed -i 's/CFLAGS[[:space:]]*=/& -fPIC/' ./QtPrintSupport/Makefile
 
-# patch pyqt6-wasm-build/QtCore/sipQtCoreQRecursiveMutex.cpp and pyqt6-wasm-build/QtCore/sipQtCoreQMutex.cpp to call sipCpp->tryLock() with zero timeout
+    sed -i 's/CXXFLAGS[[:space:]]*=/& -fPIC/' ./QtCore/Makefile
+    sed -i 's/CXXFLAGS[[:space:]]*=/& -fPIC/' ./QtGui/Makefile
+    sed -i 's/CXXFLAGS[[:space:]]*=/& -fPIC/' ./QtWidgets/Makefile
+    sed -i 's/CXXFLAGS[[:space:]]*=/& -fPIC/' ./QtSvg/Makefile
+    sed -i 's/CXXFLAGS[[:space:]]*=/& -fPIC/' ./QtPrintSupport/Makefile
 
-# TODO (pradeep): Turn these into patch files
-# Add -fPIC to compiler flags and configure correct python include paths
-cp ../temp/pyqt6-wasm-build__QtCore__Makefile QtCore/Makefile
-cp ../temp/pyqt6-wasm-build__QtGui__Makefile QtGui/Makefile
-cp ../temp/pyqt6-wasm-build__QtWidgets__Makefile QtWidgets/Makefile
+    # configure correct python include paths
+    sed -i 's|-I../../cpython/host/3.11.3/include/python3.11|-I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include|' ./QtCore/Makefile
+    sed -i 's|-I../../cpython/host/3.11.3/include/python3.11|-I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include|' ./QtGui/Makefile
+    sed -i 's|-I../../cpython/host/3.11.3/include/python3.11|-I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include|' ./QtWidgets/Makefile
+    sed -i 's|-I../../cpython/host/3.11.3/include/python3.11|-I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include|' ./QtSvg/Makefile
+    sed -i 's|-I../../cpython/host/3.11.3/include/python3.11|-I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include|' ./QtPrintSupport/Makefile
 
-# Fix "const" compilation issues by removing const qualifer
-cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQReadLocker.cpp  QtCore/sipQtCoreQReadLocker.cpp
-cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp QtCore/sipQtCoreQWriteLocker.cpp 
+    # Fix "const" compilation issues by removing const qualifer
+    # eg: const ::QReadLocker *sipCpp;
+    # eg: const ::QWriteLocker *sipCpp;
+    cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQReadLocker.cpp  QtCore/sipQtCoreQReadLocker.cpp
+    cp ../temp/pyqt6-wasm-build__QtCore__sipQtCoreQWriteLocker.cpp QtCore/sipQtCoreQWriteLocker.cpp 
 
-# build PyQt6 for wasm
-make &> ../logs/pyqt6-wasm-make.log
-make install &> ../logs/pyqt6-wasm-install.log
-
-mkdir -p pyqt6-wasm-target
-cd pyqt6-wasm-target
+    # build PyQt6 for wasm
+    make &> ../logs/pyqt6-wasm-make.log
+    make install &> ../logs/pyqt6-wasm-install.log
+popd
 
 ### PYODIDE
 #rebuild pyodide and link to static SIP, Qt, PyQt libraries
@@ -192,7 +213,10 @@ pushd pyodide
     cp ../temp/pyodide__src__core__main.c src/core/main.c
     cp ../temp/pyodide__src__js__module.ts src/js/module.ts 
     cp ../temp/pyodide__src__templates__console.html  src/templates/console.html
-    cp src/../temp/pyodide__src__core__pyproxy.ts core/pyproxy.ts
+    cp ../temp/pyodide__src__core__pyproxy.ts src/core/pyproxy.ts
+    cp ../temp/pyodide__Makefile Makefile
+
+    make
 popd
 
 ### PACKAGING

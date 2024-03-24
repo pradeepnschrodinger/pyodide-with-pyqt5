@@ -1,3 +1,8 @@
+last command: 
+  make install &> ../logs/pyqt6-wasm-install.log
+next step:
+  recompile pyodide
+
 ### multiprocessing isn't functional in pyodide
 This causes setup.py to not work for python running in a pyodide venv.
 `multiprocessing` can still be imported in pyodide though.

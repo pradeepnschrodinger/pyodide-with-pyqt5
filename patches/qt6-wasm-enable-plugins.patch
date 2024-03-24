@@ -1,0 +1,144 @@
+diff --git a/src/plugins/platforms/CMakeLists.txt b/src/plugins/platforms/CMakeLists.txt
+index 69071a22c2..eba834defc 100644
+--- a/src/plugins/platforms/CMakeLists.txt
++++ b/src/plugins/platforms/CMakeLists.txt
+@@ -1,58 +1,58 @@
+ # Copyright (C) 2022 The Qt Company Ltd.
+ # SPDX-License-Identifier: BSD-3-Clause
+ 
+ if(ANDROID)
+     add_subdirectory(android)
+ endif()
+-if(NOT ANDROID AND NOT WASM)
++if(NOT ANDROID)
+     add_subdirectory(minimal)
+ endif()
+-if(QT_FEATURE_freetype AND NOT ANDROID AND NOT WASM)
++if(QT_FEATURE_freetype AND NOT ANDROID)
+     add_subdirectory(offscreen)
+ endif()
+ if(QT_FEATURE_xcb)
+     add_subdirectory(xcb)
+ endif()
+ if(UIKIT AND NOT WATCHOS)
+     add_subdirectory(ios)
+ endif()
+ if(MACOS)
+     add_subdirectory(cocoa)
+ endif()
+ if(WIN32)
+     add_subdirectory(windows)
+ endif()
+ if(QT_FEATURE_direct2d1_1 AND QT_FEATURE_directwrite)
+     add_subdirectory(direct2d)
+ endif()
+ if(QNX)
+     add_subdirectory(qnx)
+ endif()
+ if(QT_FEATURE_eglfs)
+     add_subdirectory(eglfs)
+     add_subdirectory(minimalegl)
+ endif()
+ if(QT_FEATURE_directfb)
+     add_subdirectory(directfb)
+ endif()
+ if(QT_FEATURE_linuxfb)
+     add_subdirectory(linuxfb)
+ endif()
+ if(QT_FEATURE_vnc AND TARGET Qt::Network)
+     add_subdirectory(vnc)
+ endif()
+ if(FREEBSD)
+     # add_subdirectory(bsdfb) # TODO: QTBUG-112768
+ endif()
+ if(HAIKU)
+     # add_subdirectory(haiku) # TODO: QTBUG-112768
+ endif()
+ if(WASM)
+      add_subdirectory(wasm)
+ endif()
+ if(QT_FEATURE_integrityfb)
+     # add_subdirectory(integrity) # TODO: QTBUG-112768
+ endif()
+ if(QT_FEATURE_vkkhrdisplay)
+     add_subdirectory(vkkhrdisplay)
+ endif()
+diff --git a/src/plugins/platforms/minimal/CMakeLists.txt b/src/plugins/platforms/minimal/CMakeLists.txt
+index f3683deccf..8e414d712c 100644
+--- a/src/plugins/platforms/minimal/CMakeLists.txt
++++ b/src/plugins/platforms/minimal/CMakeLists.txt
+@@ -1,33 +1,33 @@
+ # Copyright (C) 2022 The Qt Company Ltd.
+ # SPDX-License-Identifier: BSD-3-Clause
+ 
+ #####################################################################
+ ## QMinimalIntegrationPlugin Plugin:
+ #####################################################################
+ 
+ qt_find_package(WrapFreetype PROVIDED_TARGETS WrapFreetype::WrapFreetype)
+ 
+ qt_internal_add_plugin(QMinimalIntegrationPlugin
+     OUTPUT_NAME qminimal
+     PLUGIN_TYPE platforms
+-    DEFAULT_IF ${QT_QPA_DEFAULT_PLATFORM} MATCHES minimal
++    DEFAULT_IF ${QT_QPA_DEFAULT_PLATFORM} MATCHES wasm
+     SOURCES
+         main.cpp
+         qminimalbackingstore.cpp qminimalbackingstore.h
+         qminimalintegration.cpp qminimalintegration.h
+     DEFINES
+         QT_NO_FOREACH
+     LIBRARIES
+         Qt::Core
+         Qt::CorePrivate
+         Qt::Gui
+         Qt::GuiPrivate
+ )
+ 
+ ## Scopes:
+ #####################################################################
+ 
+ qt_internal_extend_target(QMinimalIntegrationPlugin CONDITION QT_FEATURE_freetype
+     LIBRARIES
+         WrapFreetype::WrapFreetype
+ )
+diff --git a/src/plugins/platforms/offscreen/CMakeLists.txt b/src/plugins/platforms/offscreen/CMakeLists.txt
+index 09ad9a384d..c72431486c 100644
+--- a/src/plugins/platforms/offscreen/CMakeLists.txt
++++ b/src/plugins/platforms/offscreen/CMakeLists.txt
+@@ -1,34 +1,34 @@
+ # Copyright (C) 2022 The Qt Company Ltd.
+ # SPDX-License-Identifier: BSD-3-Clause
+ 
+ #####################################################################
+ ## QOffscreenIntegrationPlugin Plugin:
+ #####################################################################
+ 
+ qt_internal_add_plugin(QOffscreenIntegrationPlugin
+     OUTPUT_NAME qoffscreen
+     PLUGIN_TYPE platforms
+-    DEFAULT_IF ${QT_QPA_DEFAULT_PLATFORM} MATCHES offscreen
++    DEFAULT_IF ${QT_QPA_DEFAULT_PLATFORM} MATCHES wasm
+     SOURCES
+         main.cpp
+         qoffscreencommon.cpp qoffscreencommon.h
+         qoffscreenintegration.cpp qoffscreenintegration.h
+         qoffscreenwindow.cpp qoffscreenwindow.h
+     DEFINES
+         QT_NO_FOREACH
+     LIBRARIES
+         Qt::Core
+         Qt::CorePrivate
+         Qt::Gui
+         Qt::GuiPrivate
+ )
+ 
+ ## Scopes:
+ #####################################################################
+ 
+ qt_internal_extend_target(QOffscreenIntegrationPlugin CONDITION QT_FEATURE_opengl AND QT_FEATURE_xlib AND NOT QT_FEATURE_opengles2
+     SOURCES
+         qoffscreenintegration_x11.cpp qoffscreenintegration_x11.h
+     LIBRARIES
+         X11::X11
+ )
