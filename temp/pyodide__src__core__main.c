@@ -10,6 +10,8 @@ extern PyObject *PyInit_Qt();
 extern PyObject *PyInit_QtCore();
 extern PyObject *PyInit_QtGui();
 extern PyObject *PyInit_QtWidgets();
+extern PyObject *PyInit_QtSvg();
+extern PyObject *PyInit_QtPrintSupport();
 
 void execLastQApp();  // Start QTs main loop
 
@@ -54,6 +56,8 @@ initialize_python(int argc, char** argv)
   PyImport_AppendInittab("PyQt6.QtCore", PyInit_QtCore);
   PyImport_AppendInittab("PyQt6.QtGui", PyInit_QtGui);
   PyImport_AppendInittab("PyQt6.QtWidgets", PyInit_QtWidgets);
+  PyImport_AppendInittab("PyQt6.QtSvg", PyInit_QtSvg);
+  PyImport_AppendInittab("PyQt6.QtPrintSupport", PyInit_QtPrintSupport);
   
   PyPreConfig preconfig;
   PyPreConfig_InitPythonConfig(&preconfig);
