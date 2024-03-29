@@ -16,22 +16,23 @@ pip install pyyaml
 ### PYODIDE
 # git clone https://github.com/iodide-project/pyodide.git
 push pyodide
-    # git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
-    git checkout 0fe04cd97d9c808a9d77335a630faf371f7ec200
+    git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
+    # git checkout 0fe04cd97d9c808a9d77335a630faf371f7ec200
     pip install -r requirements.txt --no-cache-dir
     # fix an issue related to pyndatic (see: https://stackoverflow.com/a/76958769)
     pip install pydantic==1.10.9 --no-cache-dir
 
     # apply patch for emsdk to fetch tags and checkout the 3.1.37 version of emsdk which Qt6 needs
     # TODO (pradeep): Turn these into real patches
-    git apply ../patches/pyodide-emsdk-old-checkout.patch
+    # git apply ../patches/pyodide-emsdk-old-checkout.patch
 
     # apply patches for pyodide's cpython for wasm pthread support
     # TODO (pradeep): Turn these into real patches
-    cp ../temp/pyodide__cpython__Makefile cpython/Makefile 
+    # cp ../temp/pyodide__cpython__Makefile cpython/Makefile
 
     # build setuptools and other core libraries
-    PYODIDE_PACKAGES="toolz,attrs,core" make &> ../logs/pyodide-make.log
+    # PYODIDE_PACKAGES="toolz,attrs,core" make &> ../logs/pyodide-make.log
+    PYODIDE_JOBS=1 PYODIDE_PACKAGES="toolz,attrs,core,numpy,scipy" make &> ../logs/pyodide-make-msv.log
 
     source ./emsdk/emsdk/emsdk_env.sh
 popd
@@ -90,25 +91,6 @@ pushd qt6-wasm-build
     cmake --install . &> ../logs/qt6-wasm-install.log
 popd
 
-### SIP
-## Create pyodide environment
-# install pyodide builder
-# pip install pyodide-build
-# TODO (pradeep): Why doesn't the local pyodide-build not work correctly when building packages?
-pip install -e pyodide/pyodide-build --no-cache-dir
-PYODIDE_ROOT=pyodide pyodide venv .venv-pyodide
-
-## Build SIP
-# extract sip from https://pypi.org/project/sip/#files
-tar -xf sources/sip-6.8.3.tar.gz
-cd sip-6.8.3
-
-# use pyodide itself to build and package SIP - https://pyodide.org/en/0.24.1/development/building-and-testing-packages.html#build-the-wasm-emscripten-wheel
-PYODIDE_ROOT=../pyodide pyodide build &> ../logs/sip-build.log
-# should putput Successfully built /home/pradeep/projects/pyodide-with-pyqt5/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl
-pip install dist/sip-6.8.3-py3-none-any.whl
-# we should then be able to load this in the browser by doing a micropip.install('http://localhost:8000/sip-6.8.3/dist/sip-6.8.3-py3-none-any.whl')
-
 ### PyQt6-SIP
 # extract pyqt6sip from https://pypi.org/project/PyQt6-sip/#files
 tar -xf sources/PyQt6_sip-13.6.0.tar.gz
@@ -142,8 +124,8 @@ popd
 
 ### PyQt6
 # extract pyqt6 from https://pypi.org/project/PyQt6/#files
-    tar -xf sources/PyQt6-6.6.1.tar.gz
-    pushd PyQt6-6.6.1
+tar -xf sources/PyQt6-6.6.1.tar.gz
+pushd PyQt6-6.6.1
 
     # install PyQt tools (eg: sip-build)
     pip install --no-cache-dir PyQt-builder
@@ -211,9 +193,16 @@ popd
 pushd pyodide
     # apply patches for pyodide
     cp ../temp/pyodide__src__core__main.c src/core/main.c
+
+    # TODO (patch needs recreation)
     cp ../temp/pyodide__src__js__module.ts src/js/module.ts 
+
     cp ../temp/pyodide__src__templates__console.html  src/templates/console.html
+    
+    # TODO (patch needs recreation)
     cp ../temp/pyodide__src__core__pyproxy.ts src/core/pyproxy.ts
+
+    # TODO (patch needs recreation)
     cp ../temp/pyodide__Makefile Makefile
 
     make

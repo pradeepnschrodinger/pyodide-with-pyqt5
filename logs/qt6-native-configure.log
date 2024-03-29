@@ -283,6 +283,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (16.3s)
--- Generating done (0.5s)
+-- Configuring done (21.8s)
+-- Generating done (0.6s)
 -- Build files have been written to: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build

@@ -2,8 +2,8 @@ cd QtCore/ && ( test -e Makefile || /home/niranjanpba/projects/pyodide-with-pyqt
 make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore'
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCorecmodule.o sipQtCorecmodule.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList0600stdpair0100QString0100QString.o sipQtCoreQList0600stdpair0100QString0100QString.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList0100QStorageInfo.o sipQtCoreQList0100QStorageInfo.cpp
@@ -93,13 +93,13 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList3800.o sipQtCoreQList3800.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList1600.o sipQtCoreQList1600.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qpycore_qlist.sip:1039:21: warning: variable 'i' set but not used [-Wunused-but-set-variable]
-    for (Py_ssize_t i = 0; ; ++i)
-                    ^
+ 1039 |     for (Py_ssize_t i = 0; ; ++i)
+      |                     ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList1900.o sipQtCoreQList1900.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qpycore_qlist.sip:938:21: warning: variable 'i' set but not used [-Wunused-but-set-variable]
-    for (Py_ssize_t i = 0; ; ++i)
-                    ^
+  938 |     for (Py_ssize_t i = 0; ; ++i)
+      |                     ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList1800.o sipQtCoreQList1800.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQList0600stdpair18001800.o sipQtCoreQList0600stdpair18001800.cpp
@@ -130,28 +130,28 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQUrl.o sipQtCoreQUrl.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQTransposeProxyModel.o sipQtCoreQTransposeProxyModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQTranslator.o sipQtCoreQTranslator.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQNativeIpcKey.o sipQtCoreQNativeIpcKey.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQTimeZoneOffsetData.o sipQtCoreQTimeZoneOffsetData.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQTimeZone.o sipQtCoreQTimeZone.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQTimeZone.cpp:152:30: warning: 'country' is deprecated: Use territory() instead [-Wdeprecated-declarations]
-            sipRes = sipCpp->country();
-                             ^
+  152 |             sipRes = sipCpp->country();
+      |                              ^
 ../../qt6-wasm-host/include/QtCore/qtimezone.h:169:5: note: 'country' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use territory() instead")
-    ^
+  169 |     QT_DEPRECATED_VERSION_X_6_6("Use territory() instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQTimer.o sipQtCoreQTimer.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQTimeLine.o sipQtCoreQTimeLine.cpp
@@ -165,8 +165,8 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQSysInfo.o sipQtCoreQSysInfo.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQStringListModel.o sipQtCoreQStringListModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQStringDecoder.o sipQtCoreQStringDecoder.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQStringEncoder.o sipQtCoreQStringEncoder.cpp
@@ -176,8 +176,8 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQStandardPaths.o sipQtCoreQStandardPaths.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQSortFilterProxyModel.o sipQtCoreQSortFilterProxyModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQSocketNotifier.o sipQtCoreQSocketNotifier.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQSizeF.o sipQtCoreQSizeF.cpp
@@ -241,80 +241,80 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQLockFile.o sipQtCoreQLockFile.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQLocale.o sipQtCoreQLocale.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQLocale.cpp:113:30: warning: 'country' is deprecated: Use territory() instead [-Wdeprecated-declarations]
-            sipRes = sipCpp->country();
-                             ^
+  113 |             sipRes = sipCpp->country();
+      |                              ^
 ../../qt6-wasm-host/include/QtCore/qlocale.h:925:5: note: 'country' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use territory() instead")
-    ^
+  925 |     QT_DEPRECATED_VERSION_X_6_6("Use territory() instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQLocale.cpp:778:47: warning: 'countryToString' is deprecated: Use territoryToString(Territory) instead [-Wdeprecated-declarations]
-            sipRes = new ::QString(::QLocale::countryToString(a0));
-                                              ^
+  778 |             sipRes = new ::QString(::QLocale::countryToString(a0));
+      |                                               ^
 ../../qt6-wasm-host/include/QtCore/qlocale.h:1103:5: note: 'countryToString' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use territoryToString(Territory) instead")
-    ^
+ 1103 |     QT_DEPRECATED_VERSION_X_6_6("Use territoryToString(Territory) instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQLocale.cpp:1765:44: warning: 'nativeCountryName' is deprecated: Use nativeTerritoryName() instead [-Wdeprecated-declarations]
-            sipRes = new ::QString(sipCpp->nativeCountryName());
-                                           ^
+ 1765 |             sipRes = new ::QString(sipCpp->nativeCountryName());
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qlocale.h:934:5: note: 'nativeCountryName' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use nativeTerritoryName() instead")
-    ^
+  934 |     QT_DEPRECATED_VERSION_X_6_6("Use nativeTerritoryName() instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQLocale.cpp:2420:47: warning: 'countryToCode' is deprecated: Use territoryToCode(Territory) instead [-Wdeprecated-declarations]
-            sipRes = new ::QString(::QLocale::countryToCode(a0));
-                                              ^
+ 2420 |             sipRes = new ::QString(::QLocale::countryToCode(a0));
+      |                                               ^
 ../../qt6-wasm-host/include/QtCore/qlocale.h:1092:5: note: 'countryToCode' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use territoryToCode(Territory) instead")
-    ^
+ 1092 |     QT_DEPRECATED_VERSION_X_6_6("Use territoryToCode(Territory) instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQLocale.cpp:2448:33: warning: 'codeToCountry' is deprecated: Use codeToTerritory(QStringView) instead [-Wdeprecated-declarations]
-            sipRes = ::QLocale::codeToCountry(*a0);
-                                ^
+ 2448 |             sipRes = ::QLocale::codeToCountry(*a0);
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qlocale.h:1094:5: note: 'codeToCountry' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use codeToTerritory(QStringView) instead")
-    ^
+ 1094 |     QT_DEPRECATED_VERSION_X_6_6("Use codeToTerritory(QStringView) instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 5 warnings generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQLineF.o sipQtCoreQLineF.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQLine.o sipQtCoreQLine.cpp
@@ -328,8 +328,8 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQItemSelectionRange.o sipQtCoreQItemSelectionRange.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQIdentityProxyModel.o sipQtCoreQIdentityProxyModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQFileSystemWatcher.o sipQtCoreQFileSystemWatcher.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQFileSelector.o sipQtCoreQFileSelector.cpp
@@ -340,17 +340,17 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQEventLoop.o sipQtCoreQEventLoop.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQElapsedTimer.o sipQtCoreQElapsedTimer.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQElapsedTimer.cpp:562:61: warning: 'TickCounter' is deprecated: Not supported anymore. Use PerformanceCounter instead. [-Wdeprecated-declarations]
-    {sipName_TickCounter, static_cast<int>(::QElapsedTimer::TickCounter)},
-                                                            ^
+  562 |     {sipName_TickCounter, static_cast<int>(::QElapsedTimer::TickCounter)},
+      |                                                             ^
 ../../qt6-wasm-host/include/QtCore/qelapsedtimer.h:19:21: note: 'TickCounter' has been explicitly marked deprecated here
-        TickCounter Q_DECL_ENUMERATOR_DEPRECATED_X(
-                    ^
+   19 |         TickCounter Q_DECL_ENUMERATOR_DEPRECATED_X(
+      |                     ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:989:43: note: expanded from macro 'Q_DECL_ENUMERATOR_DEPRECATED_X'
-#define Q_DECL_ENUMERATOR_DEPRECATED_X(x) Q_DECL_DEPRECATED_X(x)
-                                          ^
+  989 | #define Q_DECL_ENUMERATOR_DEPRECATED_X(x) Q_DECL_DEPRECATED_X(x)
+      |                                           ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQEasingCurve.o sipQtCoreQEasingCurve.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQDirIterator.o sipQtCoreQDirIterator.cpp
@@ -363,20 +363,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQIODeviceBase.o sipQtCoreQIODeviceBase.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQCryptographicHash.o sipQtCoreQCryptographicHash.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQCryptographicHash.cpp:98:21: warning: 'addData' is deprecated: Use the QByteArrayView overload instead [-Wdeprecated-declarations]
-            sipCpp->addData(a0, (long long)a1);
-                    ^
+   98 |             sipCpp->addData(a0, (long long)a1);
+      |                     ^
 ../../qt6-wasm-host/include/QtCore/qcryptographichash.h:78:5: note: 'addData' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use the QByteArrayView overload instead")
-    ^
+   78 |     QT_DEPRECATED_VERSION_X_6_4("Use the QByteArrayView overload instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQDynamicPropertyChangeEvent.o sipQtCoreQDynamicPropertyChangeEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQChildEvent.o sipQtCoreQChildEvent.cpp
@@ -385,8 +385,8 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQCoreApplication.o sipQtCoreQCoreApplication.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQConcatenateTablesProxyModel.o sipQtCoreQConcatenateTablesProxyModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQCommandLineParser.o sipQtCoreQCommandLineParser.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQCommandLineOption.o sipQtCoreQCommandLineOption.cpp
@@ -401,20 +401,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQByteArrayFromBase64Result.o sipQtCoreQByteArrayFromBase64Result.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQByteArray.o sipQtCoreQByteArray.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtCore/sipQtCoreQByteArray.cpp:274:30: warning: 'count' is deprecated: Use size() or length() instead. [-Wdeprecated-declarations]
-            sipRes = sipCpp->count();
-                             ^
+  274 |             sipRes = sipCpp->count();
+      |                              ^
 ../../qt6-wasm-host/include/QtCore/qbytearray.h:476:5: note: 'count' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use size() or length() instead.")
-    ^
+  476 |     QT_DEPRECATED_VERSION_X_6_4("Use size() or length() instead.")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQBuffer.o sipQtCoreQBuffer.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQIODevice.o sipQtCoreQIODevice.cpp
@@ -423,26 +423,26 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQAnimationGroup.o sipQtCoreQAnimationGroup.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQAbstractProxyModel.o sipQtCoreQAbstractProxyModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQAbstractNativeEventFilter.o sipQtCoreQAbstractNativeEventFilter.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQModelRoleDataSpan.o sipQtCoreQModelRoleDataSpan.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQModelRoleData.o sipQtCoreQModelRoleData.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQAbstractListModel.o sipQtCoreQAbstractListModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQAbstractTableModel.o sipQtCoreQAbstractTableModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQAbstractItemModel.o sipQtCoreQAbstractItemModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQPersistentModelIndex.o sipQtCoreQPersistentModelIndex.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_KEYPAD_NAVIGATION -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtCore -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtCoreQModelIndex.o sipQtCoreQModelIndex.cpp
@@ -496,8 +496,8 @@ cd QtGui/ && ( test -e Makefile || /home/niranjanpba/projects/pyodide-with-pyqt5
 make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui'
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuicmodule.o sipQtGuicmodule.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQList0101QUndoStack.o sipQtGuiQList0101QUndoStack.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQList0101QTextFrame.o sipQtGuiQList0101QTextFrame.cpp
@@ -548,20 +548,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQVector4D.o sipQtGuiQVector4D.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQVector3D.o sipQtGuiQVector3D.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQVector3D.cpp:863:43: warning: 'operator*' is deprecated: Extend the QVector3D to a QVector4D with 1.0 as the w coordinate before multiplying [-Wdeprecated-declarations]
-            sipRes = new ::QVector3D((*a0 * *a1));
-                                          ^
+  863 |             sipRes = new ::QVector3D((*a0 * *a1));
+      |                                           ^
 ../../qt6-wasm-host/include/QtGui/qmatrix4x4.h:699:1: note: 'operator*' has been explicitly marked deprecated here
-QT_DEPRECATED_VERSION_X_6_1("Extend the QVector3D to a QVector4D with 1.0 as the w coordinate before multiplying")
-^
+  699 | QT_DEPRECATED_VERSION_X_6_1("Extend the QVector3D to a QVector4D with 1.0 as the w coordinate before multiplying")
+      | ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:135:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_1'
-# define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
-                                           ^
+  135 | # define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQVector2D.o sipQtGuiQVector2D.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQRegularExpressionValidator.o sipQtGuiQRegularExpressionValidator.cpp
@@ -597,35 +597,35 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQTextBlockFormat.o sipQtGuiQTextBlockFormat.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQTextCharFormat.o sipQtGuiQTextCharFormat.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQTextCharFormat.cpp:186:21: warning: 'setFontFamily' is deprecated: Use setFontFamilies instead [-Wdeprecated-declarations]
-            sipCpp->setFontFamily(*a0);
-                    ^
+  186 |             sipCpp->setFontFamily(*a0);
+      |                     ^
 ../../qt6-wasm-host/include/QtGui/qtextformat.h:416:5: note: 'setFontFamily' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_1("Use setFontFamilies instead") inline void setFontFamily(const QString &family)
-    ^
+  416 |     QT_DEPRECATED_VERSION_X_6_1("Use setFontFamilies instead") inline void setFontFamily(const QString &family)
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:135:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_1'
-# define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
-                                           ^
+  135 | # define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQTextCharFormat.cpp:214:44: warning: 'fontFamily' is deprecated: Use fontFamilies instead [-Wdeprecated-declarations]
-            sipRes = new ::QString(sipCpp->fontFamily());
-                                           ^
+  214 |             sipRes = new ::QString(sipCpp->fontFamily());
+      |                                            ^
 ../../qt6-wasm-host/include/QtGui/qtextformat.h:418:5: note: 'fontFamily' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_1("Use fontFamilies instead") inline QString fontFamily() const
-    ^
+  418 |     QT_DEPRECATED_VERSION_X_6_1("Use fontFamilies instead") inline QString fontFamily() const
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:135:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_1'
-# define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
-                                           ^
+  135 | # define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 2 warnings generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQTextFormat.o sipQtGuiQTextFormat.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQTextLength.o sipQtGuiQTextLength.cpp
@@ -638,27 +638,27 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQSurfaceFormat.o sipQtGuiQSurfaceFormat.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQStyleHints.o sipQtGuiQStyleHints.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQStyleHints.cpp:234:30: warning: 'keyboardAutoRepeatRate' is deprecated: Use keyboardAutoRepeatRateF() instead [-Wdeprecated-declarations]
-            sipRes = sipCpp->keyboardAutoRepeatRate();
-                             ^
+  234 |             sipRes = sipCpp->keyboardAutoRepeatRate();
+      |                              ^
 ../../qt6-wasm-host/include/QtGui/qstylehints.h:72:5: note: 'keyboardAutoRepeatRate' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_5("Use keyboardAutoRepeatRateF() instead")
-    ^
+   72 |     QT_DEPRECATED_VERSION_X_6_5("Use keyboardAutoRepeatRateF() instead")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:167:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_5'
-# define QT_DEPRECATED_VERSION_X_6_5(text) QT_DEPRECATED_X(text)
-                                           ^
+  167 | # define QT_DEPRECATED_VERSION_X_6_5(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQStaticText.o sipQtGuiQStaticText.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQStandardItem.o sipQtGuiQStandardItem.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQStandardItemModel.o sipQtGuiQStandardItemModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQShortcut.o sipQtGuiQShortcut.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQSessionManager.o sipQtGuiQSessionManager.cpp
@@ -675,20 +675,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQPixmapCacheKey.o sipQtGuiQPixmapCacheKey.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQPixmapCache.o sipQtGuiQPixmapCache.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQPixmapCache.cpp:246:38: warning: 'replace' is deprecated: Use remove(key), followed by key = insert(pixmap). [-Wdeprecated-declarations]
-            sipRes = ::QPixmapCache::replace(*a0, *a1);
-                                     ^
+  246 |             sipRes = ::QPixmapCache::replace(*a0, *a1);
+      |                                      ^
 ../../qt6-wasm-host/include/QtGui/qpixmapcache.h:50:5: note: 'replace' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use remove(key), followed by key = insert(pixmap).")
-    ^
+   50 |     QT_DEPRECATED_VERSION_X_6_6("Use remove(key), followed by key = insert(pixmap).")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQPixelFormat.o sipQtGuiQPixelFormat.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQPicture.o sipQtGuiQPicture.cpp
@@ -717,50 +717,50 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQMovie.o sipQtGuiQMovie.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQMatrix4x4.o sipQtGuiQMatrix4x4.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQMatrix4x4.cpp:1165:40: warning: 'operator*' is deprecated: Use matrix.map(point) instead [-Wdeprecated-declarations]
-            sipRes = new ::QPoint((*a0 * *a1));
-                                       ^
+ 1165 |             sipRes = new ::QPoint((*a0 * *a1));
+      |                                        ^
 ../../qt6-wasm-host/include/QtGui/qmatrix4x4.h:828:1: note: 'operator*' has been explicitly marked deprecated here
-QT_DEPRECATED_VERSION_X_6_1("Use matrix.map(point) instead")
-^
+  828 | QT_DEPRECATED_VERSION_X_6_1("Use matrix.map(point) instead")
+      | ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:135:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_1'
-# define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
-                                           ^
+  135 | # define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQMatrix4x4.cpp:1179:41: warning: 'operator*' is deprecated: Use matrix.map(point) instead [-Wdeprecated-declarations]
-            sipRes = new ::QPointF((*a0 * *a1));
-                                        ^
+ 1179 |             sipRes = new ::QPointF((*a0 * *a1));
+      |                                         ^
 ../../qt6-wasm-host/include/QtGui/qmatrix4x4.h:834:1: note: 'operator*' has been explicitly marked deprecated here
-QT_DEPRECATED_VERSION_X_6_1("Use matrix.map(point) instead")
-^
+  834 | QT_DEPRECATED_VERSION_X_6_1("Use matrix.map(point) instead")
+      | ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:135:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_1'
-# define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
-                                           ^
+  135 | # define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQMatrix4x4.cpp:1235:43: warning: 'operator*' is deprecated: Use matrix.map(vector) instead [-Wdeprecated-declarations]
-            sipRes = new ::QVector3D((*a0 * *a1));
-                                          ^
+ 1235 |             sipRes = new ::QVector3D((*a0 * *a1));
+      |                                           ^
 ../../qt6-wasm-host/include/QtGui/qmatrix4x4.h:725:1: note: 'operator*' has been explicitly marked deprecated here
-QT_DEPRECATED_VERSION_X_6_1("Use matrix.map(vector) instead")
-^
+  725 | QT_DEPRECATED_VERSION_X_6_1("Use matrix.map(vector) instead")
+      | ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:135:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_1'
-# define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
-                                           ^
+  135 | # define QT_DEPRECATED_VERSION_X_6_1(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 3 warnings generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQKeySequence.o sipQtGuiQKeySequence.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQInputMethod.o sipQtGuiQInputMethod.cpp
@@ -790,63 +790,63 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQFont.o sipQtGuiQFont.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQFileSystemModel.o sipQtGuiQFileSystemModel.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/PyQt6-6.6.1/sip/QtCore/qabstractitemmodel.sip:324:13: warning: unused function 'qpycore_gc_modelroledata' [-Wunused-function]
-static void qpycore_gc_modelroledata(PyObject *mrd_obj);
-            ^
+  324 | static void qpycore_gc_modelroledata(PyObject *mrd_obj);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQEventPoint.o sipQtGuiQEventPoint.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQTouchEvent.o sipQtGuiQTouchEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQNativeGestureEvent.o sipQtGuiQNativeGestureEvent.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQNativeGestureEvent.cpp:97:208: warning: 'QNativeGestureEvent' is deprecated: Use the other constructor [-Wdeprecated-declarations]
-sipQNativeGestureEvent::sipQNativeGestureEvent(::Qt::NativeGestureType a0, const ::QPointingDevice*a1, const ::QPointF& a2, const ::QPointF& a3, const ::QPointF& a4, ::qreal a5, ::quint64 a6, ::quint64 a7): ::QNativeGestureEvent(a0, a1, a2, a3, a4, a5, a6, a7), sipPySelf(SIP_NULLPTR)
-                                                                                                                                                                                                               ^
+   97 | sipQNativeGestureEvent::sipQNativeGestureEvent(::Qt::NativeGestureType a0, const ::QPointingDevice*a1, const ::QPointF& a2, const ::QPointF& a3, const ::QPointF& a4, ::qreal a5, ::quint64 a6, ::quint64 a7): ::QNativeGestureEvent(a0, a1, a2, a3, a4, a5, a6, a7), sipPySelf(SIP_NULLPTR)
+      |                                                                                                                                                                                                                ^
 ../../qt6-wasm-host/include/QtGui/qevent.h:374:5: note: 'QNativeGestureEvent' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_2("Use the other constructor")
-    ^
+  374 |     QT_DEPRECATED_VERSION_X_6_2("Use the other constructor")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:143:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_2'
-# define QT_DEPRECATED_VERSION_X_6_2(text) QT_DEPRECATED_X(text)
-                                           ^
+  143 | # define QT_DEPRECATED_VERSION_X_6_2(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQTabletEvent.o sipQtGuiQTabletEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQWheelEvent.o sipQtGuiQWheelEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQHoverEvent.o sipQtGuiQHoverEvent.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQHoverEvent.cpp:100:150: warning: 'QHoverEvent' is deprecated: Use the other constructor [-Wdeprecated-declarations]
-sipQHoverEvent::sipQHoverEvent(::QEvent::Type a0, const ::QPointF& a1, const ::QPointF& a2, ::Qt::KeyboardModifiers a3, const ::QPointingDevice*a4): ::QHoverEvent(a0, a1, a2, a3, a4), sipPySelf(SIP_NULLPTR)
-                                                                                                                                                     ^
+  100 | sipQHoverEvent::sipQHoverEvent(::QEvent::Type a0, const ::QPointF& a1, const ::QPointF& a2, ::Qt::KeyboardModifiers a3, const ::QPointingDevice*a4): ::QHoverEvent(a0, a1, a2, a3, a4), sipPySelf(SIP_NULLPTR)
+      |                                                                                                                                                      ^
 ../../qt6-wasm-host/include/QtGui/qevent.h:252:5: note: 'QHoverEvent' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_3("Use the other constructor")
-    ^
+  252 |     QT_DEPRECATED_VERSION_X_6_3("Use the other constructor")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:151:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_3'
-# define QT_DEPRECATED_VERSION_X_6_3(text) QT_DEPRECATED_X(text)
-                                           ^
+  151 | # define QT_DEPRECATED_VERSION_X_6_3(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQMouseEvent.o sipQtGuiQMouseEvent.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQMouseEvent.cpp:99:174: warning: 'QMouseEvent' is deprecated: Use another constructor [-Wdeprecated-declarations]
-sipQMouseEvent::sipQMouseEvent(::QEvent::Type a0, const ::QPointF& a1, ::Qt::MouseButton a2, ::Qt::MouseButtons a3, ::Qt::KeyboardModifiers a4, const ::QPointingDevice*a5): ::QMouseEvent(a0, a1, a2, a3, a4, a5), sipPySelf(SIP_NULLPTR)
-                                                                                                                                                                             ^
+   99 | sipQMouseEvent::sipQMouseEvent(::QEvent::Type a0, const ::QPointF& a1, ::Qt::MouseButton a2, ::Qt::MouseButtons a3, ::Qt::KeyboardModifiers a4, const ::QPointingDevice*a5): ::QMouseEvent(a0, a1, a2, a3, a4, a5), sipPySelf(SIP_NULLPTR)
+      |                                                                                                                                                                              ^
 ../../qt6-wasm-host/include/QtGui/qevent.h:199:5: note: 'QMouseEvent' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use another constructor")
-    ^
+  199 |     QT_DEPRECATED_VERSION_X_6_4("Use another constructor")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQEnterEvent.o sipQtGuiQEnterEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQSinglePointEvent.o sipQtGuiQSinglePointEvent.cpp
@@ -859,20 +859,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQShortcutEvent.o sipQtGuiQShortcutEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQFileOpenEvent.o sipQtGuiQFileOpenEvent.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQFileOpenEvent.cpp:120:30: warning: 'openFile' is deprecated: Interpret the string returned by file() [-Wdeprecated-declarations]
-            sipRes = sipCpp->openFile(*a0, *a1);
-                             ^
+  120 |             sipRes = sipCpp->openFile(*a0, *a1);
+      |                              ^
 ../../qt6-wasm-host/include/QtGui/qevent.h:856:5: note: 'openFile' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Interpret the string returned by file()")
-    ^
+  856 |     QT_DEPRECATED_VERSION_X_6_6("Interpret the string returned by file()")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQActionEvent.o sipQtGuiQActionEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQWhatsThisClickedEvent.o sipQtGuiQWhatsThisClickedEvent.cpp
@@ -887,20 +887,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQInputMethodEvent.o sipQtGuiQInputMethodEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQContextMenuEvent.o sipQtGuiQContextMenuEvent.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQContextMenuEvent.cpp:79:97: warning: 'QContextMenuEvent' is deprecated: Use the other constructor [-Wdeprecated-declarations]
-sipQContextMenuEvent::sipQContextMenuEvent(::QContextMenuEvent::Reason a0, const ::QPoint& a1): ::QContextMenuEvent(a0, a1), sipPySelf(SIP_NULLPTR)
-                                                                                                ^
+   79 | sipQContextMenuEvent::sipQContextMenuEvent(::QContextMenuEvent::Reason a0, const ::QPoint& a1): ::QContextMenuEvent(a0, a1), sipPySelf(SIP_NULLPTR)
+      |                                                                                                 ^
 ../../qt6-wasm-host/include/QtGui/qevent.h:601:5: note: 'QContextMenuEvent' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use the other constructor")
-    ^
+  601 |     QT_DEPRECATED_VERSION_X_6_4("Use the other constructor")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQHideEvent.o sipQtGuiQHideEvent.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQShowEvent.o sipQtGuiQShowEvent.cpp
@@ -927,35 +927,35 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQColorConstants.o sipQtGuiQColorConstants.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQColor.o sipQtGuiQColor.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQColor.cpp:101:21: warning: 'setNamedColor' is deprecated: Use fromString() instead. [-Wdeprecated-declarations]
-            sipCpp->setNamedColor(*a0);
-                    ^
+  101 |             sipCpp->setNamedColor(*a0);
+      |                     ^
 ../../qt6-wasm-host/include/QtGui/qcolor.h:67:5: note: 'setNamedColor' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use fromString() instead.")
-    ^
+   67 |     QT_DEPRECATED_VERSION_X_6_6("Use fromString() instead.")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtGui/sipQtGuiQColor.cpp:2381:32: warning: 'isValidColor' is deprecated: Use isValidColorName() instead. [-Wdeprecated-declarations]
-            sipRes = ::QColor::isValidColor(*a0);
-                               ^
+ 2381 |             sipRes = ::QColor::isValidColor(*a0);
+      |                                ^
 ../../qt6-wasm-host/include/QtGui/qcolor.h:196:5: note: 'isValidColor' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_6("Use isValidColorName() instead.")
-    ^
+  196 |     QT_DEPRECATED_VERSION_X_6_6("Use isValidColorName() instead.")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:175:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_6'
-# define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
-                                           ^
+  175 | # define QT_DEPRECATED_VERSION_X_6_6(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 2 warnings generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQBitmap.o sipQtGuiQBitmap.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtGuiQPixmap.o sipQtGuiQPixmap.cpp
@@ -1038,20 +1038,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTreeWidget.o sipQtWidgetsQTreeWidget.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTreeWidgetItem.o sipQtWidgetsQTreeWidgetItem.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/sipQtWidgetsQTreeWidgetItem.cpp:558:21: warning: 'setTextAlignment' is deprecated: Use the overload taking Qt::Alignment [-Wdeprecated-declarations]
-            sipCpp->setTextAlignment(a0, a1);
-                    ^
+  558 |             sipCpp->setTextAlignment(a0, a1);
+      |                     ^
 ../../qt6-wasm-host/include/QtWidgets/qtreewidget.h:104:5: note: 'setTextAlignment' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use the overload taking Qt::Alignment")
-    ^
+  104 |     QT_DEPRECATED_VERSION_X_6_4("Use the overload taking Qt::Alignment")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTreeView.o sipQtWidgetsQTreeView.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQToolTip.o sipQtWidgetsQToolTip.cpp
@@ -1065,20 +1065,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTableWidget.o sipQtWidgetsQTableWidget.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTableWidgetItem.o sipQtWidgetsQTableWidgetItem.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/sipQtWidgetsQTableWidgetItem.cpp:513:21: warning: 'setTextAlignment' is deprecated: Use the overload taking Qt::Alignment [-Wdeprecated-declarations]
-            sipCpp->setTextAlignment(a0);
-                    ^
+  513 |             sipCpp->setTextAlignment(a0);
+      |                     ^
 ../../qt6-wasm-host/include/QtWidgets/qtablewidget.h:110:5: note: 'setTextAlignment' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use the overload taking Qt::Alignment")
-    ^
+  110 |     QT_DEPRECATED_VERSION_X_6_4("Use the overload taking Qt::Alignment")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTableWidgetSelectionRange.o sipQtWidgetsQTableWidgetSelectionRange.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQTableView.o sipQtWidgetsQTableView.cpp
@@ -1139,20 +1139,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQPlainTextEdit.o sipQtWidgetsQPlainTextEdit.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQMessageBox.o sipQtWidgetsQMessageBox.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/sipQtWidgetsQMessageBox.cpp:1753:51: warning: 'standardIcon' is deprecated: Use QStyle::standardIcon() instead. [-Wdeprecated-declarations]
-            sipRes = new ::QPixmap(::QMessageBox::standardIcon(a0));
-                                                  ^
+ 1753 |             sipRes = new ::QPixmap(::QMessageBox::standardIcon(a0));
+      |                                                   ^
 ../../qt6-wasm-host/include/QtWidgets/qmessagebox.h:285:5: note: 'standardIcon' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_2("Use QStyle::standardIcon() instead.")
-    ^
+  285 |     QT_DEPRECATED_VERSION_X_6_2("Use QStyle::standardIcon() instead.")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:143:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_2'
-# define QT_DEPRECATED_VERSION_X_6_2(text) QT_DEPRECATED_X(text)
-                                           ^
+  143 | # define QT_DEPRECATED_VERSION_X_6_2(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQMenuBar.o sipQtWidgetsQMenuBar.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQMenu.o sipQtWidgetsQMenu.cpp
@@ -1162,20 +1162,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQListWidget.o sipQtWidgetsQListWidget.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQListWidgetItem.o sipQtWidgetsQListWidgetItem.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/sipQtWidgetsQListWidgetItem.cpp:513:21: warning: 'setTextAlignment' is deprecated: Use the overload taking Qt::Alignment [-Wdeprecated-declarations]
-            sipCpp->setTextAlignment(a0);
-                    ^
+  513 |             sipCpp->setTextAlignment(a0);
+      |                     ^
 ../../qt6-wasm-host/include/QtWidgets/qlistwidget.h:84:5: note: 'setTextAlignment' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_4("Use the overload taking Qt::Alignment")
-    ^
+   84 |     QT_DEPRECATED_VERSION_X_6_4("Use the overload taking Qt::Alignment")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:159:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_4'
-# define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
-                                           ^
+  159 | # define QT_DEPRECATED_VERSION_X_6_4(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQListView.o sipQtWidgetsQListView.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQLineEdit.o sipQtWidgetsQLineEdit.cpp
@@ -1272,20 +1272,20 @@ em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x0308000
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQLayout.o sipQtWidgetsQLayout.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQApplication.o sipQtWidgetsQApplication.cpp
 /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets/sipQtWidgetsQApplication.cpp:771:29: warning: 'setActiveWindow' is deprecated: Use QWidget::activateWindow() instead. [-Wdeprecated-declarations]
-            ::QApplication::setActiveWindow(a0);
-                            ^
+  771 |             ::QApplication::setActiveWindow(a0);
+      |                             ^
 ../../qt6-wasm-host/include/QtWidgets/qapplication.h:83:5: note: 'setActiveWindow' has been explicitly marked deprecated here
-    QT_DEPRECATED_VERSION_X_6_5("Use QWidget::activateWindow() instead.")
-    ^
+   83 |     QT_DEPRECATED_VERSION_X_6_5("Use QWidget::activateWindow() instead.")
+      |     ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:167:44: note: expanded from macro 'QT_DEPRECATED_VERSION_X_6_5'
-# define QT_DEPRECATED_VERSION_X_6_5(text) QT_DEPRECATED_X(text)
-                                           ^
+  167 | # define QT_DEPRECATED_VERSION_X_6_5(text) QT_DEPRECATED_X(text)
+      |                                            ^
 ../../qt6-wasm-host/include/QtCore/qtdeprecationmarkers.h:27:33: note: expanded from macro 'QT_DEPRECATED_X'
-#  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
-                                ^
+   27 | #  define QT_DEPRECATED_X(text) Q_DECL_DEPRECATED_X(text)
+      |                                 ^
 ../../qt6-wasm-host/include/QtCore/qcompilerdetection.h:985:36: note: expanded from macro 'Q_DECL_DEPRECATED_X'
-#  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
-                                   ^
+  985 | #  define Q_DECL_DEPRECATED_X(x) [[deprecated(x)]]
+      |                                    ^
 1 warning generated.
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQAbstractSpinBox.o sipQtWidgetsQAbstractSpinBox.cpp
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../PyQt6-6.6.1/qpy/QtWidgets -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtWidgetsQAbstractSlider.o sipQtWidgetsQAbstractSlider.cpp
@@ -1302,6 +1302,15 @@ rm -f libQtWidgets.a
 emar cqs libQtWidgets.a sipQtWidgetscmodule.o sipQtWidgetsQList0101QTreeWidgetItem.o sipQtWidgetsQList0101QTableWidgetItem.o sipQtWidgetsQList0100QTableWidgetSelectionRange.o sipQtWidgetsQList0101QScroller.o sipQtWidgetsQList0100QTextEditExtraSelection.o sipQtWidgetsQList0101QMdiSubWindow.o sipQtWidgetsQList0101QDockWidget.o sipQtWidgetsQList0101QListWidgetItem.o sipQtWidgetsQList0100QKeyCombination.o sipQtWidgetsQList0100QRectF.o sipQtWidgetsQList0101QGraphicsView.o sipQtWidgetsQList0101QGraphicsTransform.o sipQtWidgetsQList0101QGraphicsItem.o sipQtWidgetsQList0101QGesture.o sipQtWidgetsQMap0100QDate0100QTextCharFormat.o sipQtWidgetsQList0101QAbstractButton.o sipQtWidgetsQFlags0100QWizardWizardOption.o sipQtWidgetsQList0101QWidget.o sipQtWidgetsQFlags0100QWidgetRenderFlag.o sipQtWidgetsQFlags0100QTreeWidgetItemIteratorIteratorFlag.o sipQtWidgetsQFlags0100QTextEditAutoFormattingFlag.o sipQtWidgetsQFlags0100QStyleOptionViewItemViewItemFeature.o sipQtWidgetsQFlags0100QStyleOptionToolButtonToolButtonFeature.o sipQtWidgetsQFlags0100QStyleOptionToolBarToolBarFeature.o sipQtWidgetsQFlags0100QStyleOptionTabTabFeature.o sipQtWidgetsQFlags0100QStyleOptionTabCornerWidget.o sipQtWidgetsQFlags0100QStyleOptionFrameFrameFeature.o sipQtWidgetsQFlags0100QStyleOptionButtonButtonFeature.o sipQtWidgetsQFlags0100QStyleSubControl.o sipQtWidgetsQFlags0100QStyleStateFlag.o sipQtWidgetsQFlags0100QSizePolicyControlType.o sipQtWidgetsQFlags0100QPinchGestureChangeFlag.o sipQtWidgetsQFlags0100QMessageBoxStandardButton.o sipQtWidgetsQFlags0100QMessageBoxOption.o sipQtWidgetsQFlags0100QMdiSubWindowSubWindowOption.o sipQtWidgetsQFlags0100QMdiAreaAreaOption.o sipQtWidgetsQFlags0100QMainWindowDockOption.o sipQtWidgetsQFlags0100QInputDialogInputDialogOption.o sipQtWidgetsQFlags0100QGraphicsViewOptimizationFlag.o sipQtWidgetsQFlags0100QGraphicsViewCacheModeFlag.o sipQtWidgetsQFlags0100QGraphicsSceneSceneLayer.o sipQtWidgetsQFlags0100QGraphicsItemGraphicsItemFlag.o sipQtWidgetsQFlags0100QGraphicsEffectChangeFlag.o sipQtWidgetsQFlags0100QGraphicsBlurEffectBlurHint.o sipQtWidgetsQFlags0100QGestureRecognizerResultFlag.o sipQtWidgetsQFlags0100QFontDialogFontDialogOption.o sipQtWidgetsQFlags0100QFontComboBoxFontFilter.o sipQtWidgetsQFlags0100QFileDialogOption.o sipQtWidgetsQFlags0100QDockWidgetDockWidgetFeature.o sipQtWidgetsQFlags0100QDialogButtonBoxStandardButton.o sipQtWidgetsQFlags0100QDateTimeEditSection.o sipQtWidgetsQFlags0100QColorDialogColorDialogOption.o sipQtWidgetsQFlags0100QAbstractSpinBoxStepEnabledFlag.o sipQtWidgetsQFlags0100QAbstractItemViewEditTrigger.o sipQtWidgetsQList0100QWizardWizardButton.o sipQtWidgetsQWizardPage.o sipQtWidgetsQWizard.o sipQtWidgetsQWidgetAction.o sipQtWidgetsQWhatsThis.o sipQtWidgetsQUndoView.o sipQtWidgetsQTreeWidgetItemIterator.o sipQtWidgetsQTreeWidget.o sipQtWidgetsQTreeWidgetItem.o sipQtWidgetsQTreeView.o sipQtWidgetsQToolTip.o sipQtWidgetsQToolButton.o sipQtWidgetsQToolBox.o sipQtWidgetsQToolBar.o sipQtWidgetsQTextEditExtraSelection.o sipQtWidgetsQTextBrowser.o sipQtWidgetsQTextEdit.o sipQtWidgetsQTabWidget.o sipQtWidgetsQTableWidget.o sipQtWidgetsQTableWidgetItem.o sipQtWidgetsQTableWidgetSelectionRange.o sipQtWidgetsQTableView.o sipQtWidgetsQTabBar.o sipQtWidgetsQSystemTrayIcon.o sipQtWidgetsQStylePainter.o sipQtWidgetsQStyleHintReturnVariant.o sipQtWidgetsQStyleOptionGraphicsItem.o sipQtWidgetsQStyleOptionSizeGrip.o sipQtWidgetsQStyleOptionGroupBox.o sipQtWidgetsQStyleOptionToolBar.o sipQtWidgetsQStyleHintReturnMask.o sipQtWidgetsQStyleHintReturn.o sipQtWidgetsQStyleOptionTitleBar.o sipQtWidgetsQStyleOptionComboBox.o sipQtWidgetsQStyleOptionToolButton.o sipQtWidgetsQStyleOptionSpinBox.o sipQtWidgetsQStyleOptionSlider.o sipQtWidgetsQStyleOptionComplex.o sipQtWidgetsQStyleOptionRubberBand.o sipQtWidgetsQStyleOptionToolBox.o sipQtWidgetsQStyleOptionViewItem.o sipQtWidgetsQStyleOptionDockWidget.o sipQtWidgetsQStyleOptionMenuItem.o sipQtWidgetsQStyleOptionProgressBar.o sipQtWidgetsQStyleOptionTab.o sipQtWidgetsQStyleOptionButton.o sipQtWidgetsQStyleOptionHeaderV2.o sipQtWidgetsQStyleOptionHeader.o sipQtWidgetsQStyleOptionTabBarBase.o sipQtWidgetsQStyleOptionTabWidgetFrame.o sipQtWidgetsQStyleOptionFrame.o sipQtWidgetsQStyleOptionFocusRect.o sipQtWidgetsQStyleOption.o sipQtWidgetsQStyleFactory.o sipQtWidgetsQStyledItemDelegate.o sipQtWidgetsQStatusBar.o sipQtWidgetsQStackedWidget.o sipQtWidgetsQStackedLayout.o sipQtWidgetsQSplitterHandle.o sipQtWidgetsQSplitter.o sipQtWidgetsQSplashScreen.o sipQtWidgetsQDoubleSpinBox.o sipQtWidgetsQSpinBox.o sipQtWidgetsQSlider.o sipQtWidgetsQSizePolicy.o sipQtWidgetsQSizeGrip.o sipQtWidgetsQScrollerProperties.o sipQtWidgetsQScroller.o sipQtWidgetsQScrollBar.o sipQtWidgetsQScrollArea.o sipQtWidgetsQRubberBand.o sipQtWidgetsQRadioButton.o sipQtWidgetsQProxyStyle.o sipQtWidgetsQProgressDialog.o sipQtWidgetsQProgressBar.o sipQtWidgetsQPlainTextDocumentLayout.o sipQtWidgetsQPlainTextEdit.o sipQtWidgetsQMessageBox.o sipQtWidgetsQMenuBar.o sipQtWidgetsQMenu.o sipQtWidgetsQMdiSubWindow.o sipQtWidgetsQMdiArea.o sipQtWidgetsQMainWindow.o sipQtWidgetsQListWidget.o sipQtWidgetsQListWidgetItem.o sipQtWidgetsQListView.o sipQtWidgetsQLineEdit.o sipQtWidgetsQLCDNumber.o sipQtWidgetsQWidgetItem.o sipQtWidgetsQSpacerItem.o sipQtWidgetsQLayoutItem.o sipQtWidgetsQLabel.o sipQtWidgetsQKeySequenceEdit.o sipQtWidgetsQItemEditorFactory.o sipQtWidgetsQItemEditorCreatorBase.o sipQtWidgetsQItemDelegate.o sipQtWidgetsQInputDialog.o sipQtWidgetsQHeaderView.o sipQtWidgetsQGroupBox.o sipQtWidgetsQGridLayout.o sipQtWidgetsQGraphicsView.o sipQtWidgetsQGraphicsRotation.o sipQtWidgetsQGraphicsScale.o sipQtWidgetsQGraphicsTransform.o sipQtWidgetsQGraphicsSceneMoveEvent.o sipQtWidgetsQGraphicsSceneResizeEvent.o sipQtWidgetsQGraphicsSceneDragDropEvent.o sipQtWidgetsQGraphicsSceneHelpEvent.o sipQtWidgetsQGraphicsSceneHoverEvent.o sipQtWidgetsQGraphicsSceneContextMenuEvent.o sipQtWidgetsQGraphicsSceneWheelEvent.o sipQtWidgetsQGraphicsSceneMouseEvent.o sipQtWidgetsQGraphicsSceneEvent.o sipQtWidgetsQGraphicsScene.o sipQtWidgetsQGraphicsProxyWidget.o sipQtWidgetsQGraphicsWidget.o sipQtWidgetsQGraphicsLinearLayout.o sipQtWidgetsQGraphicsLayoutItem.o sipQtWidgetsQGraphicsTextItem.o sipQtWidgetsQGraphicsObject.o sipQtWidgetsQGraphicsItemGroup.o sipQtWidgetsQGraphicsSimpleTextItem.o sipQtWidgetsQGraphicsPixmapItem.o sipQtWidgetsQGraphicsLineItem.o sipQtWidgetsQGraphicsPolygonItem.o sipQtWidgetsQGraphicsEllipseItem.o sipQtWidgetsQGraphicsRectItem.o sipQtWidgetsQGraphicsPathItem.o sipQtWidgetsQAbstractGraphicsShapeItem.o sipQtWidgetsQGraphicsItem.o sipQtWidgetsQGraphicsGridLayout.o sipQtWidgetsQGraphicsOpacityEffect.o sipQtWidgetsQGraphicsDropShadowEffect.o sipQtWidgetsQGraphicsBlurEffect.o sipQtWidgetsQGraphicsColorizeEffect.o sipQtWidgetsQGraphicsEffect.o sipQtWidgetsQGraphicsAnchorLayout.o sipQtWidgetsQGraphicsLayout.o sipQtWidgetsQGraphicsAnchor.o sipQtWidgetsQGestureRecognizer.o sipQtWidgetsQGestureEvent.o sipQtWidgetsQTapAndHoldGesture.o sipQtWidgetsQTapGesture.o sipQtWidgetsQSwipeGesture.o sipQtWidgetsQPinchGesture.o sipQtWidgetsQPanGesture.o sipQtWidgetsQGesture.o sipQtWidgetsQFormLayoutTakeRowResult.o sipQtWidgetsQFormLayout.o sipQtWidgetsQFontDialog.o sipQtWidgetsQFontComboBox.o sipQtWidgetsQFocusFrame.o sipQtWidgetsQFileIconProvider.o sipQtWidgetsQFileDialog.o sipQtWidgetsQErrorMessage.o sipQtWidgetsQDockWidget.o sipQtWidgetsQDialogButtonBox.o sipQtWidgetsQDial.o sipQtWidgetsQDateEdit.o sipQtWidgetsQTimeEdit.o sipQtWidgetsQDateTimeEdit.o sipQtWidgetsQDataWidgetMapper.o sipQtWidgetsQCompleter.o sipQtWidgetsQCommonStyle.o sipQtWidgetsQStyle.o sipQtWidgetsQCommandLinkButton.o sipQtWidgetsQPushButton.o sipQtWidgetsQComboBox.o sipQtWidgetsQColumnView.o sipQtWidgetsQColorDialog.o sipQtWidgetsQDialog.o sipQtWidgetsQCheckBox.o sipQtWidgetsQCalendarWidget.o sipQtWidgetsQButtonGroup.o sipQtWidgetsQVBoxLayout.o sipQtWidgetsQHBoxLayout.o sipQtWidgetsQBoxLayout.o sipQtWidgetsQLayout.o sipQtWidgetsQApplication.o sipQtWidgetsQAbstractSpinBox.o sipQtWidgetsQAbstractSlider.o sipQtWidgetsQFrame.o sipQtWidgetsQAbstractItemView.o sipQtWidgetsQAbstractScrollArea.o sipQtWidgetsQAbstractItemDelegate.o sipQtWidgetsQAbstractButton.o sipQtWidgetsQWidget.o qpywidgets_chimera_helpers.o qpywidgets_post_init.o qpywidgets_qaction_helpers.o
 cp -f libQtWidgets.a QtWidgets.abi3.so
 make[1]: Leaving directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtWidgets'
+cd QtSvg/ && ( test -e Makefile || /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake6 -o Makefile /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtSvg/QtSvg.pro -qtconf /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/bin/target_qt.conf ) && make -f Makefile 
+make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtSvg'
+em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_SVG_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtSvg -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtSvgcmodule.o sipQtSvgcmodule.cpp
+em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_SVG_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtSvg -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtSvgQSvgRenderer.o sipQtSvgQSvgRenderer.cpp
+em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_SVG_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtSvg -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtSvgQSvgGenerator.o sipQtSvgQSvgGenerator.cpp
+rm -f libQtSvg.a
+emar cqs libQtSvg.a sipQtSvgcmodule.o sipQtSvgQSvgRenderer.o sipQtSvgQSvgGenerator.o
+cp -f libQtSvg.a QtSvg.abi3.so
+make[1]: Leaving directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtSvg'
 cd QtPrintSupport/ && ( test -e Makefile || /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake6 -o Makefile /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtPrintSupport/QtPrintSupport.pro -qtconf /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/bin/target_qt.conf ) && make -f Makefile 
 make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtPrintSupport'
 em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtPrintSupport -I../../qt6-wasm-host/include/QtWidgets -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtPrintSupportcmodule.o sipQtPrintSupportcmodule.cpp
@@ -1322,12 +1331,3 @@ rm -f libQtPrintSupport.a
 emar cqs libQtPrintSupport.a sipQtPrintSupportcmodule.o sipQtPrintSupportQList0100QPageSize.o sipQtPrintSupportQList0100QPrinterInfo.o sipQtPrintSupportQFlags0100QAbstractPrintDialogPrintDialogOption.o sipQtPrintSupportQList0100QPrinterColorMode.o sipQtPrintSupportQList0100QPrinterDuplexMode.o sipQtPrintSupportQPrintPreviewWidget.o sipQtPrintSupportQPrintPreviewDialog.o sipQtPrintSupportQPrinterInfo.o sipQtPrintSupportQPrinter.o sipQtPrintSupportQPrintEngine.o sipQtPrintSupportQPrintDialog.o sipQtPrintSupportQPageSetupDialog.o sipQtPrintSupportQAbstractPrintDialog.o
 cp -f libQtPrintSupport.a QtPrintSupport.abi3.so
 make[1]: Leaving directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtPrintSupport'
-cd QtSvg/ && ( test -e Makefile || /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/bin/qmake6 -o Makefile /home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtSvg/QtSvg.pro -qtconf /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host/bin/target_qt.conf ) && make -f Makefile 
-make[1]: Entering directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtSvg'
-em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_SVG_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtSvg -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtSvgcmodule.o sipQtSvgcmodule.cpp
-em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_SVG_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtSvg -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtSvgQSvgRenderer.o sipQtSvgQSvgRenderer.cpp
-em++ -c -fPIC -pipe -O2 -fno-exceptions -Wall -Wextra -DPy_LIMITED_API=0x03080000 -DSIP_PROTECTED_IS_PUBLIC -Dprotected=public -DQT_NO_EXCEPTIONS -DQT_NO_DEBUG -DQT_STATICPLUGIN -DQT_PLUGIN -DQT_SVG_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -I.. -I../../pyodide/cpython/build/Python-3.11.3 -I../../pyodide/cpython/build/Python-3.11.3/Include -I../../qt6-wasm-host/include -I../../qt6-wasm-host/include/QtSvg -I../../qt6-wasm-host/include/QtGui -I../../qt6-wasm-host/include/QtCore -I. -I../../qt6-wasm-host/mkspecs/wasm-emscripten -o sipQtSvgQSvgGenerator.o sipQtSvgQSvgGenerator.cpp
-rm -f libQtSvg.a
-emar cqs libQtSvg.a sipQtSvgcmodule.o sipQtSvgQSvgRenderer.o sipQtSvgQSvgGenerator.o
-cp -f libQtSvg.a QtSvg.abi3.so
-make[1]: Leaving directory '/home/niranjanpba/projects/pyodide-with-pyqt5/pyqt6-wasm-build/QtSvg'

@@ -1855,7 +1855,7 @@ static void *init_type_QApplication(sipSimpleWrapper *sipSelf, PyObject *sipArgs
         int argc;
         char **argv;
         
-        // Force loading of required & statically linke plugins
+        // Force loading of required & statically linked plugins
         Q_IMPORT_PLUGIN(QMinimalIntegrationPlugin);
         Q_IMPORT_PLUGIN(QWasmIntegrationPlugin);
         Q_IMPORT_PLUGIN(QOffscreenIntegrationPlugin);

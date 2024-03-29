@@ -14,6 +14,7 @@
  * See Makefile recipe for src/js/pyproxy.gen.ts
  */
 
+declare var Tests: any;
 declare var Module: any;
 declare var Hiwire: any;
 declare var API: any;
@@ -52,6 +53,8 @@ declare var IS_ASYNC_ITERABLE: number;
 declare var IS_ASYNC_ITERATOR: number;
 declare var IS_GENERATOR: number;
 declare var IS_ASYNC_GENERATOR: number;
+declare var IS_SEQUENCE: number;
+declare var IS_MUTABLE_SEQUENCE: number;
 
 declare var PYGEN_NEXT: number;
 declare var PYGEN_RETURN: number;
@@ -76,8 +79,10 @@ declare var globalThis: any;
 
 if (globalThis.FinalizationRegistry) {
   Module.finalizationRegistry = new FinalizationRegistry(
-    ([ptr, cache]: [ptr: number, cache: PyProxyCache]) => {
+    ({ ptr, cache }: PyProxyShared) => {
       if (cache) {
+        // If we leak a proxy, we must transitively leak everything in its cache
+        // too =(
         cache.leaked = true;
         pyproxy_decref_cache(cache);
       }
@@ -129,6 +134,13 @@ Module.disable_pyproxy_allocation_tracing = function () {
 Module.disable_pyproxy_allocation_tracing();
 
 type PyProxyCache = { cacheId: number; refcnt: number; leaked?: boolean };
+type PyProxyShared = {
+  ptr: number;
+  cache: PyProxyCache;
+  flags: number;
+  promise: Promise<any> | undefined;
+  destroyed_msg: string | undefined;
+};
 type PyProxyProps = {
   /**
    * captureThis tracks whether this should be passed as the first argument to
@@ -152,12 +164,28 @@ type PyProxyProps = {
   roundtrip: boolean;
 };
 
+type PyProxyAttrs = {
+  // shared between aliases but not between copies
+  shared: PyProxyShared;
+  // properties that may be different between aliases
+  props: PyProxyProps;
+};
+
+const pyproxyAttrsSymbol = Symbol("pyproxy.attrs");
+
 /**
  * Create a new PyProxy wrapping ptrobj which is a PyObject*.
  *
- * The argument cache is only needed to implement the PyProxy.copy API, it
- * allows the copy of the PyProxy to share its attribute cache with the original
- * version. In all other cases, pyproxy_new should be called with one argument.
+ * Two proxies are **aliases** if they share `shared` (they may have different
+ * props). Aliases are created by `bind` and `captureThis`. Aliases share the
+ * same lifetime: `destroy` destroys both of them, they are only registered with
+ * the garbage collector once, they only own a single refcount.  An **alias** is
+ * created by passing the shared option.
+ *
+ * Two proxies are **copies** if they share `shared.cache`. Two copies share
+ * attribute caches but they otherwise have independent lifetimes. The attribute
+ * caches are refcounted so that they can be cleaned up when all copies are
+ * destroyed. A **copy** is made by passing the `cache` argument.
  *
  * In the case that the Python object is callable, PyProxy inherits from
  * Function so that PyProxy objects can be callable. In that case we MUST expose
@@ -166,25 +194,31 @@ type PyProxyProps = {
  * @private
  */
 function pyproxy_new(
-  ptrobj: number,
+  ptr: number,
   {
     flags: flags_arg,
     cache,
     props,
-    $$,
+    shared,
+    gcRegister,
   }: {
     flags?: number;
     cache?: PyProxyCache;
-    $$?: any;
-    roundtrip?: boolean;
+    shared?: PyProxyShared;
     props?: any;
+    gcRegister?: boolean;
   } = {},
 ): PyProxy {
+  if (gcRegister === undefined) {
+    // register by default
+    gcRegister = true;
+  }
   const flags =
-    flags_arg !== undefined ? flags_arg : Module._pyproxy_getflags(ptrobj);
+    flags_arg !== undefined ? flags_arg : Module._pyproxy_getflags(ptr);
   if (flags === -1) {
     Module._pythonexc2js();
   }
+  const is_sequence = flags & IS_SEQUENCE;
   const cls = Module.getPyProxyClass(flags);
   let target;
   if (flags & IS_CALLABLE) {
@@ -210,54 +244,88 @@ function pyproxy_new(
     target = Object.create(cls.prototype);
   }
 
-  const isAlias = !!$$;
-
-  if (!isAlias) {
+  const isAlias = !!shared;
+  if (!shared) {
+    // Not an alias so we have to make `shared`.
     if (!cache) {
+      // In this case it's not a copy.
       // The cache needs to be accessed primarily from the C function
       // _pyproxy_getattr so we make a hiwire id.
       let cacheId = Hiwire.new_value(new Map());
       cache = { cacheId, refcnt: 0 };
     }
     cache.refcnt++;
-    $$ = { ptr: ptrobj, type: "PyProxy", cache, flags };
-    // HACK (pradeep): Massive hack to fix finialization registry error
-    Module.finalizationRegistry = new FinalizationRegistry((value: string) => {
-      console.log('Pradeep: Finalization registry value: ', value);
-    });
-    Module.finalizationRegistry.register($$, [ptrobj, cache], $$);
-    Module._Py_IncRef(ptrobj);
+    shared = {
+      ptr,
+      cache,
+      flags,
+      promise: undefined,
+      destroyed_msg: undefined,
+    };
+    Module._Py_IncRef(ptr);
   }
 
-  Object.defineProperty(target, "$$", { value: $$ });
-  if (!props) {
-    props = {};
-  }
   props = Object.assign(
     { isBound: false, captureThis: false, boundArgs: [], roundtrip: false },
     props,
   );
-  Object.defineProperty(target, "$$props", { value: props });
-
-  let proxy = new Proxy(target, PyProxyHandlers);
+  let proxy = new Proxy(
+    target,
+    is_sequence ? PyProxySequenceHandlers : PyProxyHandlers,
+  );
+  if (!isAlias && gcRegister) {
+    // we need to register only once for a set of aliases. we can't register the
+    // proxy directly since that isn't shared between aliases. The aliases all
+    // share $$ so we can register that. They also need access to the data in
+    // $$, but we can't use $$ itself as the held object since that would keep
+    // $$ from being gc'd ever. So we make a copy. To prevent double free, we
+    // have to be careful to unregister when we destroy.
+    gc_register_proxy(shared);
+  }
   if (!isAlias) {
     trace_pyproxy_alloc(proxy);
   }
+  const attrs = { shared, props };
+  target[pyproxyAttrsSymbol] = attrs;
   return proxy;
 }
 Module.pyproxy_new = pyproxy_new;
 
-function _getPtr(jsobj: any) {
-  let ptr: number = jsobj.$$.ptr;
-  if (ptr === 0) {
-    throw new Error(jsobj.$$.destroyed_msg);
+function gc_register_proxy(shared: PyProxyShared) {
+  // HACK (pradeep): Massive hack to fix finialization registry error
+  Module.finalizationRegistry = new FinalizationRegistry((value: string) => {
+    console.log('Pradeep: Finalization registry value: ', value);
+  });
+  
+  const shared_copy = Object.assign({}, shared);
+  Module.finalizationRegistry.register(shared, shared_copy, shared);
+}
+Module.gc_register_proxy = gc_register_proxy;
+
+function _getAttrsQuiet(jsobj: any): PyProxyAttrs {
+  return jsobj[pyproxyAttrsSymbol];
+}
+Module.PyProxy_getAttrsQuiet = _getAttrsQuiet;
+function _getAttrs(jsobj: any): PyProxyAttrs {
+  const attrs = _getAttrsQuiet(jsobj);
+  if (!attrs.shared.ptr) {
+    throw new Error(attrs.shared.destroyed_msg);
   }
-  return ptr;
+  return attrs;
+}
+Module.PyProxy_getAttrs = _getAttrs;
+
+function _getPtr(jsobj: any) {
+  return _getAttrs(jsobj).shared.ptr;
+}
+
+function _getFlags(jsobj: any): number {
+  return Object.getPrototypeOf(jsobj).$$flags;
 }
 
 function _adjustArgs(proxyobj: any, jsthis: any, jsargs: any[]): any[] {
   const { captureThis, boundArgs, boundThis, isBound } =
-    proxyobj.$$props as PyProxyProps;
+    _getAttrs(proxyobj).props;
   if (captureThis) {
     if (isBound) {
       return [boundThis].concat(boundArgs, jsargs);
@@ -295,6 +363,8 @@ Module.getPyProxyClass = function (flags: number) {
     [IS_AWAITABLE, PyAwaitableMethods],
     [IS_BUFFER, PyBufferMethods],
     [IS_CALLABLE, PyCallableMethods],
+    [IS_SEQUENCE, PySequenceMethods],
+    [IS_MUTABLE_SEQUENCE, PyMutableSequenceMethods],
   ];
   let result = pyproxyClassMap.get(flags);
   if (result) {
@@ -318,9 +388,10 @@ Module.getPyProxyClass = function (flags: number) {
     descriptors,
     Object.getOwnPropertyDescriptors({ $$flags: flags }),
   );
-  let new_proto = Object.create(PyProxy.prototype, descriptors);
+  const super_proto = flags & IS_CALLABLE ? PyProxyFunctionProto : PyProxyProto;
+  const sub_proto = Object.create(super_proto, descriptors);
   function NewPyProxyClass() {}
-  NewPyProxyClass.prototype = new_proto;
+  NewPyProxyClass.prototype = sub_proto;
   pyproxyClassMap.set(flags, NewPyProxyClass);
   return NewPyProxyClass;
 };
@@ -348,44 +419,60 @@ function pyproxy_decref_cache(cache: PyProxyCache) {
   }
 }
 
+function generateDestroyedMessage(
+  proxy: PyProxy,
+  destroyed_msg: string,
+): string {
+  destroyed_msg = destroyed_msg || "Object has already been destroyed";
+  if (API.debug_ffi) {
+    let proxy_type = proxy.type;
+    let proxy_repr;
+    try {
+      proxy_repr = proxy.toString();
+    } catch (e) {
+      if ((e as any).pyodide_fatal_error) {
+        throw e;
+      }
+    }
+    destroyed_msg += "\n" + `The object was of type "${proxy_type}" and `;
+    if (proxy_repr) {
+      destroyed_msg += `had repr "${proxy_repr}"`;
+    } else {
+      destroyed_msg += "an error was raised when trying to generate its repr";
+    }
+  } else {
+    destroyed_msg +=
+      "\n" +
+      "For more information about the cause of this error, use `pyodide.setDebug(true)`";
+  }
+  return destroyed_msg;
+}
+
 Module.pyproxy_destroy = function (
   proxy: PyProxy,
   destroyed_msg: string,
   destroy_roundtrip: boolean,
 ) {
-  if (proxy.$$.ptr === 0) {
+  const { shared, props } = _getAttrsQuiet(proxy);
+  if (!shared.ptr) {
+    // already destroyed
     return;
   }
-  if (!destroy_roundtrip && proxy.$$props.roundtrip) {
+  if (!destroy_roundtrip && props.roundtrip) {
     return;
   }
-  let ptrobj = _getPtr(proxy);
-  Module.finalizationRegistry.unregister(proxy.$$);
-  destroyed_msg = destroyed_msg || "Object has already been destroyed";
-  let proxy_type = proxy.type;
-  let proxy_repr;
-  try {
-    proxy_repr = proxy.toString();
-  } catch (e) {
-    if ((e as any).pyodide_fatal_error) {
-      throw e;
-    }
-  }
+  shared.destroyed_msg = generateDestroyedMessage(proxy, destroyed_msg);
   // Maybe the destructor will call JavaScript code that will somehow try
   // to use this proxy. Mark it deleted before decrementing reference count
   // just in case!
-  proxy.$$.ptr = 0;
-  destroyed_msg += "\n" + `The object was of type "${proxy_type}" and `;
-  if (proxy_repr) {
-    destroyed_msg += `had repr "${proxy_repr}"`;
-  } else {
-    destroyed_msg += "an error was raised when trying to generate its repr";
-  }
-  proxy.$$.destroyed_msg = destroyed_msg;
-  pyproxy_decref_cache(proxy.$$.cache);
+  const ptr = shared.ptr;
+  shared.ptr = 0;
+  Module.finalizationRegistry.unregister(shared);
+  pyproxy_decref_cache(shared.cache);
+
   try {
     Py_ENTER();
-    Module._Py_DecRef(ptrobj);
+    Module._Py_DecRef(ptr);
     trace_pyproxy_dealloc(proxy);
     Py_EXIT();
   } catch (e) {
@@ -423,11 +510,7 @@ Module.callPyObjectKwargs = function (
     );
     Py_EXIT();
   } catch (e) {
-    if (API._skip_unwind_fatal_error) {
-      API.maybe_fatal_error(e);
-    } else {
-      API.fatal_error(e);
-    }
+    API.maybe_fatal_error(e);
     return;
   } finally {
     Hiwire.decref(idargs);
@@ -439,7 +522,12 @@ Module.callPyObjectKwargs = function (
   let result = Hiwire.pop_value(idresult);
   // Automatically schedule coroutines
   if (result && result.type === "coroutine" && result._ensure_future) {
-    result._ensure_future();
+    Py_ENTER();
+    let is_coroutine = Module.__iscoroutinefunction(ptrobj);
+    Py_EXIT();
+    if (is_coroutine) {
+      result._ensure_future();
+    }
   }
   return result;
 };
@@ -458,15 +546,14 @@ export interface PyProxy {
  */
 export class PyProxy {
   /** @private */
-  $$: {
-    ptr: number;
-    cache: PyProxyCache;
-    destroyed_msg?: string;
-  };
-  /** @private */
-  $$props: PyProxyProps;
-  /** @private */
   $$flags: number;
+
+  /** @private */
+  static [Symbol.hasInstance](obj: any): obj is PyProxy {
+    return [PyProxy, PyProxyFunction].some((cls) =>
+      Function.prototype[Symbol.hasInstance].call(cls, obj),
+    );
+  }
 
   /**
    * @private
@@ -538,11 +625,11 @@ export class PyProxy {
    * Useful if the :js:class:`~pyodide.ffi.PyProxy` is destroyed somewhere else.
    */
   copy(): PyProxy {
-    let ptrobj = _getPtr(this);
-    return pyproxy_new(ptrobj, {
-      flags: this.$$flags,
-      cache: this.$$.cache,
-      props: this.$$props,
+    let attrs = _getAttrs(this);
+    return pyproxy_new(attrs.shared.ptr, {
+      flags: _getFlags(this),
+      cache: attrs.shared.cache,
+      props: attrs.props,
     });
   }
   /**
@@ -644,7 +731,7 @@ export class PyProxy {
     "supportsLength() is deprecated. Use `instanceof pyodide.ffi.PyProxyWithLength` instead.",
   )
   supportsLength(): this is PyProxyWithLength {
-    return !!(this.$$flags & HAS_LENGTH);
+    return !!(_getFlags(this) & HAS_LENGTH);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a :js:class:`~pyodide.ffi.PyProxyWithGet`.
@@ -654,7 +741,7 @@ export class PyProxy {
     "supportsGet() is deprecated. Use `instanceof pyodide.ffi.PyProxyWithGet` instead.",
   )
   supportsGet(): this is PyProxyWithGet {
-    return !!(this.$$flags & HAS_GET);
+    return !!(_getFlags(this) & HAS_GET);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a :js:class:`~pyodide.ffi.PyProxyWithSet`.
@@ -664,7 +751,7 @@ export class PyProxy {
     "supportsSet() is deprecated. Use `instanceof pyodide.ffi.PyProxyWithSet` instead.",
   )
   supportsSet(): this is PyProxyWithSet {
-    return !!(this.$$flags & HAS_SET);
+    return !!(_getFlags(this) & HAS_SET);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a :js:class:`~pyodide.ffi.PyProxyWithHas`.
@@ -674,7 +761,7 @@ export class PyProxy {
     "supportsHas() is deprecated. Use `instanceof pyodide.ffi.PyProxyWithHas` instead.",
   )
   supportsHas(): this is PyProxyWithHas {
-    return !!(this.$$flags & HAS_CONTAINS);
+    return !!(_getFlags(this) & HAS_CONTAINS);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a
@@ -685,7 +772,7 @@ export class PyProxy {
     "isIterable() is deprecated. Use `instanceof pyodide.ffi.PyIterable` instead.",
   )
   isIterable(): this is PyIterable {
-    return !!(this.$$flags & (IS_ITERABLE | IS_ITERATOR));
+    return !!(_getFlags(this) & (IS_ITERABLE | IS_ITERATOR));
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a
@@ -696,7 +783,7 @@ export class PyProxy {
     "isIterator() is deprecated. Use `instanceof pyodide.ffi.PyIterator` instead.",
   )
   isIterator(): this is PyIterator {
-    return !!(this.$$flags & IS_ITERATOR);
+    return !!(_getFlags(this) & IS_ITERATOR);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a :js:class:`~pyodide.ffi.PyAwaitable`
@@ -706,7 +793,7 @@ export class PyProxy {
     "isAwaitable() is deprecated. Use `instanceof pyodide.ffi.PyAwaitable` instead.",
   )
   isAwaitable(): this is PyAwaitable {
-    return !!(this.$$flags & IS_AWAITABLE);
+    return !!(_getFlags(this) & IS_AWAITABLE);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a :js:class:`~pyodide.ffi.PyBuffer`.
@@ -716,7 +803,7 @@ export class PyProxy {
     "isBuffer() is deprecated. Use `instanceof pyodide.ffi.PyBuffer` instead.",
   )
   isBuffer(): this is PyBuffer {
-    return !!(this.$$flags & IS_BUFFER);
+    return !!(_getFlags(this) & IS_BUFFER);
   }
   /**
    * Check whether the :js:class:`~pyodide.ffi.PyProxy` is a :js:class:`~pyodide.ffi.PyCallable`.
@@ -726,9 +813,23 @@ export class PyProxy {
     "isCallable() is deprecated. Use `instanceof pyodide.ffi.PyCallable` instead.",
   )
   isCallable(): this is PyCallable {
-    return !!(this.$$flags & IS_CALLABLE);
+    return !!(_getFlags(this) & IS_CALLABLE);
   }
 }
+
+const PyProxyProto = PyProxy.prototype;
+// For some weird reason in the node and firefox tests, the identity of
+// `Function` changes between now and the test suite. Can't reproduce this
+// outside the test suite though...
+// See test_pyproxy_instanceof_function.
+Tests.Function = Function;
+const PyProxyFunctionProto = Object.create(
+  Function.prototype,
+  Object.getOwnPropertyDescriptors(PyProxyProto),
+);
+function PyProxyFunction() {}
+PyProxyFunction.prototype = PyProxyFunctionProto;
+globalThis.PyProxyFunction = PyProxyFunction;
 
 /**
  * A :js:class:`~pyodide.ffi.PyProxy` whose proxied Python object has a :meth:`~object.__len__`
@@ -737,7 +838,7 @@ export class PyProxy {
 export class PyProxyWithLength extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & HAS_LENGTH);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & HAS_LENGTH);
   }
 }
 
@@ -773,7 +874,7 @@ export class PyLengthMethods {
 export class PyProxyWithGet extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & HAS_GET);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & HAS_GET);
   }
 }
 
@@ -819,7 +920,7 @@ export class PyGetItemMethods {
 export class PyProxyWithSet extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & HAS_SET);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & HAS_SET);
   }
 }
 
@@ -883,7 +984,7 @@ export class PySetItemMethods {
 export class PyProxyWithHas extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & HAS_CONTAINS);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & HAS_CONTAINS);
   }
 }
 
@@ -963,7 +1064,9 @@ function* iter_helper(iterptr: number, token: {}): Generator<any> {
 export class PyIterable extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & (IS_ITERABLE | IS_ITERATOR));
+    return (
+      API.isPyProxy(obj) && !!(_getFlags(obj) & (IS_ITERABLE | IS_ITERATOR))
+    );
   }
 }
 
@@ -1069,7 +1172,7 @@ export class PyAsyncIterable extends PyProxy {
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
     return (
       API.isPyProxy(obj) &&
-      !!(obj.$$flags & (IS_ASYNC_ITERABLE | IS_ASYNC_ITERATOR))
+      !!(_getFlags(obj) & (IS_ASYNC_ITERABLE | IS_ASYNC_ITERATOR))
     );
   }
 }
@@ -1111,7 +1214,7 @@ export class PyAsyncIterableMethods {
 export class PyIterator extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_ITERATOR);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_ITERATOR);
   }
 }
 
@@ -1176,7 +1279,7 @@ export class PyIteratorMethods {
 export class PyGenerator extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_GENERATOR);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_GENERATOR);
   }
 }
 
@@ -1272,7 +1375,7 @@ export class PyGeneratorMethods {
 export class PyAsyncIterator extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_ASYNC_ITERATOR);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_ASYNC_ITERATOR);
   }
 }
 
@@ -1340,7 +1443,7 @@ export class PyAsyncIteratorMethods {
 export class PyAsyncGenerator extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_ASYNC_GENERATOR);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_ASYNC_GENERATOR);
   }
 }
 
@@ -1441,8 +1544,461 @@ export class PyAsyncGeneratorMethods {
   }
 }
 
-// Another layer of boilerplate. The PyProxyHandlers have some annoying logic
-// to deal with straining out the spurious "Function" properties "prototype",
+/**
+ * A :js:class:`~pyodide.ffi.PyProxy` whose proxied Python object is an
+ * :py:class:`~collections.abc.Sequence` (i.e., a :py:class:`list`)
+ */
+export class PySequence extends PyProxy {
+  /** @private */
+  static [Symbol.hasInstance](obj: any): obj is PyProxy {
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_SEQUENCE);
+  }
+}
+
+export interface PySequence extends PySequenceMethods {}
+
+// JS default comparison is to convert to strings and compare lexicographically
+function defaultCompareFunc(a: any, b: any): number {
+  const astr = a.toString();
+  const bstr = b.toString();
+  if (astr === bstr) {
+    return 0;
+  }
+  if (astr < bstr) {
+    return -1;
+  }
+  return 1;
+}
+
+// Missing:
+// flatMap, flat,
+export class PySequenceMethods {
+  get [Symbol.isConcatSpreadable]() {
+    return true;
+  }
+  /**
+   * See :js:meth:`Array.join`. The :js:meth:`Array.join` method creates and
+   * returns a new string by concatenating all of the elements in the
+   * :py:class:`~collections.abc.Sequence`.
+   *
+   * @param separator A string to separate each pair of adjacent elements of the
+   * Sequence.
+   *
+   * @returns  A string with all Sequence elements joined.
+   */
+  join(separator?: string) {
+    return Array.prototype.join.call(this, separator);
+  }
+  /**
+   * See :js:meth:`Array.slice`. The :js:meth:`Array.slice` method returns a
+   * shallow copy of a portion of a :py:class:`~collections.abc.Sequence` into a
+   * new array object selected from ``start`` to ``stop`` (`stop` not included)
+   * @param start Zero-based index at which to start extraction. Negative index
+   * counts back from the end of the Sequence.
+   * @param stop Zero-based index at which to end extraction. Negative index
+   * counts back from the end of the Sequence.
+   * @returns A new array containing the extracted elements.
+   */
+  slice(start?: number, stop?: number): any {
+    return Array.prototype.slice.call(this, start, stop);
+  }
+  /**
+   * See :js:meth:`Array.lastIndexOf`. Returns the last index at which a given
+   * element can be found in the Sequence, or -1 if it is not present.
+   * @param elt Element to locate in the Sequence.
+   * @param fromIndex Zero-based index at which to start searching backwards,
+   * converted to an integer. Negative index counts back from the end of the
+   * Sequence.
+   * @returns The last index of the element in the Sequence; -1 if not found.
+   */
+  lastIndexOf(elt: any, fromIndex?: number) {
+    if (fromIndex === undefined) {
+      fromIndex = (this as any).length;
+    }
+    return Array.prototype.lastIndexOf.call(this, elt, fromIndex);
+  }
+  /**
+   * See :js:meth:`Array.indexOf`. Returns the first index at which a given
+   * element can be found in the Sequence, or -1 if it is not present.
+   * @param elt Element to locate in the Sequence.
+   * @param fromIndex Zero-based index at which to start searching, converted to
+   * an integer. Negative index counts back from the end of the Sequence.
+   * @returns The first index of the element in the Sequence; -1 if not found.
+   */
+  indexOf(elt: any, fromIndex?: number) {
+    return Array.prototype.indexOf.call(this, elt, fromIndex);
+  }
+  /**
+   * See :js:meth:`Array.forEach`. Executes a provided function once for each
+   * ``Sequence`` element.
+   * @param callbackfn A function to execute for each element in the ``Sequence``. Its
+   * return value is discarded.
+   * @param thisArg A value to use as ``this`` when executing ``callbackFn``.
+   */
+  forEach(callbackfn: (elt: any) => void, thisArg?: any) {
+    Array.prototype.forEach.call(this, callbackfn, thisArg);
+  }
+  /**
+   * See :js:meth:`Array.map`. Creates a new array populated with the results of
+   * calling a provided function on every element in the calling ``Sequence``.
+   * @param callbackfn A function to execute for each element in the ``Sequence``. Its
+   * return value is added as a single element in the new array.
+   * @param thisArg A value to use as ``this`` when executing ``callbackFn``.
+   */
+  map(
+    callbackfn: (elt: any, index: number, array: any) => void,
+    thisArg?: any,
+  ) {
+    return Array.prototype.map.call(this, callbackfn, thisArg);
+  }
+  /**
+   * See :js:meth:`Array.filter`. Creates a shallow copy of a portion of a given
+   * ``Sequence``, filtered down to just the elements from the given array that pass
+   * the test implemented by the provided function.
+   * @param callbackfn A function to execute for each element in the array. It
+   * should return a truthy value to keep the element in the resulting array,
+   * and a falsy value otherwise.
+   * @param thisArg A value to use as ``this`` when executing ``predicate``.
+   */
+  filter(
+    predicate: (elt: any, index: number, array: any) => boolean,
+    thisArg?: any,
+  ) {
+    return Array.prototype.filter.call(this, predicate, thisArg);
+  }
+  /**
+   * See :js:meth:`Array.some`. Tests whether at least one element in the
+   * ``Sequence`` passes the test implemented by the provided function.
+   * @param callbackfn A function to execute for each element in the
+   * ``Sequence``. It should return a truthy value to indicate the element
+   * passes the test, and a falsy value otherwise.
+   * @param thisArg A value to use as ``this`` when executing ``predicate``.
+   */
+  some(
+    predicate: (value: any, index: number, array: any[]) => unknown,
+    thisArg?: any,
+  ): boolean {
+    return Array.prototype.some.call(this, predicate, thisArg);
+  }
+  /**
+   * See :js:meth:`Array.every`. Tests whether every element in the ``Sequence``
+   * passes the test implemented by the provided function.
+   * @param callbackfn A function to execute for each element in the
+   * ``Sequence``. It should return a truthy value to indicate the element
+   * passes the test, and a falsy value otherwise.
+   * @param thisArg A value to use as ``this`` when executing ``predicate``.
+   */
+  every(
+    predicate: (value: any, index: number, array: any[]) => unknown,
+    thisArg?: any,
+  ): boolean {
+    return Array.prototype.every.call(this, predicate, thisArg);
+  }
+  /**
+   * See :js:meth:`Array.reduce`. Executes a user-supplied "reducer" callback
+   * function on each element of the Sequence, in order, passing in the return
+   * value from the calculation on the preceding element. The final result of
+   * running the reducer across all elements of the Sequence is a single value.
+   * @param callbackfn A function to execute for each element in the ``Sequence``. Its
+   * return value is discarded.
+   * @param thisArg A value to use as ``this`` when executing ``callbackfn``.
+   */
+  reduce(
+    callbackfn: (
+      previousValue: any,
+      currentValue: any,
+      currentIndex: number,
+      array: any,
+    ) => any,
+    initialValue?: any,
+  ): any;
+  reduce(...args: any[]) {
+    // @ts-ignore
+    return Array.prototype.reduce.apply(this, args);
+  }
+  /**
+   * See :js:meth:`Array.reduceRight`. Applies a function against an accumulator
+   * and each value of the Sequence (from right to left) to reduce it to a
+   * single value.
+   * @param callbackfn A function to execute for each element in the Sequence.
+   * Its return value is discarded.
+   * @param thisArg A value to use as ``this`` when executing ``callbackFn``.
+   */
+  reduceRight(
+    callbackfn: (
+      previousValue: any,
+      currentValue: any,
+      currentIndex: number,
+      array: any,
+    ) => any,
+    initialValue: any,
+  ): any;
+  reduceRight(...args: any[]) {
+    // @ts-ignore
+    return Array.prototype.reduceRight.apply(this, args);
+  }
+  /**
+   * See :js:meth:`Array.at`. Takes an integer value and returns the item at
+   * that index.
+   * @param index Zero-based index of the Sequence element to be returned,
+   * converted to an integer. Negative index counts back from the end of the
+   * Sequence.
+   * @returns The element in the Sequence matching the given index.
+   */
+  at(index: number) {
+    return Array.prototype.at.call(this, index);
+  }
+  /**
+   * The :js:meth:`Array.concat` method is used to merge two or more arrays.
+   * This method does not change the existing arrays, but instead returns a new
+   * array.
+   * @param rest Arrays and/or values to concatenate into a new array.
+   * @returns A new Array instance.
+   */
+  concat(...rest: ConcatArray<any>[]) {
+    return Array.prototype.concat.apply(this, rest);
+  }
+  /**
+   * The  :js:meth:`Array.includes` method determines whether a Sequence
+   * includes a certain value among its entries, returning true or false as
+   * appropriate.
+   * @param elt
+   * @returns
+   */
+  includes(elt: any) {
+    // @ts-ignore
+    return this.has(elt);
+  }
+  /**
+   * The :js:meth:`Array.entries` method returns a new iterator object that
+   * contains the key/value pairs for each index in the ``Sequence``.
+   * @returns A new iterator object.
+   */
+  entries() {
+    return Array.prototype.entries.call(this);
+  }
+  /**
+   * The :js:meth:`Array.keys` method returns a new iterator object that
+   * contains the keys for each index in the ``Sequence``.
+   * @returns A new iterator object.
+   */
+  keys() {
+    return Array.prototype.keys.call(this);
+  }
+  /**
+   * The :js:meth:`Array.values` method returns a new iterator object that
+   * contains the values for each index in the ``Sequence``.
+   * @returns A new iterator object.
+   */
+  values() {
+    return Array.prototype.values.call(this);
+  }
+  /**
+   * The :js:meth:`Array.find` method returns the first element in the provided
+   * array that satisfies the provided testing function.
+   * @param predicate A function to execute for each element in the
+   * ``Sequence``. It should return a truthy value to indicate a matching
+   * element has been found, and a falsy value otherwise.
+   * @param thisArg A value to use as ``this`` when executing ``predicate``.
+   * @returns The first element in the ``Sequence`` that satisfies the provided
+   * testing function.
+   */
+  find(
+    predicate: (value: any, index: number, obj: any[]) => any,
+    thisArg?: any,
+  ) {
+    return Array.prototype.find.call(this, predicate, thisArg);
+  }
+  /**
+   * The :js:meth:`Array.findIndex` method returns the index of the first
+   * element in the provided array that satisfies the provided testing function.
+   * @param predicate A function to execute for each element in the
+   * ``Sequence``. It should return a truthy value to indicate a matching
+   * element has been found, and a falsy value otherwise.
+   * @param thisArg A value to use as ``this`` when executing ``predicate``.
+   * @returns The index of the first element in the ``Sequence`` that satisfies
+   * the provided testing function.
+   */
+  findIndex(
+    predicate: (value: any, index: number, obj: any[]) => any,
+    thisArg?: any,
+  ): number {
+    return Array.prototype.findIndex.call(this, predicate, thisArg);
+  }
+}
+
+/**
+ * A :js:class:`~pyodide.ffi.PyProxy` whose proxied Python object is an
+ * :py:class:`~collections.abc.MutableSequence` (i.e., a :py:class:`list`)
+ */
+export class PyMutableSequence extends PyProxy {
+  /** @private */
+  static [Symbol.hasInstance](obj: any): obj is PyProxy {
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_SEQUENCE);
+  }
+}
+
+export interface PyMutableSequence extends PyMutableSequenceMethods {}
+
+export class PyMutableSequenceMethods {
+  /**
+   * The :js:meth:`Array.reverse` method reverses a ``MutableSequence`` in
+   * place.
+   * @returns A reference to the same ``MutableSequence``
+   */
+  reverse() {
+    // @ts-ignore
+    this.$reverse();
+    return this;
+  }
+  /**
+   * The :js:meth:`Array.sort` method sorts the elements of a
+   * ``MutableSequence`` in place.
+   * @param compareFn A function that defines the sort order.
+   * @returns A reference to the same ``MutableSequence``
+   */
+  sort(compareFn?: (a: any, b: any) => number) {
+    // Copy the behavior of sort described here:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#creating_displaying_and_sorting_an_array
+    // Yes JS sort is weird.
+
+    // We need this adaptor to convert from js comparison function to Python key
+    // function.
+    const functools = API.public_api.pyimport("functools");
+    const cmp_to_key = functools.cmp_to_key;
+    let cf: (a: any, b: any) => number;
+    if (compareFn) {
+      cf = compareFn;
+    } else {
+      cf = defaultCompareFunc;
+    }
+    // spec says arguments to compareFunc "Will never be undefined."
+    // and undefined values should get sorted to end of list.
+    // Make wrapper to ensure this
+    function wrapper(a: any, b: any) {
+      if (a === undefined && b === undefined) {
+        return 0;
+      }
+      if (a === undefined) {
+        return 1;
+      }
+      if (b === undefined) {
+        return -1;
+      }
+      return cf(a, b);
+    }
+    let key;
+    try {
+      key = cmp_to_key(wrapper);
+      // @ts-ignore
+      this.$sort.callKwargs({ key });
+    } finally {
+      key?.destroy();
+      cmp_to_key.destroy();
+      functools.destroy();
+    }
+    return this;
+  }
+  /**
+   * The :js:meth:`Array.splice` method changes the contents of a
+   * ``MutableSequence`` by removing or replacing existing elements and/or
+   * adding new elements in place.
+   * @param start Zero-based index at which to start changing the
+   * ``MutableSequence``.
+   * @param deleteCount An integer indicating the number of elements in the
+   * ``MutableSequence`` to remove from ``start``.
+   * @param items The elements to add to the ``MutableSequence``, beginning from
+   * ``start``.
+   * @returns An array containing the deleted elements.
+   */
+  splice(start: number, deleteCount?: number, ...items: any[]) {
+    if (deleteCount === undefined) {
+      // Max ssize
+      deleteCount = 1 << (31 - 1);
+    }
+    return python_slice_assign(this, start, start + deleteCount, items);
+  }
+  /**
+   * The :js:meth:`Array.push` method adds the specified elements to the end of
+   * a ``MutableSequence``.
+   * @param elts The element(s) to add to the end of the ``MutableSequence``.
+   * @returns The new length property of the object upon which the method was
+   * called.
+   */
+  push(...elts: any[]) {
+    for (let elt of elts) {
+      // @ts-ignore
+      this.append(elt);
+    }
+    // @ts-ignore
+    return this.length;
+  }
+  /**
+   * The :js:meth:`Array.pop` method removes the last element from a
+   * ``MutableSequence``.
+   * @returns The removed element from the ``MutableSequence``; undefined if the
+   * ``MutableSequence`` is empty.
+   */
+  pop() {
+    return python_pop(this, false);
+  }
+  /**
+   * The :js:meth:`Array.shift` method removes the first element from a
+   * ``MutableSequence``.
+   * @returns The removed element from the ``MutableSequence``; undefined if the
+   * ``MutableSequence`` is empty.
+   */
+  shift() {
+    return python_pop(this, true);
+  }
+  /**
+   * The :js:meth:`Array.unshift` method adds the specified elements to the
+   * beginning of a ``MutableSequence``.
+   * @param elts The elements to add to the front of the ``MutableSequence``.
+   * @returns The new length of the ``MutableSequence``.
+   */
+  unshift(...elts: any[]) {
+    elts.forEach((elt, idx) => {
+      // @ts-ignore
+      this.insert(idx, elt);
+    });
+    // @ts-ignore
+    return this.length;
+  }
+  /**
+   * The :js:meth:`Array.copyWithin` method shallow copies part of a
+   * ``MutableSequence`` to another location in the same ``MutableSequence``
+   * without modifying its length.
+   * @param target Zero-based index at which to copy the sequence to.
+   * @param start Zero-based index at which to start copying elements from.
+   * @param end Zero-based index at which to end copying elements from.
+   * @returns The modified ``MutableSequence``.
+   */
+  copyWithin(target: number, start?: number, end?: number): any;
+  copyWithin(...args: number[]): any {
+    // @ts-ignore
+    Array.prototype.copyWithin.apply(this, args);
+    return this;
+  }
+  /**
+   * The :js:meth:`Array.fill` method changes all elements in an array to a
+   * static value, from a start index to an end index.
+   * @param value Value to fill the array with.
+   * @param start Zero-based index at which to start filling. Default 0.
+   * @param end Zero-based index at which to end filling. Default
+   * ``list.length``.
+   * @returns
+   */
+  fill(value: any, start?: number, end?: number): any;
+  fill(...args: any[]): any {
+    // @ts-ignore
+    Array.prototype.fill.apply(this, args);
+    return this;
+  }
+}
+
+// Another layer of boilerplate. The PyProxyHandlers have some annoying logic to
+// deal with straining out the spurious "Function" properties "prototype",
 // "arguments", and "length", to deal with correctly satisfying the Proxy
 // invariants, and to deal with the mro
 function python_hasattr(jsobj: PyProxy, jskey: any) {
@@ -1468,13 +2024,13 @@ function python_hasattr(jsobj: PyProxy, jskey: any) {
 // (in which case we return 0) and "found 'None'" (in which case we return
 // Js_undefined).
 function python_getattr(jsobj: PyProxy, jskey: any) {
-  let ptrobj = _getPtr(jsobj);
+  const { shared } = _getAttrs(jsobj);
   let idkey = Hiwire.new_value(jskey);
   let idresult;
-  let cacheId = jsobj.$$.cache.cacheId;
+  let cacheId = shared.cache.cacheId;
   try {
     Py_ENTER();
-    idresult = Module.__pyproxy_getattr(ptrobj, idkey, cacheId);
+    idresult = Module.__pyproxy_getattr(shared.ptr, idkey, cacheId);
     Py_EXIT();
   } catch (e) {
     API.fatal_error(e);
@@ -1527,18 +2083,87 @@ function python_delattr(jsobj: PyProxy, jskey: any) {
   }
 }
 
+function python_slice_assign(
+  jsobj: any,
+  start: number,
+  stop: number,
+  val: any,
+): void {
+  let ptrobj = _getPtr(jsobj);
+  let idval = Hiwire.new_value(val);
+  let res;
+  try {
+    Py_ENTER();
+    res = Module.__pyproxy_slice_assign(ptrobj, start, stop, idval);
+    Py_EXIT();
+  } catch (e) {
+    API.fatal_error(e);
+  } finally {
+    Hiwire.decref(idval);
+  }
+  if (res === 0) {
+    Module._pythonexc2js();
+  }
+  return Hiwire.pop_value(res);
+}
+
+function python_pop(jsobj: any, pop_start: boolean): void {
+  let ptrobj = _getPtr(jsobj);
+  let res;
+  try {
+    Py_ENTER();
+    res = Module.__pyproxy_pop(ptrobj, pop_start);
+    Py_EXIT();
+  } catch (e) {
+    API.fatal_error(e);
+  }
+  if (res === 0) {
+    Module._pythonexc2js();
+  }
+  return Hiwire.pop_value(res);
+}
+
+function filteredHasKey(
+  jsobj: PyProxy,
+  jskey: string | symbol,
+  filterProto: boolean,
+) {
+  if (jsobj instanceof Function) {
+    // If we are a PyProxy of a callable we have to subclass function so that if
+    // someone feature detects callables with `instanceof Function` it works
+    // correctly. But the callable might have attributes `name` and `length` and
+    // we don't want to shadow them with the values from `Function.prototype`.
+    return (
+      jskey in jsobj &&
+      !(
+        [
+          "name",
+          "length",
+          "caller",
+          "arguments",
+          // we are required by JS law to return `true` for `"prototype" in pycallable`
+          // but we are allowed to return the value of `getattr(pycallable, "prototype")`.
+          // So we filter prototype out of the "get" trap but not out of the "has" trap
+          filterProto ? "prototype" : undefined,
+        ] as (string | symbol)[]
+      ).includes(jskey)
+    );
+  } else {
+    return jskey in jsobj;
+  }
+}
+
 // See explanation of which methods should be defined here and what they do
 // here:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
-let PyProxyHandlers = {
-  isExtensible() {
+const PyProxyHandlers = {
+  isExtensible(): boolean {
     return true;
   },
-  has(jsobj: PyProxy, jskey: any) {
+  has(jsobj: PyProxy, jskey: string | symbol): boolean {
     // Note: must report "prototype" in proxy when we are callable.
     // (We can return the wrong value from "get" handler though.)
-    let objHasKey = Reflect.has(jsobj, jskey);
-    if (objHasKey) {
+    if (filteredHasKey(jsobj, jskey, false)) {
       return true;
     }
     // python_hasattr will crash if given a Symbol.
@@ -1550,13 +2175,12 @@ let PyProxyHandlers = {
     }
     return python_hasattr(jsobj, jskey);
   },
-  get(jsobj: PyProxy, jskey: any) {
+  get(jsobj: PyProxy, jskey: string | symbol): any {
     // Preference order:
     // 1. stuff from JavaScript
     // 2. the result of Python getattr
-
     // python_getattr will crash if given a Symbol.
-    if (jskey in jsobj || typeof jskey === "symbol") {
+    if (typeof jskey === "symbol" || filteredHasKey(jsobj, jskey, true)) {
       return Reflect.get(jsobj, jskey);
     }
     // If keys start with $ remove the $. User can use initial $ to
@@ -1570,13 +2194,13 @@ let PyProxyHandlers = {
       return Hiwire.pop_value(idresult);
     }
   },
-  set(jsobj: PyProxy, jskey: any, jsval: any) {
+  set(jsobj: PyProxy, jskey: string | symbol, jsval: any): boolean {
     let descr = Object.getOwnPropertyDescriptor(jsobj, jskey);
-    if (descr && !descr.writable) {
-      throw new TypeError(`Cannot set read only field '${jskey}'`);
+    if (descr && !descr.writable && !descr.set) {
+      return false;
     }
     // python_setattr will crash if given a Symbol.
-    if (typeof jskey === "symbol") {
+    if (typeof jskey === "symbol" || filteredHasKey(jsobj, jskey, true)) {
       return Reflect.set(jsobj, jskey, jsval);
     }
     if (jskey.startsWith("$")) {
@@ -1585,23 +2209,26 @@ let PyProxyHandlers = {
     python_setattr(jsobj, jskey, jsval);
     return true;
   },
-  deleteProperty(jsobj: PyProxy, jskey: any): boolean {
+  deleteProperty(jsobj: PyProxy, jskey: string | symbol): boolean {
     let descr = Object.getOwnPropertyDescriptor(jsobj, jskey);
-    if (descr && !descr.writable) {
-      throw new TypeError(`Cannot delete read only field '${jskey}'`);
+    if (descr && !descr.configurable) {
+      // Must return "false" if "jskey" is a nonconfigurable own property.
+      // Otherwise JavaScript will throw a TypeError.
+      // Strict mode JS will throw an error here saying that the property cannot
+      // be deleted. It's good to leave everything alone so that the behavior is
+      // consistent with the error message.
+      return false;
     }
-    if (typeof jskey === "symbol") {
+    if (typeof jskey === "symbol" || filteredHasKey(jsobj, jskey, true)) {
       return Reflect.deleteProperty(jsobj, jskey);
     }
     if (jskey.startsWith("$")) {
       jskey = jskey.slice(1);
     }
     python_delattr(jsobj, jskey);
-    // Must return "false" if "jskey" is a nonconfigurable own property.
-    // Otherwise JavaScript will throw a TypeError.
-    return !descr || !!descr.configurable;
+    return true;
   },
-  ownKeys(jsobj: PyProxy) {
+  ownKeys(jsobj: PyProxy): (string | symbol)[] {
     let ptrobj = _getPtr(jsobj);
     let idresult;
     try {
@@ -1618,8 +2245,80 @@ let PyProxyHandlers = {
     result.push(...Reflect.ownKeys(jsobj));
     return result;
   },
-  apply(jsobj: PyProxy & Function, jsthis: any, jsargs: any) {
+  apply(jsobj: PyProxy & Function, jsthis: any, jsargs: any): any {
     return jsobj.apply(jsthis, jsargs);
+  },
+};
+
+function isPythonError(e: any): boolean {
+  return (
+    e &&
+    typeof e === "object" &&
+    e.constructor &&
+    e.constructor.name === "PythonError"
+  );
+}
+const PyProxySequenceHandlers = {
+  isExtensible(): boolean {
+    return true;
+  },
+  has(jsobj: PyProxy, jskey: any): boolean {
+    if (typeof jskey === "string" && /^[0-9]*$/.test(jskey)) {
+      return Number(jskey) < jsobj.length;
+    }
+    return PyProxyHandlers.has(jsobj, jskey);
+  },
+  get(jsobj: PyProxy, jskey: any): any {
+    if (jskey === "length") {
+      return jsobj.length;
+    }
+    if (typeof jskey === "string" && /^[0-9]*$/.test(jskey)) {
+      try {
+        return PyGetItemMethods.prototype.get.call(jsobj, Number(jskey));
+      } catch (e) {
+        if (isPythonError(e)) {
+          return undefined;
+        }
+        throw e;
+      }
+    }
+    return PyProxyHandlers.get(jsobj, jskey);
+  },
+  set(jsobj: PyProxy, jskey: any, jsval: any): boolean {
+    if (typeof jskey === "string" && /^[0-9]*$/.test(jskey)) {
+      try {
+        PySetItemMethods.prototype.set.call(jsobj, Number(jskey), jsval);
+        return true;
+      } catch (e) {
+        if (isPythonError(e)) {
+          return false;
+        }
+        throw e;
+      }
+    }
+    return PyProxyHandlers.set(jsobj, jskey, jsval);
+  },
+  deleteProperty(jsobj: PyProxy, jskey: any): boolean {
+    if (typeof jskey === "string" && /^[0-9]*$/.test(jskey)) {
+      try {
+        PySetItemMethods.prototype.delete.call(jsobj, Number(jskey));
+        return true;
+      } catch (e) {
+        if (isPythonError(e)) {
+          return false;
+        }
+        throw e;
+      }
+    }
+    return PyProxyHandlers.deleteProperty(jsobj, jskey);
+  },
+  ownKeys(jsobj: PyProxy): (string | symbol)[] {
+    const result = PyProxyHandlers.ownKeys(jsobj);
+    result.push(
+      ...Array.from({ length: jsobj.length }, (_, k) => k.toString()),
+    );
+    result.push("length");
+    return result;
   },
 };
 
@@ -1630,7 +2329,7 @@ let PyProxyHandlers = {
 export class PyAwaitable extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyProxy {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_AWAITABLE);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_AWAITABLE);
   }
 }
 
@@ -1651,10 +2350,15 @@ export class PyAwaitableMethods {
    * @private
    */
   _ensure_future(): Promise<any> {
-    if (this.$$.promise) {
-      return this.$$.promise;
+    const { shared } = _getAttrsQuiet(this);
+    if (shared.promise) {
+      return shared.promise;
     }
-    let ptrobj = _getPtr(this);
+    const ptr = shared.ptr;
+    if (!ptr) {
+      // Destroyed and promise wasn't resolved. Raise error!
+      _getAttrs(this);
+    }
     let resolveHandle;
     let rejectHandle;
     let promise = new Promise((resolve, reject) => {
@@ -1667,7 +2371,7 @@ export class PyAwaitableMethods {
     try {
       Py_ENTER();
       errcode = Module.__pyproxy_ensure_future(
-        ptrobj,
+        ptr,
         resolve_handle_id,
         reject_handle_id,
       );
@@ -1681,7 +2385,7 @@ export class PyAwaitableMethods {
     if (errcode === -1) {
       Module._pythonexc2js();
     }
-    this.$$.promise = promise;
+    shared.promise = promise;
     // @ts-ignore
     this.destroy();
     return promise;
@@ -1745,7 +2449,7 @@ export class PyAwaitableMethods {
 export class PyCallable extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyCallable {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_CALLABLE);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_CALLABLE);
   }
 }
 
@@ -1834,25 +2538,23 @@ export class PyCallableMethods {
    * @returns
    */
   bind(thisArg: any, ...jsargs: any) {
-    const self = this as unknown as PyProxy;
-    const {
-      boundArgs: boundArgsOld,
-      boundThis: boundThisOld,
-      isBound,
-    } = self.$$props;
+    let { shared, props } = _getAttrs(this);
+    const { boundArgs: boundArgsOld, boundThis: boundThisOld, isBound } = props;
     let boundThis = thisArg;
     if (isBound) {
       boundThis = boundThisOld;
     }
     let boundArgs = boundArgsOld.concat(jsargs);
-    const props: PyProxyProps = Object.assign({}, self.$$props, {
+    props = Object.assign({}, props, {
       boundArgs,
       isBound: true,
       boundThis,
     });
-    const $$ = self.$$;
-    let ptrobj = _getPtr(this);
-    return pyproxy_new(ptrobj, { $$, flags: self.$$flags, props });
+    return pyproxy_new(shared.ptr, {
+      shared,
+      flags: _getFlags(this),
+      props,
+    });
   }
 
   /**
@@ -1885,13 +2587,13 @@ export class PyCallableMethods {
    *
    */
   captureThis(): PyProxy {
-    const self = this as unknown as PyProxy;
-    const props: PyProxyProps = Object.assign({}, self.$$props, {
+    let { props, shared } = _getAttrs(this);
+    props = Object.assign({}, props, {
       captureThis: true,
     });
-    return pyproxy_new(_getPtr(this), {
-      $$: self.$$,
-      flags: self.$$flags,
+    return pyproxy_new(shared.ptr, {
+      shared,
+      flags: _getFlags(this),
       props,
     });
   }
@@ -1929,7 +2631,7 @@ let type_to_array_map: Map<string, any> = new Map([
 export class PyBuffer extends PyProxy {
   /** @private */
   static [Symbol.hasInstance](obj: any): obj is PyBuffer {
-    return API.isPyProxy(obj) && !!(obj.$$flags & IS_BUFFER);
+    return API.isPyProxy(obj) && !!(_getFlags(obj) & IS_BUFFER);
   }
 }
 

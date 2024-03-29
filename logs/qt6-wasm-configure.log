@@ -3,7 +3,7 @@
 + exec /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -skip qtvirtualkeyboard -skip qtspeech -skip qtimageformats -skip qtdoc -skip qtnetworkauth -skip qt5compat -skip qtmqtt -skip qtserialbus -skip qtwebchannel -skip qtwebengine -skip qt3d -skip qtconnectivity -skip qtcoap -skip qthttpserver -skip qtwebsockets -skip qtserialport -skip qtremoteobjects -skip qtdatavis3d -skip qtquick3d -skip qtlottie -skip qtactiveqt -skip qttools -skip qtgrpc -skip qtsensors -skip qtgraphs -skip qtquickeffectmaker -skip qtwayland -skip qttranslations -skip qtlocation -skip qtopcua -skip qtqa -skip qtscxml -skip qtlanguageserver -skip qtquicktimeline -skip qtmultimedia -skip qtwebview -skip qtshadertools -skip qtdeclarative -skip qtcharts -skip qtpositioning -skip qtquick3dphysics -qt-host-path /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host -platform wasm-emscripten -prefix /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host
 '/home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DBUILD_qtvirtualkeyboard=OFF' '-DBUILD_qtspeech=OFF' '-DBUILD_qtimageformats=OFF' '-DBUILD_qtdoc=OFF' '-DBUILD_qtnetworkauth=OFF' '-DBUILD_qt5compat=OFF' '-DBUILD_qtmqtt=OFF' '-DBUILD_qtserialbus=OFF' '-DBUILD_qtwebchannel=OFF' '-DBUILD_qtwebengine=OFF' '-DBUILD_qt3d=OFF' '-DBUILD_qtconnectivity=OFF' '-DBUILD_qtcoap=OFF' '-DBUILD_qthttpserver=OFF' '-DBUILD_qtwebsockets=OFF' '-DBUILD_qtserialport=OFF' '-DBUILD_qtremoteobjects=OFF' '-DBUILD_qtdatavis3d=OFF' '-DBUILD_qtquick3d=OFF' '-DBUILD_qtlottie=OFF' '-DBUILD_qtactiveqt=OFF' '-DBUILD_qttools=OFF' '-DBUILD_qtgrpc=OFF' '-DBUILD_qtsensors=OFF' '-DBUILD_qtgraphs=OFF' '-DBUILD_qtquickeffectmaker=OFF' '-DBUILD_qtwayland=OFF' '-DBUILD_qttranslations=OFF' '-DBUILD_qtlocation=OFF' '-DBUILD_qtopcua=OFF' '-DBUILD_qtqa=OFF' '-DBUILD_qtscxml=OFF' '-DBUILD_qtlanguageserver=OFF' '-DBUILD_qtquicktimeline=OFF' '-DBUILD_qtmultimedia=OFF' '-DBUILD_qtwebview=OFF' '-DBUILD_qtshadertools=OFF' '-DBUILD_qtdeclarative=OFF' '-DBUILD_qtcharts=OFF' '-DBUILD_qtpositioning=OFF' '-DBUILD_qtquick3dphysics=OFF' '-DQT_HOST_PATH=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-host' '-DQT_QMAKE_TARGET_MKSPEC=wasm-emscripten' '-G' 'Ninja' '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6'
 -- Extracting Emscripten SDK info from EMSDK env var: /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk
--- Emscripten 3.1.37 toolchain file detected at /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+-- Emscripten 3.1.45 toolchain file detected at /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk//upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 -- The ASM compiler identification is unknown
 -- Found assembler: /home/niranjanpba/projects/pyodide-with-pyqt5/pyodide/emsdk/emsdk/upstream/emscripten/emcc
 -- Warning: Did not find file Compiler/-ASM
@@ -79,7 +79,7 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Configure summary:
 
 Building for: wasm-emscripten (wasm, CPU features: )
-Compiler: clang 17.0.0
+Compiler: clang 18.0.0
 Build options:
   Mode ................................... release
   Optimize release build for size ........ no
@@ -262,6 +262,8 @@ Qt Sql Drivers:
 
 Note: Using static linking will disable the use of dynamically loaded plugins. Make sure to import all needed static plugins, or compile needed modules into the library.
 
+WARNING: You should use the recommended Emscripten version 3.1.37 with this Qt. You have 3.1.45.
+
 -- 
 
 Qt is now configured for building. Just run 'cmake --build . --parallel'
@@ -275,6 +277,6 @@ To configure and build other Qt modules, you can use the following convenience s
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (81.0s)
+-- Configuring done (67.6s)
 -- Generating done (0.3s)
 -- Build files have been written to: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-wasm-build

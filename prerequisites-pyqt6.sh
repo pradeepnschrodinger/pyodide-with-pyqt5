@@ -30,3 +30,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # reload bashrc
 nvm install v18.5.0
 nvm use v18.5.0
+
+# (optional) Makes arrow keys work ?
+sudo apt-get install -y libncurses5-dev
+pip install readline --no-cache-dir
