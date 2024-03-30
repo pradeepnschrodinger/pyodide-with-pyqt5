@@ -193,16 +193,9 @@ popd
 pushd pyodide
     # apply patches for pyodide
     cp ../temp/pyodide__src__core__main.c src/core/main.c
-
-    # TODO (patch needs recreation)
     cp ../temp/pyodide__src__js__module.ts src/js/module.ts 
-
     cp ../temp/pyodide__src__templates__console.html  src/templates/console.html
-    
-    # TODO (patch needs recreation)
     cp ../temp/pyodide__src__core__pyproxy.ts src/core/pyproxy.ts
-
-    # TODO (patch needs recreation)
     cp ../temp/pyodide__Makefile Makefile
 
     make

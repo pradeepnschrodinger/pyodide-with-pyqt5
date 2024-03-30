@@ -9,13 +9,14 @@ CXX=em++
 
 
 all: check \
+	check-emcc \
 	dist/pyodide.asm.js \
 	dist/pyodide.js \
 	dist/pyodide.d.ts \
 	dist/package.json \
 	dist/python \
 	dist/console.html \
-	dist/repodata.json \
+	dist/pyodide-lock.json \
 	dist/python_stdlib.zip \
 	dist/test.html \
 	dist/module_test.html \
@@ -94,8 +95,7 @@ dist/pyodide.asm.js: \
 	dist/libpyodide.a
 	date +"[%F %T] Building pyodide.asm.js..."
 	[ -d dist ] || mkdir dist
-	$(CXX) -o dist/pyodide.asm.js dist/libpyodide.a \
-	src/core/main.o $(MAIN_MODULE_LDFLAGS) \
+	$(CXX) -o dist/pyodide.asm.js dist/libpyodide.a src/core/main.o $(MAIN_MODULE_LDFLAGS) \
 	-sUSE_WEBGL2=1 -sFULL_ES2=1 \
 	-sERROR_ON_UNDEFINED_SYMBOLS=0 \
 	-lembind \
@@ -141,11 +141,11 @@ dist/pyodide.asm.js: \
    # cat dist/pyodide.asm.js | grep -ohE 'var _{0,5}.' | sort | uniq -c | sort -nr | head -n 20
 	sed -i -E 's/var __Z[^;]*;//g' dist/pyodide.asm.js
 	sed -i '1i "use strict";' dist/pyodide.asm.js
-	# Remove last 6 lines of pyodide.asm.js, see issue #2282
+	# Remove last 4 lines of pyodide.asm.js, see issue #2282
 	# Hopefully we will remove this after emscripten fixes it, upstream issue
 	# emscripten-core/emscripten#16518
 	# Sed nonsense from https://stackoverflow.com/a/13383331
-	sed -i -n -e :a -e '1,6!{P;N;D;};N;ba' dist/pyodide.asm.js
+	sed -i -n -e :a -e '1,4!{P;N;D;};N;ba' dist/pyodide.asm.js
 	echo "globalThis._createPyodideModule = _createPyodideModule;" >> dist/pyodide.asm.js
 	date +"[%F %T] done building pyodide.asm.js."
 
@@ -179,9 +179,6 @@ dist/pyodide.d.ts dist/pyodide/ffi.d.ts: src/js/*.ts src/js/pyproxy.gen.ts src/j
 
 src/js/error_handling.gen.ts : src/core/error_handling.ts
 	cp $< $@
-
-%.wasm.gen.js: %.wat
-	node tools/assemble_wat.js $@
 
 src/js/pyproxy.gen.ts : src/core/pyproxy.* src/core/*.h
 	# We can't input pyproxy.js directly because CC will be unhappy about the file
@@ -260,6 +257,7 @@ benchmark: all
 clean:
 	rm -fr dist/*
 	rm -fr src/*/*.o
+	rm -fr src/*/*.gen.*
 	rm -fr node_modules
 	make -C packages clean
 	echo "The Emsdk, CPython are not cleaned. cd into those directories to do so."
@@ -281,7 +279,7 @@ $(CPYTHONLIB): emsdk/emsdk/.complete
 	date +"[%F %T] done building cpython..."
 
 
-dist/repodata.json: FORCE pyodide_build
+dist/pyodide-lock.json: FORCE pyodide_build
 	date +"[%F %T] Building packages..."
 	make -C packages
 	date +"[%F %T] done building packages..."
@@ -304,6 +302,10 @@ FORCE:
 
 check:
 	./tools/dependency-check.sh
+
+
+check-emcc: emsdk/emsdk/.complete
+	python3 tools/check_ccache.py
 
 
 debug :
