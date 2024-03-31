@@ -42,6 +42,7 @@ def clicked():
     painter.end()
     buffer.seek(0)
     svg = buffer.readAll()
+    print ("svg: ", svg)
 
     renderer = QtSvg.QSvgRenderer(svg)
     printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.PrinterMode.HighResolution)

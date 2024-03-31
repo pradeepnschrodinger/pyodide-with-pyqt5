@@ -1,3 +1,6 @@
+# run this the first time
+git submodule update --init
+
 ### CPYTHON
 # git clone https://github.com/python/cpython.git
 pushd cpython
@@ -15,12 +18,13 @@ pip install pyyaml
 
 ### PYODIDE
 # git clone https://github.com/iodide-project/pyodide.git
-push pyodide
-    git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
+pushd pyodide
+    # git checkout bda1ba4edf6e4140952c5596e4af47521d21f7eb #v0.24.1
     # git checkout 0fe04cd97d9c808a9d77335a630faf371f7ec200
+    git checkout a14d34fb1be4b0aed869be71b3d5b3b2d9c22790 # emsdk 3.1.52
     pip install -r requirements.txt --no-cache-dir
     # fix an issue related to pyndatic (see: https://stackoverflow.com/a/76958769)
-    pip install pydantic==1.10.9 --no-cache-dir
+    # pip install pydantic==1.10.9 --no-cache-dir
 
     # apply patch for emsdk to fetch tags and checkout the 3.1.37 version of emsdk which Qt6 needs
     # TODO (pradeep): Turn these into real patches
@@ -31,8 +35,9 @@ push pyodide
     # cp ../temp/pyodide__cpython__Makefile cpython/Makefile
 
     # build setuptools and other core libraries
+    # set PYODIDE_JOBS=1 for a serial non-flaky build
     # PYODIDE_PACKAGES="toolz,attrs,core" make &> ../logs/pyodide-make.log
-    PYODIDE_JOBS=1 PYODIDE_PACKAGES="toolz,attrs,core,numpy,scipy" make &> ../logs/pyodide-make-msv.log
+    PYODIDE_JOBS=1 PYODIDE_PACKAGES="toolz,attrs,core,numpy,scipy" make &> ../logs/pyodide-make.log
 
     source ./emsdk/emsdk/emsdk_env.sh
 popd
@@ -40,13 +45,13 @@ popd
 ### QT6
 # git clone git://code.qt.io/qt/qt5.git qt6
 # git clone https://code.qt.io/qt/qt5.git qt6
-push qt6
+pushd qt6
     git switch 6.6.1
     # needs to be timed
     perl init-repository
 
     # apply patches in qtbase to configure timzeone, semaphore, and thread features to always be enabled
-    push qtbase
+    pushd qtbase
         # TODO (pradeep): Do we need to patch cmake/QtInternalTargets.cmake ?
 
         # patch to enable most features for WASM build
@@ -128,7 +133,7 @@ tar -xf sources/PyQt6-6.6.1.tar.gz
 pushd PyQt6-6.6.1
 
     # install PyQt tools (eg: sip-build)
-    pip install --no-cache-dir PyQt-builder
+    pip install PyQt-builder==1.15.4 --no-cache-dir 
 
     # patches for project.py so that we only build QtCore, QtWidgets, QtGui
     # the rest aren't required, and they either cause build errors or takes a long time to complete
@@ -151,7 +156,7 @@ pushd PyQt6-6.6.1
 popd
 
 ## Fix PyQt6 before building
-push pyqt6-wasm-build
+pushd pyqt6-wasm-build
     # patch pyqt6-wasm-build/QtWidgets/sipQtWidgetsQApplication.cpp to import static QT plugins
 
     # patch pyqt6-wasm-build/QtCore/sipQtCoreQRecursiveMutex.cpp and pyqt6-wasm-build/QtCore/sipQtCoreQMutex.cpp to call sipCpp->tryLock() with zero timeout
@@ -198,7 +203,7 @@ pushd pyodide
     cp ../temp/pyodide__src__core__pyproxy.ts src/core/pyproxy.ts
     cp ../temp/pyodide__Makefile Makefile
 
-    make
+    make &> ../logs/pyodide-remake.log
 popd
 
 ### PACKAGING

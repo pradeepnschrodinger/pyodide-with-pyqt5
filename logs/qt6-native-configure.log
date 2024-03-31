@@ -1,7 +1,7 @@
 + mkdir -p qtbase
 + cd qtbase
-+ exec /home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -skip qtvirtualkeyboard -skip qtspeech -skip qtimageformats -skip qtdoc -skip qtnetworkauth -skip qt5compat -skip qtmqtt -skip qtserialbus -skip qtwebchannel -skip qtwebengine -skip qt3d -skip qtconnectivity -skip qtcoap -skip qthttpserver -skip qtwebsockets -skip qtserialport -skip qtremoteobjects -skip qtdatavis3d -skip qtquick3d -skip qtlottie -skip qtactiveqt -skip qttools -skip qtgrpc -skip qtsensors -skip qtgraphs -skip qtquickeffectmaker -skip qtwayland -skip qttranslations -skip qtlocation -skip qtopcua -skip qtqa -skip qtscxml -skip qtlanguageserver -skip qtquicktimeline -skip qtmultimedia -skip qtwebview -skip qtshadertools -skip qtdeclarative -skip qtcharts -skip qtpositioning -skip qtquick3dphysics -prefix ../qt6-native-host -nomake examples -confirm-license
-'/home/niranjanpba/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DBUILD_qtvirtualkeyboard=OFF' '-DBUILD_qtspeech=OFF' '-DBUILD_qtimageformats=OFF' '-DBUILD_qtdoc=OFF' '-DBUILD_qtnetworkauth=OFF' '-DBUILD_qt5compat=OFF' '-DBUILD_qtmqtt=OFF' '-DBUILD_qtserialbus=OFF' '-DBUILD_qtwebchannel=OFF' '-DBUILD_qtwebengine=OFF' '-DBUILD_qt3d=OFF' '-DBUILD_qtconnectivity=OFF' '-DBUILD_qtcoap=OFF' '-DBUILD_qthttpserver=OFF' '-DBUILD_qtwebsockets=OFF' '-DBUILD_qtserialport=OFF' '-DBUILD_qtremoteobjects=OFF' '-DBUILD_qtdatavis3d=OFF' '-DBUILD_qtquick3d=OFF' '-DBUILD_qtlottie=OFF' '-DBUILD_qtactiveqt=OFF' '-DBUILD_qttools=OFF' '-DBUILD_qtgrpc=OFF' '-DBUILD_qtsensors=OFF' '-DBUILD_qtgraphs=OFF' '-DBUILD_qtquickeffectmaker=OFF' '-DBUILD_qtwayland=OFF' '-DBUILD_qttranslations=OFF' '-DBUILD_qtlocation=OFF' '-DBUILD_qtopcua=OFF' '-DBUILD_qtqa=OFF' '-DBUILD_qtscxml=OFF' '-DBUILD_qtlanguageserver=OFF' '-DBUILD_qtquicktimeline=OFF' '-DBUILD_qtmultimedia=OFF' '-DBUILD_qtwebview=OFF' '-DBUILD_qtshadertools=OFF' '-DBUILD_qtdeclarative=OFF' '-DBUILD_qtcharts=OFF' '-DBUILD_qtpositioning=OFF' '-DBUILD_qtquick3dphysics=OFF' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-G' 'Ninja' '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6'
++ exec /home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/configure -top-level -static -skip qtvirtualkeyboard -skip qtspeech -skip qtimageformats -skip qtdoc -skip qtnetworkauth -skip qt5compat -skip qtmqtt -skip qtserialbus -skip qtwebchannel -skip qtwebengine -skip qt3d -skip qtconnectivity -skip qtcoap -skip qthttpserver -skip qtwebsockets -skip qtserialport -skip qtremoteobjects -skip qtdatavis3d -skip qtquick3d -skip qtlottie -skip qtactiveqt -skip qttools -skip qtgrpc -skip qtsensors -skip qtgraphs -skip qtquickeffectmaker -skip qtwayland -skip qttranslations -skip qtlocation -skip qtopcua -skip qtqa -skip qtscxml -skip qtlanguageserver -skip qtquicktimeline -skip qtmultimedia -skip qtwebview -skip qtshadertools -skip qtdeclarative -skip qtcharts -skip qtpositioning -skip qtquick3dphysics -prefix ../qt6-native-host -nomake examples -confirm-license
+'/home/pradeep/projects/pyodide-with-pyqt5/.venv-native/lib/python3.11/site-packages/cmake/data/bin/cmake' '-DBUILD_qtvirtualkeyboard=OFF' '-DBUILD_qtspeech=OFF' '-DBUILD_qtimageformats=OFF' '-DBUILD_qtdoc=OFF' '-DBUILD_qtnetworkauth=OFF' '-DBUILD_qt5compat=OFF' '-DBUILD_qtmqtt=OFF' '-DBUILD_qtserialbus=OFF' '-DBUILD_qtwebchannel=OFF' '-DBUILD_qtwebengine=OFF' '-DBUILD_qt3d=OFF' '-DBUILD_qtconnectivity=OFF' '-DBUILD_qtcoap=OFF' '-DBUILD_qthttpserver=OFF' '-DBUILD_qtwebsockets=OFF' '-DBUILD_qtserialport=OFF' '-DBUILD_qtremoteobjects=OFF' '-DBUILD_qtdatavis3d=OFF' '-DBUILD_qtquick3d=OFF' '-DBUILD_qtlottie=OFF' '-DBUILD_qtactiveqt=OFF' '-DBUILD_qttools=OFF' '-DBUILD_qtgrpc=OFF' '-DBUILD_qtsensors=OFF' '-DBUILD_qtgraphs=OFF' '-DBUILD_qtquickeffectmaker=OFF' '-DBUILD_qtwayland=OFF' '-DBUILD_qttranslations=OFF' '-DBUILD_qtlocation=OFF' '-DBUILD_qtopcua=OFF' '-DBUILD_qtqa=OFF' '-DBUILD_qtscxml=OFF' '-DBUILD_qtlanguageserver=OFF' '-DBUILD_qtquicktimeline=OFF' '-DBUILD_qtmultimedia=OFF' '-DBUILD_qtwebview=OFF' '-DBUILD_qtshadertools=OFF' '-DBUILD_qtdeclarative=OFF' '-DBUILD_qtcharts=OFF' '-DBUILD_qtpositioning=OFF' '-DBUILD_qtquick3dphysics=OFF' '-DQT_INTERNAL_CALLED_FROM_CONFIGURE:BOOL=TRUE' '-DBUILD_SHARED_LIBS=OFF' '-DCMAKE_INSTALL_PREFIX=../qt6-native-host' '-DQT_BUILD_EXAMPLES=FALSE' '-G' 'Ninja' '/home/pradeep/projects/pyodide-with-pyqt5/qt6'
 -- The CXX compiler identification is GNU 11.4.0
 -- The C compiler identification is GNU 11.4.0
 -- The ASM compiler identification is GNU
@@ -30,7 +30,7 @@
             -DCMAKE_C_STANDARD_REQUIRED=ON
             -DCMAKE_CXX_STANDARD=17
             -DCMAKE_CXX_STANDARD_REQUIRED=ON
-            -DCMAKE_MODULE_PATH:STRING=/home/niranjanpba/projects/pyodide-with-pyqt5/qt6/qtbase/cmake/platforms
+            -DCMAKE_MODULE_PATH:STRING=/home/pradeep/projects/pyodide-with-pyqt5/qt6/qtbase/cmake/platforms
 -- Configuring submodule 'qtimageformats'
 -- Configuring submodule 'qtlanguageserver'
 -- Configuring submodule 'qtshadertools'
@@ -78,7 +78,7 @@
 -- Configuring submodule 'qtwayland'
 -- Configuring submodule 'qtwebview'
 
--- Configuration summary shown below. It has also been written to /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build/config.summary
+-- Configuration summary shown below. It has also been written to /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build/config.summary
 -- Configure with --log-level=STATUS or higher to increase CMake's message verbosity. The log level does not persist across reconfigurations.
  
 -- Configure summary:
@@ -275,14 +275,14 @@ Note: Disabling X11 Accessibility Bridge: D-Bus or AT-SPI is missing.
 Qt is now configured for building. Just run 'cmake --build . --parallel'
 
 Once everything is built, you must run 'cmake --install .'
-Qt will be installed into '/home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host'
+Qt will be installed into '/home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host'
 
 To configure and build other Qt modules, you can use the following convenience script:
-        /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-host/bin/qt-configure-module
+        /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-host/bin/qt-configure-module
 
 If reconfiguration fails for some reason, try removing 'CMakeCache.txt' from the build directory
 Alternatively, you can add the --fresh flag to your CMake flags.
 
--- Configuring done (21.8s)
+-- Configuring done (16.1s)
 -- Generating done (0.6s)
--- Build files have been written to: /home/niranjanpba/projects/pyodide-with-pyqt5/qt6-native-build
+-- Build files have been written to: /home/pradeep/projects/pyodide-with-pyqt5/qt6-native-build

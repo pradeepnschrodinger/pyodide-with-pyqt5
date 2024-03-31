@@ -23,6 +23,7 @@ def clicked():
     painter.end()
     buffer.seek(0)
     svg = buffer.readAll()
+    print ("svg: ", svg)
     QtWidgets.QFileDialog.saveFileContent(svg, "test.svg")
 
 # app = QtWidgets.QApplication([])
