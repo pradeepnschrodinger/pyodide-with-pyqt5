@@ -1,0 +1,1 @@
+message = "Hello string from util!"
