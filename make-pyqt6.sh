@@ -203,7 +203,7 @@ pushd pyodide
     cp ../temp/pyodide__src__core__pyproxy.ts src/core/pyproxy.ts
     cp ../temp/pyodide__Makefile Makefile
 
-    make &> ../logs/pyodide-remake.log
+    PYODIDE_PACKAGES="toolz,attrs,core,numpy,scipy" make &> ../logs/pyodide-remake.log
 popd
 
 ### PACKAGING
@@ -219,11 +219,29 @@ pushd build-qt6
     cp ../pyodide/dist/pyodide.mjs .
     cp ../pyodide/dist/pyodide.mjs.map .
     cp ../pyodide/dist/python_stdlib.zip .
-    cp ../pyodide/dist/repodata.json .
+    cp ../pyodide/dist/pyodide-lock.json .
 
     # copy pyqt6 examples
     mkdir -p examples
     cp ../examples/qt6_*.py ./examples/
+
+    # copy pre-built packages
+    # mkdir -p packages
+    # pushd packages
+        cp ../packages/* ./
+        cp ../pyodide/dist/numpy-*.whl ./
+        cp ../pyodide/dist/scipy-*.whl ./
+        cp ../pyodide/dist/more_itertools-*.whl ./
+        cp ../pyodide/dist/openblas-0.3.23.zip ./
+        cp ../pyodide/dist/micropip-*.whl ./
+        cp ../pyodide/dist/packaging-*.whl ./
+    # popd
+
+    # build and copy rest of the packages
+    pushd ../examples/multifile_app
+        pip wheel .
+        cp *.whl ../../build-qt6/
+    popd
 
     # remove broken examples
     rm -rf ./examples/qt6_file_picker.py
@@ -236,5 +254,5 @@ pushd build-qt6
 
     # bundle everything!
     rm -rf pyqt6-wasm.zip
-    zip -r pyqt6-wasm.zip .
+    zip -r pyqt6-wasm-v0.0.3.zip .
 popd
